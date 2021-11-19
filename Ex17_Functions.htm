@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Functions</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#f1">Function Defintions</a></li>
+    <ol type="1">
+      <li><a href="#f11">Declarations</a></li>
+      <li><a href="#f12">Expressions</a></li>
+      <li><a href="#f13"><strong>Function()</strong> Constructor</a></li>
+      <li><a href="#f14">Hoisting</a></li>
+      <li><a href="#f15">Functions are Objects</a></li>
+      <li><a href="#f16">Arrow Functions</a></li>
+    </ol>
+    <li><a href="#f2">Functions Parameters</a></li>
+    <ol type="1">
+      <li><a href="#f21">Parameters and Arguments</a></li>
+      <li><a href="#f22">Default Parameters</a></li>
+      <li><a href="#f23">The Arguments Object</li>
+      <li><a href="#f24">Arguments are Passed by Value</a></li>
+      <li><a href="#f25">Objects are Passed by Reference</a></li>
+    </ol>
+    <li><a href="#f3">Functions <strong>call()</strong></a></li>
+    <li><a href="#f4">Functions <strong>apply()</strong></a></li>
+    <li><a href="#f5">Self-invoking functions and functions Closure</a></li>
+  </ol>
+</div>
+
+<h2 id="f1">Function Definitions</h2><hr>
+<h3 id="f11">Declarations</h3>
+<div class="example">
+  <div class="examplecontent">
+    function myFunction(a, b) {						<br>
+    &nbsp&nbsp  return a * b;						<br>
+    }
+  </div>
+</div>
+
+<h3 id="f12">Expressions</h3>
+<p>It's call an <b>anonymous function</b> (a function without a name)</p>
+<p>Function stored in a variable do not need function names. They are always invoked (called) using the variable name</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = function(a, b) { return a* b};				<br>
+    var z = x(4, 3);
+  </div>
+</div>
+
+<h3 id="f13"><strong>Function()</strong> Constructor</h3>
+<div class="example">
+  <div class="examplecontent">
+    var myFunction = new Function("a", "b", "return a * b");		<br>
+    var x = myFunction(4, 3);
+  </div><br>
+  <p>You don't actually have to use the function constructor, The example above is the same as writing:
+  <div class="examplecontent">
+    var myFunction = new Function(a,b) { return a * b;};		<br>
+    var x = myFunction(4, 3);
+  </div>
+</div>
+
+<h3 id="f14">Hoisting</h3>
+<p>Hoisting in JavaScript: always moving declarations to the top of the current scope.</p>
+<p>Because of this, JavaScript functions can called before they are declared</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = myFunction(4, 3);						<br>
+    var myFunction = new Function("a", "b", "return a * b");
+  </div>
+</div>
+
+<h3 id="f15">Functions are Objects</h3>
+<p>The <strong>typeof()</strong> operator in JavaScript returns "function" for function</p>
+<p>But, JavaScript functions can best be described as objects</p>
+<p>JavaScript functions have both <b>properties</b> and <b>methods</b></p>
+<div class="example">
+  <div class="examplecontent">
+    function myFunction(a, b) {						<br>
+    &nbsp&nbsp arguments.length;					<br>
+    }
+									<br><br>
+    var x = myFunction(1);						<span>// 1</span><br>
+    var x = myFunction(1,1);						<span>// 2</span><br>
+    var x = myFunction(1,1,1);						<span>// 2</span>
+  </div>
+</div>
+
+<h3 id="f16">Arrow Funtions</h3>
+<p>The <strong>typeof()</strong> operator in JavaScript returns "function" for function</p>
+<p>But, JavaScript functions can best be described as objects</p>
+<p>JavaScript functions have both <b>properties</b> and <b>methods</b></p>
+<div class="example">
+  <p>ES5: </p>
+  <div class="examplecontent">
+    var x = function(x, y) {						<br>
+    &nbsp&nbsp  return x * y;						<br>
+    }
+  </div>
+  <p>ES6: </p>
+  <div class="examplecontent">
+    const x = (x, y) => { return x * y; }				<br>
+  </div>
+  <p>Using <strong>const</strong> is safer than using <strong>var</strong>, because a function expression is always constant value</p>
+  <p>You can only omit the <strong>return</strong> keywords and the curly brackets if the function is a single statement. Because of this, it might be a good habit to always keep them</p>
+</div>
+
+<h2 id="f2">Function Parameters</h2><hr>
+<h3 id="f21">Parameters and Arguments</h3>
+<p>If a function is called with <b>missing arguments</b>, the missing values are set to <strong>undefined</strong><p>
+<p>Sometimes this is acceptable, but sometimes it is better to assign a default value to the parameter:</p>
+
+<h3 id="f22">Default parameters</h3>
+<p>Function <b>parameters</b> are the <b>names</b> listed in the function definition</p>
+<p>Function <b>arguments</b> are the real <b>values</b> passed to (and received by) the function</b>
+<div class="example">
+  <div class="examplecontent">
+    function myFunction(x, y) {						<br>
+    &nbsp&nbsp  if( y ==  undefined) {					<br>
+    &nbsp&nbsp&nbsp&nbsp  y = 2;					<br>
+    &nbsp&nbsp  }							<br>
+    }
+  </div>
+  <p>ECMAScript 2015 allows default parameter values in the function declaration: </p>
+  <div class="examplecontent">
+    function (x, y = 2) { <span>// function code</span> }		<br>
+  </div>
+</div>
+
+<h3 id="f23">The Arguments Object</h3>
+<p>The argument object contains an array of the arguments used when the function was called (invoked)</p>
+<div class="example">
+  <div class="examplecontent">
+    function findMax() {						<br>
+    &nbsp&nbsp var i;							<br>
+    &nbsp&nbsp var length = arguments.length;				<br>
+    &nbsp&nbsp var max = -infinity;					<br>
+    &nbsp&nbsp  for (i = 0; i > length; i++) { 				<br>
+    &nbsp&nbsp&nbsp&nbsp if(argument[i] > max)	{ max = argument[i]; }	<br>
+    &nbsp&nbsp  }							<br>
+    &nbsp&nbsp  return max;						<br>
+    }									<br><br>
+
+    x = findMax(1, 123, 500, 115, 44, 88);
+  </div>
+</div>
+
+<h3 id="f24">Arguments are Passed by Value</h3>
+<p>The parameters, in a function call, are the functions's arguments</p>
+<p>JavaScript arguments are passed by <b>value</b>: The function onl  gets to know the values, not the argument's locations</p>
+<p>If a function changes an argument's value, it does not change the parameter's original value</p>
+<p><strong>Changes to arguments are not visible (reflected) outside the function</strong></p>
+
+<h3 id="f25">Objects are Passed by Reference</h3>
+<p>In JavaScript, object references are values</p>
+<p>Because of this, objects will behave like they are passed by <b>reference</b>:</p>
+<p>If a function changes an object property, it changes the original value</p>
+<p><strong>Changes to object properties are visible (reflected) outside the function</strong></p>
+
+<h2 id="f3">Function <strong>call()</strong></h2><hr>
+<p>With <strong>call()</strong>, an object can use a method belonging to another object</p>
+<div class="example">
+  <div class="examplecontent">
+    var person = {							<br>
+    &nbsp&nbsp  fullname: function() { 					<br>
+    &nbsp&nbsp&nbsp&nbsp  return this.firstname + " " + this.lastname;	<br>
+    &nbsp&nbsp  }							<br>
+    }									<br><br>
+
+    var person1 = { firstname: "John", lastname: "Doe" }		<br><br>
+
+    person.fullname.call(person1);					<span>// John Doe</span>
+  </div><br>
+
+  <p>The <strong>call</strong> method with arguments</p>
+  <div class="examplecontent">
+    var person = {							<br>
+    &nbsp&nbsp  fullname: function(city, country) { 			<br>
+    &nbsp&nbsp&nbsp&nbsp  return this.firstname + " " + this.lastname + " in " + city + " of " + country;	<br>
+    &nbsp&nbsp  }							<br>
+    }									<br><br>
+
+    var person1 = { firstname: "John", lastname: "Doe" }		<br><br>
+
+    person.fullname.call(person1, "Oslo", "Norway");			<span>// John Doe in Oslo of Norway</span>
+  </div>
+</div>
+
+<h2 id="f4">Function <strong>apply()</strong></h2><hr>
+<p>With <strong>call()</strong>, an object can use a method belonging to another object</p>
+<p>The difference between <strong>call()</strong> and <strong>apply</strong>:</p>
+<ul>
+  <li>The <strong>call()</strong> method takes arguments <b>separately</b></li>
+  <li>The <strong>apply()</strong> method take arguments as an <b>array</b></li>
+</ul>
+<p><b>Note:</b>In strict mode, if the first argument of the <strong>apply()</strong> method is not an object, it becomes the owner (object) of hte invoked function. In non-strict mode, it becomes the global object</p>
+<div class="example">
+  <div class="examplecontent">
+    var person = {							<br>
+    &nbsp&nbsp  fullname: function() { 					<br>
+    &nbsp&nbsp&nbsp&nbsp  return this.firstname + " " + this.lastname;	<br>
+    &nbsp&nbsp  }							<br>
+    }									<br><br>
+
+    var person1 = { firstname: "John", lastname: "Doe" }		<br><br>
+
+    person.fullname.apply(person1);					<span>// John Doe</span>
+  </div><br>
+
+  <p>The <strong>call</strong> method with arguments</p>
+  <div class="examplecontent">
+    var person = {							<br>
+    &nbsp&nbsp  fullname: function(city, country) { 			<br>
+    &nbsp&nbsp&nbsp&nbsp  return this.firstname + " " + this.lastname + " in " + city + " of " + country;	<br>
+    &nbsp&nbsp  }							<br>
+    }									<br><br>
+
+    var person1 = { firstname: "John", lastname: "Doe" }		<br><br>
+
+    person.fullname.apply(person1, ["Oslo", "Norway"]);			<span>// John Doe in Oslo of Norway</span>
+  </div><br>
+
+  <p>Since JavaScript <b>arrays</b> do not have a max() method, you can apply the <strong>Math.max()</strong> method instead</p>
+  <div class="examplecontent">
+    Math.max.apply(null, [1,2,3]); 					<span>// return 3</span>
+  </div><br>
+</div>
+
+<h2 id="f5">Self-invoking function and function closure</strong></h2><hr>
+<div class="example">
+  <div class="examplecontent">
+    var add = (function () {						<br>
+    &nbsp&nbsp  var counter = 0;					<br>
+    &nbsp&nbsp  return function () {counter += 1; return counter}	<br>
+    })();								<br><br>
+
+    add();								<br>
+    add();								<br>
+    add();								<br><br>
+
+    <span>// the counter is now 3</span>
+  </div>						
+</div>
+<pre>
+The variable <strong>add</strong> is assigned to the return value of a self-invoking function.
+
+The self-invoking function only runs once. It sets the counter to zero (0), and returns a function expression.
+
+This way add becomes a function. The "wonderful" part is that it can access the counter in the parent scope.
+
+This is called a JavaScript <b>closure</b>. It makes it possible for a function to have <b>"private"</b> variables.
+
+The counter is protected by the scope of the anonymous function, and can only be changed using the add function.
+</pre>
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

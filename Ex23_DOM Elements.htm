@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript DOM Elements</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#e1">getElementById()</a></li>
+    <li><a href="#e2">getElementByTagName()</a></li>
+    <li><a href="#e3">getElementByClassName()</a></li>
+    <li><a href="#e4">querySelectorAll()</a></li>
+    <li><a href="#e5">document.forms[]</a></li>
+    <li><a href="#e6">document.anchors</a></li>
+    <li><a href="#e7">document.body</a></li>
+    <li><a href="#e8">document.documentElement</a></li>
+    <li><a href="#e9">document.embeds</a></li>
+    <li><a href="#e10">document.forms</a></li>
+    <li><a href="#e11">document.head</a></li>
+    <li><a href="#e12">document.images</a></li>
+    <li><a href="#e13">document.links</a></li>
+    <li><a href="#e14">document.scripts</a></li>
+    <li><a href="#e15">document.title</a></li>
+  </ol>
+</div>
+<p><b>Note</b>: Some methods return a list of HTML Elements, which can be accessed like array</p>
+<p><span>Exp: elements[0]</span></p>
+<p>But, it is not an array, which mean you can not use array funtion on it (pop(), push(), join(),...)</p><br>
+<h2 id="e1">getElementById()</h2><hr>
+<div class="example">
+  <p>This example finds the element with <strong>id="intro"</strong>:</p>
+  <div class="examplecontent">
+    var myElement = document.getElementById("intro");
+  </div>
+</div>
+
+<h2 id="e2">getElementByTagName()</h2><hr>
+<div class="example">
+  <p>This example finds all <strong>&ltp&gt</strong> elements:</p>
+  <div class="examplecontent">
+    var myElements = document.getElementByTagName("p");
+  </div><br>  
+  <p>This example finds the element with <strong>id="main"</strong>, and then finds all </strong>&ltp&gt</strong> elements inside </strong>"main"</strong></p>
+  <div class="examplecontent">
+    var x = document.getElementById("main");						<br>
+    var myElements = x.getElementByTagName("p");
+  </div><br>
+</div>
+
+<h2 id="e3">getElementByClassName()</h2><hr>
+<p>
+<div class="example">
+  <p>
+  <div class="examplecontent">
+    var myElements = document.getElementByClassName("intro");					
+  </div>
+</div>
+
+<h2 id="e4">querySelectorAll()</h2><hr>
+<p>
+<div class="example">
+  <p>Find all <strong>&ltp&gt</strong> elements</p>
+  <div class="examplecontent">
+    var x1 = document.querySelectorAll(".example");				
+  </div><br>
+
+  <p>Find all <strong>class="example"</strong> elements</p>
+  <div class="examplecontent">
+    var x1 = document.querySelectorAll("p");				
+  </div><br>
+
+  <p>Find all <strong>&ltp&gt</strong> with <strong>class="example"</strong> elements</p>
+  <div class="examplecontent">
+    var x1 = document.querySelectorAll("p.example");				
+  </div><br>
+
+  <p>Find all <strong>&lta&gt</strong> elements that have a <strong>"target"</strong> attribute</p>
+  <div class="examplecontent">
+    var x1 = document.querySelectorAll("a[target]");				
+  </div><br>
+
+  <p>Find all <strong>&ltp&gt</strong> elements where the parent is a <strong>&ltdiv&gt</strong> elements</p>
+  <div class="examplecontent">
+    var x1 = document.querySelectorAll("div > p");				
+  </div><br>
+
+  <p>Find all <strong>&lth2&gt</strong>, <strong>&ltdiv&gt</strong>, <strong>&ltp&gt</strong>  elements</p>
+  <div class="examplecontent">
+    var x1 = document.querySelectorAll("h2, div, p");				
+  </div><br>
+  <p><b>Note</b>: Use <strong>x1[0]</strong> to get / set the first element in x1</p>
+</div>
+
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

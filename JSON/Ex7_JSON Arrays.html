@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>AJAX Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: lightgray;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <h2>Arrays as JSON Objects</h2>
+  <p style="background-color:#333;padding:5px 10px;color:white">
+    [ <span style="color:lightgreen">"Ford"</span>, <span style="color:lightgreen">"BMW"</span>, <span style="color:Fiat"</span> ]
+  </p>
+  <p>Arrays in JSON are almost the same as arrays in JavaScript.</p>
+  <p>In JSON, array values must be type string, number, object, array, boolean or <i>null</i>.</p>
+  <p>In JavaScript, array values can be all of the above, plus any other valid JavaScript expression, including functions dates, and <i>undefined</i>
+</div>
+
+<div class="container">
+  <h2>Arrays in JSON Objects</h2>
+  <p>Arrays can be values of an object property:</p>
+  <p style="color:lightgreen; background-color:#333; padding:5px 10px">
+    <span style="color:white">{</span><br>
+    "name"<style="color:white"> : </span>"John"<span style="color:white">,</span><br>
+    "age"<style="color:white"> : </span><span style="color:lightblue">30<span style="color:white">,</span><br>
+    "cars"<style="color:white"> : [ </span>"Ford"<span style="color:white">,</span> "BWM"<span style="color:white">,</span> "Fiat"<span style="color:white"> ]<br>}</span>
+  </p>
+</div> 
+
+<div class="container">
+  <h2>Accessing Array Values</h2>
+  <p>You access the array values by using the index number:</p>
+  <p style="background-color:#333; padding:5px 10px; color:white">
+    x = myObj.cars[<span style="color:lightblue">0</span>];
+  </p>
+</div>
+
+<div class="container">
+  <h2>Looping Through an Array</h2>
+  <p>You can access array values by using a <b>for-in</b> loop:</p>
+  <p style="color:white; background-color:#333; padding:5px 10px">
+    <span style="color:pink">for </span> (i <span style="color:pink">in </span> myOj.cars) {<br>
+    &nbsp&nbspx += myObj.cars[i];<br>}
+  </p>
+  <p>Or you can use a <b>for</b> loop</p>
+  <p style="color:white; background-color:#333; padding:5px 10px">
+    <span style="color:pink">for </span> (i = 0; i < myObj.cars.length; i++) {<br>
+    &nbsp&nbspx += myObj.cars[i];<br>}
+  </p>
+</div>
+
+<div class="container">
+  <h2>Nested Arrays in JSON Objects</h2>
+  <p>Values in an array can also be another array, or even another JSON object:</p>
+  <p style="background-color:#333; padding:5px 10px; color:white">
+    myObj = {<br>
+    &nbsp&nbsp<span style="color:lightgreen">"name"</span> : <span style="color:lightgreen">"John"</span>, <br>
+    &nbsp&nbsp<span style="color:lightgreen">"age"</span> : <span style="color:lightblue">30</span>, <br>
+    &nbsp&nbsp<span style="color:lightgreen">"cars"</span> : [ <br>
+    &nbsp&nbsp&nbsp&nbsp { <span style="color:lightgreen">"name"</span> : <span style="color:lightgreen">"Ford"</span>, <span style="color:lightgreen">"models"</span> : [ <span style="color:lightgreen">"Fiesta"</span>, <span style="color:lightgreen">"Focus"</span>, <span style="color:lightgreen">"Mustang"</span> ] },<br>
+    &nbsp&nbsp&nbsp&nbsp { <span style="color:lightgreen">"name"</span> : <span style="color:lightgreen">"BMW"</span>, <span style="color:lightgreen">"models"</span> : [ <span style="color:lightgreen">"320"</span>, <span style="color:lightgreen">"X3"</span>, <span style="color:lightgreen">"X5"</span> ] },<br>
+    &nbsp&nbsp&nbsp&nbsp { <span style="color:lightgreen">"name"</span> : <span style="color:lightgreen">"Fiat"</span>, <span style="color:lightgreen">"models"</span> : [ <span style="color:lightgreen">"500"</span>, <span style="color:lightgreen">"Panda"</span> ] }<br>&nbsp&nbsp]<br>}
+  </p>
+
+  <p>To access arrays inside arrays, use a for-in loop for each array:</p>
+  <p style="color:white; background-color:#333;padding:5px 10px">
+    <span style="color:pink">for </span>(i <span style="color:pink">in </span> myObj.cars) {<br>
+    &nbsp&nbsp x += <span style="color:green">"&lth1&gt"</span> + myObj.cars[i].name + <span style="color:lightgreen">"&lt/h1&gt"</span>;<br>
+    &nbsp&nbsp<span style="color:pink">for </span> (j <span style="color:pink">in </span> myObj.cars[i].models) {<br>
+    &nbsp&nbsp&nbsp&nbspx += myObj.cars[i].models[j];<br>&nbsp&nbsp}<br>}
+  </p>
+</div>
+
+<div class="container">
+  <h2>Modify Array Values</h2>
+  <p>Use the index number to modify an array</p>
+  <p style="color:white;background-color:#333;padding:5px 10px;">
+    myObj.cars[<span style="color:lightblue">1</span>] = <span style="color:lightgreen">"Mercedes"</span>;
+  </p>
+</div>
+
+<div class="container">
+  <h2>Delete Array Items</h2>
+  <p>Use the <code>delete</code> keyword to delete items from an array:</p>
+  <p style="color:white; background-color:#333;padding:5px 10px">
+    <span style="color:pink">delete</span> myObj.cars[<span style="color:lightblue">1</span>];
+  </p>
+</div>
+<script>
+
+</script>
+</body>
+</html>

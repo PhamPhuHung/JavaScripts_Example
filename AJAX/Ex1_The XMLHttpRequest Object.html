@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>AJAX Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: lightgray;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <p>The keystone of AJAX is the SMLHttpRequest object.</p>
+</div>
+
+<div class="container">
+  <h2>The XMLHttpRequest Object</h2>
+  <p>All modern browsers support the <code>XMLHttpRequest</code> object.</p>
+  <p>The <code>XMLHttpRequest</code> object can be used to exchange data with a web server vehind the scenes. This means that it is possible to update parts of a web page, without relaoding the whole page.</p>
+</div>
+
+<div class="container">
+  <h2>Create an XMLHttpRequest Object</h2>
+  <p>All modern browsers (Chrome, Firefox, IE7+, Edge, Safari, Opera) have a built-in XMLHttpRequest object.</p>
+  <p>Syntax for creating an XMLHttpRequest object:</p>
+  <p style="background-color:#333; padding:5px 10px">
+    <span style="color:white">variable = </span>
+    <span style="color:pink">new </span>
+    <span style="color:white">XMLHttpRequest();</span>
+  </p>
+  <div style="background-color:#ccc; padding:15px; margin: 10px 0s">
+    <h3>Example</h3>
+    <p style="background-color:#333; padding:5px 10px">
+      <span style="color:pink">var </span>
+      <span style="color:white">xhttp = </span>
+      <span style="color:pink">new </span>
+      <span style="color:white">XMLHttpRequest();</span><br><br>
+
+      <span style="color:white">xhttm.onreadystatechange = <span>
+      <span style="color:pink"> function</span>
+      <span style="color:white">() {</span><br>
+      <span style="color:pink">&nbsp&nbspif</span>
+      <span style="color:white">(</span>
+      <span style="color:pink">this<span>
+      <span style="color:white">.readyState == 4 && </span>
+      <span style="color:pink">this</span>
+      <span style="color:white">.status == 200) {<br>
+        &nbsp&nbsp&nbsp&nbspdocument.getElementById(<span style="color:green">"demo"</span>).innerHTML = </span>
+      <span style="color:pink">this</span>
+      <span style="color:white">.responseText;<br>&nbsp&nbsp}<br>};<br>
+        xhttp.open(<span style="color:green">"GET", "ajax_info.txt", true</span>);<br>
+        xhttp.send();<br></span>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Access Across Domains</h2>
+  <p>For security reasons, modern browsers do not allow access across domains.</p>
+  <p>This means that both the web page and the XML file it tries to load, mut be located on the same server.</p>
+  <p>The examples on W3Scholls all open XML files located on the W3Schools domain.</p>
+  <p>If you want to use the example aobe on one of your web pages, the XML files you load must be located on your server.</p>
+</div>
+
+<div class="container">
+  <h2>Modern Browsers (Fetch API)</h2>
+  <p>Modern Browsers can use Fetch API instead of the XMLHttprrequest Object.</p>
+  <p>The Fetch API interface allows web browser to make HTTP requests to web servers.</p>
+  <p>If you use the XMLHttpRequest Object, Fetch can do the same in a simpler way.</p>
+</div>
+
+<div class="container">
+  <h2>Old Browsers (IE5 & IE6)</h2>
+  <p>Old versions of Internet Explorer (5, 6) use an ActiveX object instead of the <code>XMLHttpRequest</code> object</p>
+  <p style="background-color:#333; padding:5px 10px">
+    <span style="color:white">variable = </span>
+    <span style="color:pink">new </span>
+    <span style="color:white">ActiveXObject(<span>"Microsoft.XMLHTTP"</span>);</span>
+  </p>
+  <div style="background-color:#ccc; padding:15px; margin: 10px 0s">
+    <h3>Example</h3>
+    <p style="background-color:#333; padding:5px 10px">
+      <span style="color:pink">if</span>
+      <span style="color:white">(window.XMLHttpRequest) {</span><br>
+      <span style="color:gray">&nbsp&nbsp// code for modern browsers</span><br>
+      <span style="color:white">&nbsp&nbspxmlhttp = </span>
+      <span style="color:pink">new </span>
+      <span style="color:white">XMLHttpRequest();<br>} </span><br>
+      <span style="color:pink">else</span>
+      <span style="color:white"> {</span><br>
+      <span style="color:gray">&nbsp&nbsp// code for old IE browsers</span><br>
+      <span style="color:white">&nbsp&nbspxmlhttp = </span>
+      <span style="color:pink">new </span>
+      <span style="color:white">ActiveXObject(<span style="color:green">Microsoft.XMLHTTP"</span>);<br>}</span>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <h2>XMLHttpRequest Object Methods</h2>
+  <table class="table table-responsive table-hover table-bordered">
+    <thead><tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr></thead>
+
+    <tbody>
+      <tr>
+        <td>new XMLHttpRequest()</td>
+        <td>Create a new XMLHttpRequest Object</td>
+      </tr>
+
+      <tr>
+        <td>abort()</td>
+        <td>Cancels the current request</td>
+      </tr>
+
+      <tr>
+        <td>getAllResponseHeaders()</td>
+        <td>Returns header information</td>
+      </tr>
+
+      <tr>
+        <td>getResponseHeader()</td>
+        <td>Returns specific header information</td>
+      </tr>
+
+      <tr>
+        <td>open(<i>method, url, async, user, psw)</td>
+        <td>Specifies the request<br><br>
+            <i style="color:darkgray">method</i>: the request type GET / POST<br>
+            <i style="color:darkgray">url</i>: the file location<br>
+            <i style="color:darkgray">async</i>: true (asynchronous) / false (synchronous)<br>
+            <i style="color:darkgray">user</i>: optional user name<br>
+            <i style="color:darkgray">psw</i>: optional password<br>
+        </td>
+      </tr>
+
+      <tr>
+        <td>send()</td>
+        <td>Sends the request to the server<br>
+            Used for GET requests
+        </td>
+      </tr>
+
+      <tr>
+        <td>send(<i>string</i>)</td>
+        <td>Sends the request to the server<br>
+            Used for POST requests
+        </td>
+      </tr>
+
+      <tr>
+        <td>setRequestHeader()</td>
+        <td>Adds a label/value pair to the header to be sent</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container">
+  <h2>XMLHttpRequest Object Properties</h2>
+  <table class="table table-hover table-bordered table-responsive">
+    <thead><tr>
+      <th>Property</th>
+      <th>Description</th>
+    </tr></thead>
+
+    <tbody>
+      <tr>
+        <td>onreadystatechange</td>
+        <td>Defines a function to be called when the readyState property changes</td>
+      </tr>
+
+      <tr>
+        <td>readyState</td>
+        <td>Holds the status of the XMLHttp Request.<br>
+            0: request not initialized<br>
+            1: server connection established<br>
+            2: request received<br>
+            3: processing request<br>
+            4: request finished and responsed is ready<br>
+        </td>
+      </tr>
+
+      <tr>
+        <td>responseText</td>
+        <td>Returns the response data as a string</td>
+      </tr>
+
+      <tr>
+        <td>responseXML</td>
+        <td>Returns the response data as XML data</td>
+      </tr>
+
+      <tr>
+        <td>status</td>
+        <td>Returns the status-number of a request<br>
+            200: "OK"<br>
+            403: "Forbidden"<br>
+            404: "Not Found"<br>
+            For a complete list, go to the <a href="https://www.w3schools.com/tags/ref_httpmessages.asp" target="_blank">Http Messages Reference</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td>statusText</td>
+        <td>Returns the status-text (e.g. "OK" or "Not Found")</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+
+</script>
+</body>
+</html>

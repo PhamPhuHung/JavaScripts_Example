@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>AJAX Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: lightgray;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <div style="background-color:#add; padding:20px">
+    <p>JSON: <b>J</b>ava<b>S</b>cript <b>O</b>bject <b>N</b>otation</p>
+    <p>JSON is a syntax for stroing and exchanging data</p>
+    <p>JSON is text, written with JavaScript object notation</p>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Exchanging Data</h2>
+  <p>When exchangign data between a browser and a server, the data can only be text.</p>
+  <p>JSON is text, & we can convert any JavaScript object into JSON, and send JSON to the server.</p>
+  <p>We can also convert JSON received from theserver into JavaScript object.</p>
+  <p>This way we can work with the data as JavaScript objects, with no complicated parsing and translations</p>
+</div>
+
+<div class="container">
+  <h2>Sending Data</h2>
+  <p>If you have data stord in a JavaScript object, you can oconvert hte object into JSON, and send it to a server:</p>
+  <p style="background-color:#333; padding: 5px 10px;">
+    <span style="color:pink">var </span>
+    <span style="color:white">myObj = {name: <span style="color:green">"John"</span>, age: <span style="color:lightblue">31</span>, city: <span style="color:green">"New York"</span>};</span><br>
+    <span style="color:pink">var </span>
+    <span style="color:white">myJSON = JSON.stringify(myObj);</span><br>
+    <span style="color:white">window.location = <span style="color:green">"demo_json.php?x="</span> + myJSON;</span>
+  </p>
+</div>
+
+<div class="container">
+  <h2>Receiving Data</h2>
+  <p>If you receive data in JSON format, you can convert it into a JavaScript object:</p>
+  <p style="background-color:#333; padding: 5px 10px;">
+    <span style="color:pink">var </span>
+    <span style="color:white">myJSON = {name: <span style="color:green">"John"</span>, age: <span style="color:lightblue">31</span>, city: <span style="color:green">"New York"</span>};</span><br>
+    <span style="color:pink">var </span>
+    <span style="color:white">myObj = JSON.parse(myJSON);</span><br>
+    <span style="color:white">document.getElementById(<span style="color:green">"demo"</span>).innerHTML = myObject.name;</span>
+  </p>
+</div>
+
+<div class="container">
+  <h2>Storing data</h2>
+  <p>When storing data, the data has to be a certain format, and regardless of where you choose to store it, <i>text</i> is always one of the legal formats.</p>
+  <p>JSON makes it possible to store JavaScript objects as text.</p>
+  <p style="background-color:#333; padding: 5px 10px;">
+    <span style="color:darkgray">// Storing data:</span><br>
+    <span style="color:pink">var </span>
+    <span style="color:white">myObj = {name: <span style="color:green">"John"</span>, age: <span style="color:lightblue">31</span>, city: <span style="color:green">"New York"</span>};</span><br>
+    <span style="color:pink">var </span>
+    <span style="color:white">myJSON = JSON.stringify(myObj);</span><br>
+    <span style="color:white">locaStorage.setItem(<span style="color:green">"textJSON"</span>, myJSON);</span><br><br>
+
+    <span style="color:darkgray">// Storing data:</span><br>
+    <span style="color:white">text = localStorage.getItem(<span style="color:green">"textJSON"</span>);<br>
+    <span style="color:white">obj = JSON.parse(text);</span><br>
+    <span style="color:white">document.getElementById(<span style="color:green">"green"</span>).innerHTML = obj.name;</span>
+  </p>
+</div>
+
+<div class="container">
+  <h2>What is JSON?</h2>
+  <ul>
+    <li>JSON: <b>J</b>ava<b>S</b>cript <b>O</b>bject <b>N</b>otation</li>
+    <li>JSON is a lightweight data-interchange format</li>
+    <li>JSON is "self-describing" and easy to understand</li>
+    <li>JSON is language independent *</li>
+  </ul>
+  <div style="background-color:lightyellow; padding:20px">
+    <p>*</p>
+    <p>JSON uses JavaScript syntax, but the JSON format is text only.</p>
+    <p>Text can be read & used as data format by any programming language.</p>
+  </div>
+  <p>The JSON format was originally specified by <a href="https://www.crockford.com/pop.html" target="_blank">Douglas Crockford</a></p>
+</div>
+
+<div class="container">
+  <h2>Why use JSON?</h2>
+  <p>Since the JSON format is text only, it can easily be sent to and from a server, and used as a data format by any programming language.</p>
+  <p>JavaScrxipt has a built in funciton to convert a string, written in JSON format, into native JavaScript objects: <code>JSON.parse()</code></p>
+  <p>So, if you receive data from a server, in JSON format, you can use it like any other JavaScript object.</p>
+</div>
+<script>
+
+</script>
+</body>
+</html>

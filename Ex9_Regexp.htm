@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Regular Exrpession</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#r1">Regular Expression Modifiers</a></li>
+    <li><a href="#r2">Regular Expression Patterns</a></li>
+    <li><a href="#r3">Metacharacters</a></li>
+    <li><a href="#r4">Quantifiers</a></li>
+    <li><a href="#r5">Using the RegExp Object Methods</a></li>
+    <li><a href="#r6">Using the RegExp Properties</a></li>
+  </ol>
+</div>
+
+<h2 id="r1">Regular Expression Modifiers</h2><hr>
+<p><strong>Modifiers</strong> can be used to perform case-insensitive more global searches:</p>
+<img src="img/img_regexpmodifier.png" alt = "Regular Expression Modifiers.png" width="900px">
+<p>In Javascript, regexp are often used with the 2 string methods: <strong>search()</strong> and <strong>replace()</strong></p>
+<div class="example">
+  <div class="examplecontent">
+    var str = "Visit W3Schools and W3Schools!"; <br>
+    var n = str.search("W3Schools");           <span>// Returns 6</span><br>
+    var n = str.search("w3schools");           <span>// Returns null (case sensitive)</span><br>
+    var n = str.search(/w3schools/i);          <span>// Returns 6 (i: search case insensitive)</span><br><br>
+
+    var res = str.replace("W3Schools", "W3S"); <span>// res = "Visit W3S and W3Schools"</span><br>
+    var res = str.replace("w3schools", "W3S"); <span>// res = "Visit W3Schools and W3Schools"</span><br>
+    var res = str.replace(/w3schools/i, "W3S"); <span>// res = "Visit W3S and W3Schools"</span><br>
+    var res = str.replace(/w3school/ig, "W3S"); <span>// res = "Visit W3S and W3S"</span><br>
+  </div>
+</div>
+
+<h2 id="r2">Regular Expression Patterns</h2><hr>
+<p><strong>Brackets</strong> are used to find a range of characters:</p>
+<img src="img/img_regexpbracket.png" alt = "Regular Expression Patterns.png" width="900px">
+<div class="example">
+  <div class="examplecontent">
+    var str = "Is this all there is?"; <br>
+    var n = str.match(/[hia]/g);       <span>// h,i,a,h,i</span><br>
+    var n = str.match(/[^hia]/g);      <span>// I,s,,t,s,,l,l,,t,e,r,e,,s,?</span><br><br>
+
+    var str = "58107384";              <br>
+    var n = str.match(/[1-4]/g);       <span>// 1,3,4</span><br>
+    var n = str.match(/[^1-4]/g);      <span>// 5,8,0,7,8</span><br><br>
+
+    var str = "re, green, red, green, gren, gr, blue, yellow";  <br>
+    var n = str.match(/(red|green)/g); <span>// green, red, green</span>
+  </div>
+</div>
+
+<h2 id="r3">Metacharacters</h2><hr>
+<p><strong>Metacharacters</strong> are characters with a special meaning:</p>
+<img src="img/img_metacharacter.png" alt = "Metacharacters.png" width="900px">
+<div class="example">
+  <div class="examplecontent">
+    var str = "That's hot!";                  <br>
+    var n = str.match(/h.t/g);                <span>// hat,hot</span><br><br>
+
+    var str = "Give 100%!";                   <br>
+    var n = str.match(/\w/g);                 <span>// G,i,v,e,1,0,0</span><br>
+    var n = str.match(/\W/g);                 <span>//  ,%,!</span><br><br>
+
+    var str = "Give 100%!";                   <br>
+    var n = str.match(/\d/g);                 <span>// 1,0,0</span><br>
+    var n = str.match(/\D/g);                 <span>// G,i,v,e, ,%,!</span><br><br>
+
+    var str = "Is this all there is?";        <br>
+    var n = str.match(/\s/g);                 <span>// ,,,</span><br>
+    var n = str.match(/\S/g);                 <span>// I,s,t,h,i,s,a,l,l,t,h,e,r,e,i,s,?,!</span><br><br>
+  
+    var str = "HELLO, LOOK AT YOU";            <br>
+    var n = str.search(/\bLO/g);               <span>// 7</span><br>
+    var n = str.search(/LO\b/g);               <span>// 3</span><br><br>
+
+    var str = "Visit W3S. \0Learn JavaScript"; <br>
+    var n = str.search(/\0/g);                 <span> // 11</span><br>
+  </div>
+</div>
+
+<h2 id="r4">Quantifiers</h2><hr>
+<p><strong>Quantigiers</strong> define quantities:</p>
+<img src="img/img_quantifier.png" alt = "Quantifiers.png" width="900px">
+<div class="example">
+  <div class="examplecontent">
+    var str = "Hellooo World Hello W3School"; <br>
+    var n = str.match(/o+/g);                 <span>// ooo,o,o,oo</span><br>
+    var n = str.match(/lo+/g);                <span>// looo,lo</span><br>
+    var n = str.match(/l+o+/g);               <span>// llooo,llo</span><br><br>
+
+    var str = "Hellooo World Hello W3School"; <br>
+    var n = str.match(/lo*/g);                <span>// l,looo,l,l,lo,l</span><br>
+    var n = str.match(/lo+/g);                <span>//  ,,llooo,,o,,l,,,,,llo,,,,,,,oo,l</span><br><br>
+
+    var str = "1, 100 or 1000?"; <br>
+    var n = str.match(/10?/g);                <span>// 1,10,10</span><br>
+    var n = str.match(/1?0?/g);               <span>// 1,,,10,0,,,,,10,0,0,,</span><br><br>
+
+    var str = "100, 1000 or 10000?";          <br>
+    var n = str.match(/\d{4}/g);              <span>// 1000,1000</span><br>
+    var n = str.match(/\d{3,4}/g);            <span>// 100,1000,1000</span><br>
+    var n = str.match(/\d{3,}/g);             <span>// 100,1000,10000</span><br><br>
+
+    var str = "Is this his";                  <br>
+    var n = str.match(/is$/g);                <span>// is</span><br>
+    var n = str.match(/^Is/g);                <span>// Is</span><br><br>
+
+    var str = "Is this all there is?";        <br>
+    var n = str.match(/is(?= all)/g);         <span>// is</span><br>
+    var n = str.match(/is(?! all)/gi);         <span>// Is,is</span><br>
+  </div>
+</div>
+
+<h2 id="r5">Using the RegExp Object Methods</h2><hr>
+<p>The RegExp object is a regular expression object with predefined properties and methods</p>
+<img src="img/img_regexpobjectmethod.png" alt = "RegExp Object Methods.png" width="900px">
+<div class="example">
+  <p>The <strong>test()</strong> method searches a string for a pattern, and returns true or false, depending on the result</p>
+  <div class="examplecontent">
+    /e/.test("The best things in life are free");<span>// true</span><br>
+    /1/.test("The best things in life are free");<span>// false</span><br>
+  </div><br>
+
+  <p>The <strong>exec()</strong> method searches a string for a specified pattern, and returns the first match as a object { 0: searched pattern, index: position in string, input: string}</p>
+  <div class="examplecontent">
+    var obj = /e/.exec("The best things in life are free");<span>// true</span><br>
+    var result = "Found " + obj[0] + " in position " + obj.index + " in the text: " + obj.input;<br>
+    <span>// result = Found e in position 2 in the text: The best things in life are free.</span><br>
+  </div>
+
+  <p>The <strong>toString()</strong> return the string value of the regexp</p>
+  <div class="examplecontent">
+    var patt = new RegExp("Hello World", "g"); <br>
+    var res = patt.toString;                   <span>// res = "/Hello World!/g"</span>
+  </div>
+</div>
+
+<h2 id="r6">Using the RegExp Properties</h2><hr>
+<img src="img/img_regexpproperty.png" alt = "RegExp Properties.png" width="900px">
+<div class="example">
+  <div class="examplecontent">
+    var patt = new RegExp("Hello World", "g");<span>// patt = /Hello World!/g</span><br>
+    var res = patt.constructor;               <span>// function RegExp() { [native code] }</span><br><br>
+
+    var patt1 = /W3S/g;                        <br>
+    var patt2 = /W3S/i;                        <br>
+    var res = patt1.global;                    <span>// true</span><br>
+    var res = patt2.global;                    <span>// false</span><br><br>
+
+    var patt1 = /W3S/g;                        <br>
+    var patt2 = /W3S/i;                        <br>
+    var res = patt1.ignoreCase;                <span>// false</span><br>
+    var res = patt2.ignoreCase;                <span>// true</span><br><br>
+
+    var patt1 = /W3S/g;                        <br>
+    var patt2 = /W3S/m;                        <br>
+    var res = patt1.multiline;                 <span>// false</span><br>
+    var res = patt2.multiline;                 <span>// true</span><br><br>
+
+    var patt = /W3S/g;                        <br>
+    var res = patt.source;                    <span>// res = "W3S"</span><br>
+
+    var str = "The rain in Spain stays mainly in the plain";<br>
+    var patt1 = /ain/g;                       <br>
+    while (patt1.test(str) == true) {         <br>
+      document.write("'ain' found. Index now at: "+patt1.lastIndex);<br>
+      document.write("<br>");<br>
+    }<br>
+    <span>/*<br>
+    'ain' found. Index now at: 8<br>
+    'ain' found. Index now at: 17<br>
+    'ain' found. Index now at: 28<br>
+    'ain' found. Index now at: 43<br>
+    */</span>
+  </div>
+</div>
+
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

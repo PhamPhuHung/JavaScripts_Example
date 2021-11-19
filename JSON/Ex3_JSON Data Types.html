@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>AJAX Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: lightgray;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <h2>Valid Data Types</h2>
+  <p>In JSON, values must be one of the following data types:</p>
+  <ul>
+    <li>a string</li>
+    <li>a number</li>
+    <li>an object (JSON object)</li>
+    <li>an array</li>
+    <li>a boolearn</li>
+    <li>null</li>
+  </ul>
+  <div style="background-color:#fcc; padding:20px">
+    <p>JSON values <b>cannot</b> be one of the following data types</p>
+    <ul>
+      <li>a function</li>
+      <li>a date</li>
+      <li>undefined</li>
+    </ul>
+  </div>
+</div>
+
+<div class="container">
+  <h2>JSON Strings</h2>
+  <p>Strings in JSON mst be written in double quotes</p>
+  <p style="background-color:#333; padding:5px 10px">
+    <span style="color:white">{ <span style="color:green">"name"</span> : <span style="color:green">"John"</span> }</span>
+  </p>
+</div>
+
+<div class="container">
+  <h2>JSON Numbers</h2>
+  <p>Numbers in JSON must be an integer or a floating point</p>
+  <p style="background-color:#333; padding:5px 10px">
+    <span style="color:white">{ <span style="color:green">"age"</span> : <span style="color:lightblue">30</span> }</span>
+  </p>
+</div>
+
+<div class="container">
+  <h2>JSON Objects</h2>
+  <p style="background-color:#333; padding:5px 10px">
+    <span style="color:white">{<br>
+      <span style="color:green">"employee"</span> : { 
+      &nbsp&nbsp<span style="color:green">"name"</span> : <span style="color:green">"John"</span>, 
+      &nbsp&nbsp<span style="color:green">"age"</span> : <span style="color:lightblue">30</span>, 
+      &nbsp&nbsp<span style="color:green">"city"</span> : <span style="color:green">"New York"</span> }<br>}
+    </span>
+  </p>
+</div>
+
+<div class="container">
+  <h2>JSON Arrays</h2>
+  <p style="background-color:#333; padding:5px 10px">
+    <span style="color:white">{<br>
+      <span style="color:green">"employee"</span> : [ 
+      &nbsp&nbsp<span style="color:green">"John"</span>, 
+      &nbsp&nbsp<span style="color:green">"Anna"</span>, 
+      &nbsp&nbsp<span style="color:green">"Peter"</span> ]<br>}
+    </span>
+  </p>
+</div>
+
+<div class="container">
+  <h2>JSON Booleans</h2>
+  <p style="background-color:#333; padding:5px 10px">
+    <span style="color:white">{ <span style="color:green">"sale"</span> : <span style="color:pink">true</span> }</span>
+  </p>
+</div>
+
+<div class="container">
+  <h2>JSON null</h2>
+  <p style="background-color:#333; padding:5px 10px">
+    <span style="color:white">{ <span style="color:green">"middlename"</span> : <span style="color:pink">null</span> }</span>
+  </p>
+</div>
+<script>
+
+</script>
+</body>
+</html>

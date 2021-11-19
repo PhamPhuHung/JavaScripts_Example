@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript HTML DOM EventListener</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#e1">The <strong>addEventListener()</strong> method</a></li>
+    <ol>
+      <li><a href="#e11">Add an Event Handler to an Element</a></li>
+      <li><a href="#e12">Add many Event Handlers to the same Element</a></li>
+      <li><a href="#e13">Add an Event Handler to the window Object</a></li>
+      <li><a href="#e14">Passing Parameters</a></li>
+      <li><a href="#e15">Event Bubbling or Event Capturing</a></li>
+    </ol>
+    <li><a href="#e2">The <strong>removeEventListener()</strong> method</a></li>
+  </ol>
+</div>
+
+<h2 id="e1">The <strong>addEventListener()</strong> method</h2><hr>
+<h3 id="e11">Add an Event Handler to an Element</h3>
+<div class="example">
+  <div class="examplecontent">
+    <span>// Ad an <strong>onclick</strong> event</span>						<br>
+    var e11_1 = document.getElementById("e11_1");							<br>
+    e11_1.addEventListener("click", function() { alert("Hello World"); });	<br><br>
+
+    <span>// Ad an <strong>onmouseover</strong> event</span>						<br>
+    var e11_2 = document.getElementById("e11_2");							<br>
+    e11_2.addEventListener("mouseover", function() { e11_2.innerHTML = "Thank you"; });			<br>
+    e11_2.addEventListener("mouseout", function() { e11_2.innerHTML = "Mouse over me"; });
+  </div><br>
+  <button id="e11_1" type="button">Click me</button>
+  <button id="e11_2" type="button">Mouse over me</button>
+</div>
+
+<h3 id="e12">Add many Event Handlers to the same Element</h3>
+<div class="example">
+  <div class="examplecontent">
+    <span>// Ad an <strong>onclick</strong> event</span>						<br>
+    var e12_1 = document.getElementById("e12_1");							<br>
+    e12_1.addEventListener("click", function() { alert("Hello World 1st"); });				<br>
+    e12_1.addEventListener("click", function() { alert("Hello World 2nd"); });
+  </div><br>
+  <button id="e12_1" type="button">Click me</button>
+</div>
+
+<h3 id="e13">Add an Event Handler to the window Object</h3>
+<div class="example">
+  <div class="examplecontent">
+    var e13_1 = document.getElementById("e13_1");							<br>
+    window.addEventListener("resize", function() { e13_1.innerHTML = Math.random(); });			<br>
+  </div><br>
+  <p>Try resize the page to trigger <strong>resize</strong> event handler</p>
+  <p id="e13_1">0</p>
+</div>
+
+<h3 id="e14">Passing Parameters</h3>
+<div class="example">
+  <div class="examplecontent">
+    var e14_1 = document.getElementById("e14_1");							<br>
+    var e14_2 = document.getElementById("e14_2");							<br>
+    function myFunction(a, b) {	e14_2.innerHTML = a * b; };						<br>
+    e14_1.addEventListener("click", function() { myFunction(p1, p2); });				<br><br>
+
+    var p1 = 5, p2 = 7;											<br>
+    &ltbutton type="button" id="e14_1"&gtClick me&lt/button&gt						<br>
+    &ltp&gt0&lt/p&gt		
+  </div><br>
+  <button type="button" id="e14_1">Click me</button>
+  <p id="e14_2">0</p>
+</div>
+
+
+<h3 id="e15">Event Bubbling or Event Capturing</h3>
+<div class="example">
+  <p>Set the third parameter of <strong>addEventListener()</strong></p>
+  <ul>
+    <li><strong>false</strong> (default): bubbling - inside to ouside</li>
+    <li><strong>true</strong>: capturing - outside to inside</li>
+  </ul>
+  <div class="examplecontent">
+    var e15_1_div = document.getElementById("e15_1_div");						<br>
+    var e15_1_p = document.getElementById("e15_1_p");							<br>
+    var e15_2_div = document.getElementById("e15_2_div");						<br>
+    var e15_2_p = document.getElementById("e15_2_p");							<br>
+    e15_1_div.addEventListener("click", function(){ alert("You clicked the orange element");}, <strong>false</strong>);										<br>
+    e15_1_p.addEventListener("click", function(){ alert("You clicked the white element");}, <strong>false</strong>);														<br>
+    e15_2_div.addEventListener("click", function(){ alert("You clicked the orange element");}, <strong>true</strong>);											<br>
+    e15_2_p.addEventListener("click", function(){ alert("You clicked the white element");}, <strong>true</strong>);														<br><br>
+	
+    &ltdiv id="e15_1_div" style="padding:20px;background-color:orange;"&gt				<br>
+    &nbsp&nbsp  &ltp style="padding:10px"&gtCapturing&lt/p&gt						<br>
+    &nbsp&nbsp  &ltp id="e15_1_p" style="padding:10px;background-color:white;border:1px solid black"&gtClick me&lt/p&gt<br>
+    &lt/div&gt												<br><br>
+
+    &ltdiv id="e15_2_div" style="padding:20px;background-color:orange;"&gt				<br>
+    &nbsp&nbsp  &ltp style="padding:10px"&gtBubbling&lt/p&gt						<br>
+    &nbsp&nbsp  &ltp id="e15_2_div" style="padding:10px;background-color:white;border:1px solid black"&gtClick me&lt/p&gt<br>
+    &lt/div&gt												<br><br>
+  </div><br>
+
+    <div id="e15_1_div" style="padding:20px;background-color:orange;">
+      <p style="padding:10px">Bubbling</p>
+      <p id="e15_1_p" style="padding:10px;background-color:white;border:1px solid black">Click me</p>
+    </div><br>
+
+    <div id="e15_2_div" style="padding:20px;background-color:orange;">
+      <p style="padding:10px">Capturing</p>
+      <p id="e15_2_p" style="padding:10px;background-color:white;border:1px solid black">Click me</p>
+    </div>
+</div>
+
+<h2 id="e2">The <strong>removeEventListener()</strong> method</h2><hr>
+<p>Removes event handlers that have bên attached with the <strong>addEventListener()</strong> method</p>
+<div class="example">
+  <div class="examplecontent">
+    element.addEventListener("mouseover", mOver());							<br>
+    element.removeEventListener("mouseover, mOver());							<br>		
+  </div>
+</div>
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+
+var e11_1 = document.getElementById("e11_1");
+var e11_2 = document.getElementById("e11_2");
+e11_1.addEventListener("click", function() { alert("Hello World"); });
+e11_2.addEventListener("mouseover", function() { e11_2.innerHTML = "Thank you"; });
+e11_2.addEventListener("mouseout", function() { e11_2.innerHTML = "Mouse over me"; });	
+
+var e12_1 = document.getElementById("e12_1");
+e12_1.addEventListener("click", function() { alert("Hello World 1st"); });
+e12_1.addEventListener("click", function() { alert("Hello World 2nd"); });
+
+var e13_1 = document.getElementById("e13_1");
+window.addEventListener("resize", function() { e13_1.innerHTML = Math.random(); });
+
+var p1 = 5, p2 = 7;
+var e14_1 = document.getElementById("e14_1");
+var e14_2 = document.getElementById("e14_2");
+function myFunction(a, b) { e14_2.innerHTML = a * b; };
+e14_1.addEventListener("click", function() { myFunction(p1, p2); });
+
+var e15_1_div = document.getElementById("e15_1_div");	
+var e15_1_p = document.getElementById("e15_1_p");
+var e15_2_div = document.getElementById("e15_2_div");
+var e15_2_p = document.getElementById("e15_2_p");
+e15_1_div.addEventListener("click", function(){ alert("You clicked the orange element");}, false);
+e15_1_p.addEventListener("click", function(){ alert("You clicked the white element");}, false);
+e15_2_div.addEventListener("click", function(){ alert("You clicked the orange element");}, true);
+e15_2_p.addEventListener("click", function(){ alert("You clicked the white element");}, true);
+</script>
+</body>
+</html>

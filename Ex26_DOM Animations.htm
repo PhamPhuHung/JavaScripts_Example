@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript HTML DOM Animation</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#c1">Callbacks</a></li>
+    <li><a href="#c2">Asynchronous</a></li>
+  </ol>
+</div>
+
+<h2 id="c1">Callbacks</h2><hr>
+<p>A callback is a function passed as an argument to another function</p>
+<p>This technique allows a function to call anotehr function</p>
+<p>A callback function can run after another function has finished</p>
+<div class="example">
+  <p>Ex1: </p>
+  <div class="examplecontent">
+    function myDisplayer(some) {						<br>
+    &nbsp&nbsp  document.getElementById("demo").innerHTML = some;		<br>
+    }										<br><br>
+
+    function myCalculator(num1, num2) {	return num1 + num2; ]			<br><br>
+
+    let result = myCalculator(5, 5);						<br>
+    myDisplayer(result);
+  </div><br>
+
+  <p>Ex2: </p>
+  <div class="examplecontent">
+    function myDisplayer(some) {						<br>
+    &nbsp&nbsp  document.getElementById("demo").innerHTML = some;		<br>
+    }										<br><br>
+
+    function myCalculator(num1, num2) {						<br>
+    &nbsp&nbsp  let sum = num1 + num2;						<br>
+    &nbsp&nbsp  myDisplayer(sum);						<br>
+    }										<br><br>
+
+    let result = myCalculator(5, 5);
+  </div>
+</div>
+<p>Ex1: The problem is that, you have to call 2 functions to display the result</p>
+<p>Ex2: The problem is that, you cannot prevent the calculator function from displaying the result</p>
+<p>Now it's time to use callback</p>
+<div class="example">
+  <div class="examplecontent">
+    function myDisplayer(some) {						<br>
+    &nbsp&nbsp  document.getElementById("demo").innerHTML = some;		<br>
+    }										<br><br>
+
+    function myCalculator(num1, num2, myCallback) {				<br>
+    &nbsp&nbsp  let sum = num1 + num2;						<br>
+    &nbsp&nbsp  myCallback(sum);						<br>
+    }										<br><br>
+
+    let result = myCalculator(5, 5, myDisplayer);
+  </div>
+</div>
+
+
+<h2 id="c2">Asynchronous</h2><hr>
+<p>Functions running in parallel with other functions are called asynchronous</p>
+<h3 id="c21">Waiting for a Timeout</h3>
+<div class="example">
+  <div class="examplecontent">
+    function myDisplayer() {							<br>
+    &nbsp&nbsp  document.getElementById("demo").innerHTML = "Hello!"		<br>
+    }										<br><br>
+
+    <span>// Display hello after 3000ms </span>					<br>
+    setTimeout(myFunction, 3000);						
+  </div>
+</div>
+
+<h3 id="c22">Waiting for Interval</h3>
+<div class="example">
+  <div class="examplecontent">
+    function myFunction() {							<br>
+    &nbsp&nbsp  let d = new Date();						<br>
+    &nbsp&nbsp  document.getElementById("demo").innerHTML=			<br>
+    &nbsp&nbsp  d.getHours() + ":" +						<br>
+    &nbsp&nbsp  d.getMinutes() + ":" +						<br>
+    &nbsp&nbsp  d.getSeconds();							<br>
+    }										<br><br>
+
+    <span>// Show time every 1000ms </span>					<br>
+    setInterval(myFunction, 1000);						
+  </div>
+</div>
+
+<h2 id="c3">Promises</h2><hr>
+<p>"Producing code" is code that can take some time</p>
+<p>"Consuming code" is code that must wait for the result</p>
+<p>A Promise is a JavaScript object that links producing code and consuming code</p>
+<h3 id="c31">Promise Object Properties</h3>
+<table>
+  <tr>
+    <th>myPromise.state</th>
+    <th>myPromise.result</th>
+  </tr>
+  <tr>
+    <td>"pending"</td>
+    <td>"undefined"</td>
+  </tr>
+  <tr>
+    <td>"fulfilled"</td>
+    <td>"a result value"</td>
+  </tr>
+  <tr>
+    <td>"rejected"</td>
+    <td>"an error object"</td>
+  </tr>
+</table>
+
+<h3 id="c32">How to use</h3>
+<div class="example">
+  <div class="examplecontent">
+    function myDisplayer(some) {						<br>
+    &nbsp&nbsp  document.getElementById("demo").innerHTML = some;		<br>
+    }										<br><br>
+
+    let myPromise = new Promise(function(myResolve, myReject) {			<br>
+    &nbsp&nbsp  let x = 0;							<br><br>
+
+    <span>// The producing code (this may take some time)</span>		<br><br>
+
+    &nbsp&nbsp  if (x == 0) {							<br>
+    &nbsp&nbsp&nbsp&nbsp    myResolve("OK");					<br>
+    &nbsp&nbsp  } else {							<br>
+    &nbsp&nbsp&nbsp&nbsp    myReject("Error");					<br>
+    &nbsp&nbsp  }								<br>
+    });										<br><br>
+
+    myPromise.then(								<br>
+    &nbsp&nbsp  function(value) {myDisplayer(value);},				<br>
+    &nbsp&nbsp  function(error) {myDisplayer(error);}				<br>
+    );						
+  </div>
+</div>
+
+<h2 id="c4">Async / Await</h2><hr>
+<p><i>async and await make promises easier to write</i></p>
+
+<h3 id="c41">Async</h3>
+<p><strong>async</strong> makes a function return a Promise</p>
+<div class="example">
+  <div class="examplecontent">											
+    async function myFunction() {						<br>
+    &nbsp&nbsp  return "Hello";							<br>
+    }										<br><br>
+
+    <span>// 2 functions here are the same</span>					<br>
+    async function myFunction() {						<br>
+    &nbsp&nbsp  return Promise.resolve("Hello");				<br>
+    }										<br><br>
+
+    myFunction().then(								<br>
+    &nbsp&nbsp function(value) { myDisplayer(value); },				<br>
+    &nbsp&nbsp function(error) { myDisplayer(error); }				<br><br>
+    );										
+  </div>
+</div>
+
+<h3 id="c42">Await</h3>
+<p><strong>await</strong> makes a function wait for a Promise</p>
+<div class="example">
+  <div class="examplecontent">											
+    async function myDisplay() {						<br>
+    &nbsp&nbsplet myPromise = new Promise(function(myResolve, myReject) {			<br>
+    &nbsp&nbsp&nbsp&nbsp  setTimeout(function() { myResolve("I love You !!"); }, 3000);	<br>
+    &nbsp&nbsp  });									<br>
+    &nbsp&nbsp  document.getElementById("demo").innerHTML = await myPromise;		<br>
+    }										<br><br>
+
+    myDisplay();
+  </div>
+</div>
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

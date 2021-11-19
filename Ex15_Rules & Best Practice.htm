@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Rules & Best Practice</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#r1">Style Guide</a></li>
+    <li><a href="#r2">Best Practice</a></li>
+    <li><a href="#r3">Performance</a></li>
+  </ol>
+</div>
+
+<h2 id="r1">Style Guide</h2><hr>
+<ul>
+  <li>Use <b>camelCase</b> for variables and functions</li>
+  <li>Use <b>UPPERCASE</b> for global variables are quite common</li>
+  <li>Use <b>UPPERCASE</b> for constant like <b>PI</b></li>
+  <li>Space around Operators (= + - * / )</p>
+  <li>Line Length &lt < 80 for readability. The best place to break a line is after an operator (= = - * /) or comma (,). If break a string, use backlash (\)</li>
+  <div class="example">
+    <div class="examplecontent">
+      document.getElementById("demo").innerHTML =            <br>
+"Hello Dolly.";                                            <br><br>
+
+      document.getElementById("demo").innerHTML = "Hello \   <br>
+Dolly.";                                  
+      }
+    </div>
+  </div>
+</ul>
+<h2 id="r2">Best Practice</h2><hr>
+<ul>
+  <li>Avoid global variable, use local variable instead</li>
+  <li>Always declare variables on top, initialize them when you declare</li>
+  <div class="example">
+    <div class="examplecontent">
+      <span>// Declare and initiate at the beginning</span><br>
+      var firstName = "", lastName = "", myArray = [], myObject = {};
+    </div>
+  </div>
+  <li>Never declare Number, String, Boolean Object</li>
+  <li>Don't use new Object()</li>
+  <div class="example">
+    <div class="examplecontent">
+      var x1 = {};           <span>// use this instead of new Object()</span><br>
+      var x2 = "";           <span>// use this instead of new String()</span><br>
+      var x3 = 0;            <span>// use this instead of new Number()</span><br>
+      var x4 = false;        <span>// use this instead of new Boolean()</span><br>
+      var x5 = [];           <span>// use this instead of new Array()</span><br>
+      var x6 = /()/;         <span>// use this instead of new RegExp()</span><br>
+      var x7 = function(){}; <span>// use this instead of new Function()</span>
+    </div>
+  </div>
+  <li>Beware of Automatic Type conversions</li>
+  <li>Use === comparions instead of ==</li>
+  <li>Use parameter default to solve missing arguments (missing arguments are set to <strong>undefined</strong></li>
+  <div class="example">
+    <div class="examplecontent">
+      function myFunction(x,y) {                    <br>
+      &nbsp&nbsp if(y ===  undefined) { y = 0; }    <br>
+      }<br><br>
+
+      function myFunction(x=1,y=1) {<span>/* function code */<span> } <span>// ECMAScript 2015 allows default parametes in the function definition</p>
+    </div>
+  </div>
+  <li>Avoid using <strong>eval()</strong></li>
+  <li>Remember that comparision in <strong>switch-case</strong> is </strong>===</strong></li>
+</ul>
+
+<h2 id="r3">Performance</h2><hr>
+<ul>
+  <li>Reduce activity in Loops</li>
+  <div class="example">
+    <div class="examplecontent">
+      var i = 0;                                   <br>
+      var l = arr.length;                          <br>
+      for (i = 0; i < l; i++) {                    <br>
+      <span>// Statement and assignment is execute every loop, move them outside will make the loops run faster</span>
+    </div>
+  </div>
+  <li>Reduce DOM Access (access it once, and use it as a local variable)</li>
+  <div class="example">
+    <div class="examplecontent">
+      var obj = document.getElementById("demo");   <br>
+      obj.innerHTML = "Hello";
+    </div>
+  </div>
+  <li>Reduce DOM size (keep the number of elements in the HTML DOM small )</li>
+  <li>Avoid unnecessary varibles (don't create new variables if you don't plan to save value)</li>
+  <li>Avoid using with</li>
+</ul>
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

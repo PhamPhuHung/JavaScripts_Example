@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>AJAX Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: lightgray;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <h2>JSON Syntax Rules</h2>  
+  <p>JSON syntax is derived from JavaScript object notation syntax:</p>
+  <ul>
+    <li>Data is in name/value pairs</li>
+    <li>Data is separated by commas</li>
+    <li>Curly braces hold objects</li> 
+    <li>Square brackets hold arrays</li>
+  </ul>
+</div>
+
+<div class="container">
+  <h2>JSON Data - A Name and a Value</h2>
+  <p>JSON data is written as name/value pairs.</p>
+  <p>A name/value pair consists of a field name (in double quotes), followed by a colon, followed by a value:</p>
+  <p style="background-color:#333; padding: 5px 10px">
+    <span style="color:green">"name"<span style="color:white"> : </span>"John"</span>
+  </p>
+  <p style="background-color:lightyellow; padding:30px">JSON names require double quotes. JavaScript names don't</p> 
+</div>
+
+<div class="container">
+  <h2>JSON - Evaluates to JavaScript Objects</h2>
+  <p>The JSON format is almost identical to JavaScript objects.</p>
+  <p>In JSON, <i>keys</i> must be strings, written with double quotes.</p>
+  <p>In JavaScript, keys can be strings, numbers, or identical names.</p>
+  <div style="background-color:#eee; padding:10px">
+    <h3>JSON</h3>
+    <p style="background-color:#333; padding: 5px 10px">
+      <span style="color:white">{ <span style="color:green">"name"<span style="color:white"> : </span>"John"</span> }</span>
+    </p>
+ 
+    <h3>JavaScript</h3>
+    <p style="background-color:#333; padding: 5px 10px">
+      <span style="color:white">{ name : <span style="color:green">"John"</span> }</span>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <h2>JSON Values</h2>
+  <p>In <b>JSON</b>, <i>values</i> msut be one of the following data types:</p>
+  <ul>
+    <li>a string</li>
+    <li>a number</li>
+    <li>an object (JSON object)</li>
+    <li>an array</li>
+    <li>a boolean</li>
+    <li>null</li>
+  </ul>
+  <p>In <b>JavaScript</b> values can be all of the above, plus any other valud JavaScript expression, including:</p>
+  <ul>
+    <li>a function</li>
+    <li>a date</li>
+    <li>undefined</li>
+  </ul>
+  <p>In JSON, <i>string values</i> must ve written with double quotes</p>
+  <p>In JavaScript, you can write string values with double or single quotes</p>
+  <div style="background-color:#eee; padding:10px">
+    <h3>JSON</h3>
+    <p style="background-color:#333; padding: 5px 10px">
+      <span style="color:white">{ <span style="color:green">"name"<span style="color:white"> : </span>"John"</span> }</span>
+    </p>
+ 
+    <h3>JavaScript</h3>
+    <p style="background-color:#333; padding: 5px 10px">
+      <span style="color:white">{ name : <span style="color:green">'John'</span> }</span>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <h2>JSON Uses JavaScript Syntax</h2>
+  <p>Because JSON syntax is derevied from JavaScript object notation, very litte extra software is needed to work with JSON within JavaScript.</p>
+  <p>With JavaScript you can: </p>
+  <ul>
+    <li>Create an object and assign data to it</li>
+    <li>Access data</li>
+    <li>Modify data</li>
+  </ul>
+  <div style="background-color:#eee; padding:10px">
+    <h3>Create Object & assign data</h3>
+    <p style="background-color:#333; padding: 5px 10px">
+      <span style="color:white">
+        <span style="color:pink">var </span>
+        person = { name : <span style="color:green">"John"</span>, 
+        age: <span style="color:lightblue">31</span>, 
+        city: <span style="color:green">"New York" </span>};
+      </span>
+    </p>
+ 
+    <h3>Access data</h3>
+    <p style="background-color:#333; padding: 5px 10px">
+      <span style="color:white">person.name;</span><br>
+      <span style="color:white">person[<span style="color:green">"name"</span>];</span>
+    </p>
+ 
+    <h3>Modify data</h3>
+    <p style="background-color:#333; padding: 5px 10px">
+      <span style="color:white">person.name = <span style="color:green">"Gilbert"</span>;</span><br>
+      <span style="color:white">person[<span style="color:green">"name"</span>] = <span style="color:green">"Gilbert"</span>;</span>
+    </p>
+  </div>
+  <p>You will learn how to convert JavaScript objects into JSON later in this tutorial</p>
+</div>
+
+<div class="container">
+  <h2>JavaScript  Arrays as JSON</h2>
+  <p>The same way JavaScript objects can be used as JSON, JavaScript arrays can also be used as JSON.</p>
+  <p>You will learn more bout array as JSON later in this tutorial</p>
+</div>
+
+<div class="container">
+  <h2>JSON files</h2>
+  <ul>
+    <li>The file type for JSON files is ".json"</li>
+    <li>The MIME type for JSON text is "application/json"
+  </ul>
+</div>
+<script>
+
+</script>
+</body>
+</html>

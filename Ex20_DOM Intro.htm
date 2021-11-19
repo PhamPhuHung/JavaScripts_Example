@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript DOM Intro</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#d1">The HTML DOM (Document Object Model)</a></li>
+    <li><a href="#d2">What is the DOM?</a></li>
+    <li><a href="#d3">What is the HTML DOM?</a></li>
+  </ol>
+</div>
+
+<h2 id="d1">The HTML DOM (Document Object Model)</h2><hr>
+<p>When a web page is loaded, the browser creates a <b>D</b>ocument <b>O</b>bject <b>M</b>odel of the page</p>
+<p>The <b>HTML DOM</b> is constructed as a tree of <b>Objects</b>:</p>
+<img src="img/pic_htmltree.gif" alt="HTML DOM Tree of Objects.gif" width="500px">
+<p>With the object model, JavaScript gets all the pewer it needs to create dynamic HTML</p>
+<ul>
+  <li>Change HTML elements, attributes</li>
+  <li>Change CSS styles</li>
+  <li>Remove existing HTML elements, attributes</li>
+  <li>Add new HTML elements, attributes</li>
+  <li>React to exisiting HTML events</li>
+  <li>Create new HTML events</li>
+</ul>
+
+<h2 id="d2">What is the DOM?</h2><hr>
+<p>The DOM is a W3C (World Wide Web Consortium) standard</p>
+<p>The DOM defines a standard for accessing documents</p>
+<p>The W3C DOM standard is separated into 3 different parts:</p>
+<ul>
+  <li>Core DOM - standard model for all document types</li>
+  <li>XML DOM - standard model for XML documents</li>
+  <li>HTML DOM - standard model for HTML documents</li>
+</ul>
+
+<h2 id="d3">What is the HTML DOM?</h2><hr>
+<p>The HTML DOM is a standard <b>object</b> model and <b>programming interface</b> for HTML. It defines:</p>
+<ul>
+  <li>The HTML elements as <b>objects</b></li>
+  <li>The <b>properties</b> of all HTML elements</li>
+  <li>The <b>methods</b> to access all HTML elements</li>
+  <li>The <b>events</b> for all HTML elements</li>
+</ul>
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

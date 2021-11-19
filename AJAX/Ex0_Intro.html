@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>AJAX Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: lightgray;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <h2>AJAX Introduction</h2>
+</div>
+
+<div class="container" style="background-color:#5aa; padding: 20px">
+  <p>AJAX is a developer's dream, because you can:</p>
+  <ul>
+    <li>Read data drom a web server - after the page has loaded</li>
+    <li>Update a web page without reloading the page</li>
+    <li>Send data to a web server - in the background</li>
+  </ul>
+</div>
+
+<div class="container">
+  <h2>What is AJAX?</h2>
+  <p>AJAX = <b>A</b>sunchronous <b>J</b>avaScript <b>A</b>nd XML</p>
+  <p>AJAX is not a programming language</p>
+  <p>AJAX just uses a combination of:</p>
+  <ul>
+    <li>A browser built-in <code>XMLHttpRequest</code> object (to request data from a web server)</li>
+    <li>JavaScript and HTML DOM (to display or use the data)</li>
+  </ul>
+  <p style="background-color:lightyellow; padding: 20px">AJAX is misleading name. AJAX appoications might use XML to transport data, but it is equally common to transport data as plain text or JSON text.</p>
+  <p>AJAX allows web pages to be updated asynchrnously by exchanging data with a web server behind the scenes. This means that it is possible to update parts of a web page, without reloadng the whole page.</p>
+</div>
+
+<div class="container">
+  <h2>How AJAX Works</h2>
+  <img src="img/pic_ajax.gif" alt="AJAX" class="img-responsive">
+  <ul class="list-group">
+    <li class="list-group-item">1. An event occurs in a web page (the page is loaded, a button is clicked)</li>
+    <li class="list-group-item">2. An XMLHttpRequest object is created by JavaScript</li>
+    <li class="list-group-item">3. The SMLHttpRequest object sends a request to a wweb server</li>
+    <li class="list-group-item">4. The server processes the request</li>
+    <li class="list-group-item">5. The server sends a response back to the web page</li>
+    <li class="list-group-item">6. The response is read by JavaScript</li>
+    <li class="list-group-item">7. Proper action (like page update) is performed by JavaScript</li>
+  </ul>
+<div>
+<script>
+
+</script>
+</body>
+</html>

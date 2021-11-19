@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Boolean</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#b1">Boolean values</a></li>
+    <li><a href="#b2">Boolean() function</a></li>
+    <li><a href="#b3">Everything with a "Value" is True</a></li>
+    <li><a href="#b4">Everything without a "Value" is False</a></li>
+    <li><a href="#b5">Booleans can be Objects</a></li>
+  </ol>
+</div>
+
+<h2 id="b1">Boolean values</h2><hr>
+<p><strong>Boolean</strong> only take the values <strong>true</strong> or <strong>false</strong></p>
+
+<h2 id="b2">Boolean() function</h2>
+<div class="example">
+  <div class="examplecontent">
+    Boolean(10 > 9); <span>// returns true</span><br>
+    (10 > 9)  ; <span>// also returns true</span><br>
+    10 > 9  ; <span>// also returns true</span>
+  </div>
+</div>
+
+<h2 id="b3">Everything with a "Value" is True</h2>
+<div class="example">
+  <div class="examplecontent">
+    Boolean(100); <span>// returns true</span><br><br>
+    Boolean(3.14); <span>// returns true</span><br><br>
+    Boolean(-15); <span>// returns true</span><br><br>
+    Boolean("Hello"); <span>// returns true</span><br><br>
+    Boolean("false"); <span>// returns true</span><br><br>
+    Boolean(7 + 1 + 3.14); <span>// returns true</span>
+  </div>
+</div>
+
+<h2 id="b4">Everything without a "Value" is False</h2>
+<div class="example">
+  <div class="examplecontent">
+    Boolean(0); <span>// 0 returns false</span><br><br>
+    Boolean(-0); <span>//  returns false</span><br><br>
+    Boolean(""); <span>// empty string returns false</span><br><br>
+    var x;<br>
+    Boolean(x); <span>// undefined returns false</span><br><br>
+    Boolean(false); <span>// false returns false</span><br><br>
+    Boolean(NaN); <span>// NaN returns false</span>
+  </div>
+</div>
+
+<h2 id="b5">Booleans can be Objects</h2>
+<p>Do not create Boolean objects. It slow down execution speed</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = false; <span>// typeof x returns boolean</span><br>
+    var y = new Boolean(false); <span>// typeof y returns object</span><br>
+  </div>
+</div>
+
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+<title>JavaScripts Number</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#n">Number</a></li>
+    <ol type="1">
+      <li><a href="#n1">With / withour decimals</a></li>
+      <li><a href="#n2">Written with exponent notation</a></li>
+      <li><a href="#n3">Precision</a></li>
+      <li><a href="#n4">Adding number & string</a></li>
+      <li><a href="#n5">Numberic string</a></li>
+      <li><a href="#n6">NaN - Not a Number</a></li>
+      <li><a href="#n7">Infinity</a></li>
+      <li><a href="#n8">Hexadecimal</a></li>
+      <li><a href="#n9"> Number can be object</a></li>
+    </ol>
+    <li><a href="m">Number Methods</a></li>
+    <ol type="1">
+      <li><a href="#m1">toString()</a></li>
+      <li><a href="#m2">toExponential()</a></li>
+      <li><a href="#m3">toFixed</a></li>
+      <li><a href="#m4">toPrecision()</a></li>
+      <li><a href="#m5">valueOf()</a></li>
+      <li><a href="#m6">Number()</a></li>
+      <li><a href="#m7">parseInt()</a></li>
+      <li><a href="#m8">parseFloat()</a></li>
+      <li><a href="#m9">Number.MIN_VALUE, Number.MAX_VALUE, Number.POSITIVE_INFINITIVE, Number.NEGATIVE_INFINITE, Number.NaN</a></li>
+    </ol>
+  </ol>
+</div>
+
+<h2 id="n">JavaScript Number</h2><hr>
+<h3 id="n1">With / without decimals</h3>
+<div class="example">
+  <div class="examplecontent">
+    var x = 3.14; <span>// A number with decimals</span><br>
+    var y = 3; <span>// A number without decimals</span>
+  </div>
+</div>
+
+<h3 id="n2">Wrritten with exponent notation</h3>
+<div class="example">
+  <div class="examplecontent">
+    var x = 123e5; <span> //12300000;</span><br>
+    var y = 123e-5; <span> //0.00123</span>
+  </div>
+</div>
+
+<h3 id="n3">Precision</h3>
+<div class="example">
+  <p>Integers are accurate up to 15 digits</p>
+  <div class="examplecontent">
+    var x = 999999999999999; <span>// x will be 999999999999999</span><br>
+    var y = 9999999999999999;  <span>// y will be 10000000000000000</span>
+  </div>
+  <p>The maximum number of decimals is 17, but floating point arithmetic os not always 100% accurate<br>
+     To solve this problem, it helps to multiply and divide</p>
+  <div class="examplecontent">
+    var x = 0.2 + 0.1; <span>// x will be 0.30000000000000004</span><br>
+    var x = (0.2 * 10 + 0.1 * 10) / 10; <span>// x will be 0.3</span>
+  </div>
+</div>
+
+<h3 id="n4">Adding number & string</h3>
+<div class="example">
+  <p>If adding to number, result is number</p>
+  <div class="examplecontent">
+    var x = 10;<br>
+    var y = 20;<br>
+    var z = x + y; <span>// z will be 30 (a number)</span>
+  </div>
+  <p>If adding 2 string, result is string concatenation</p>
+  <div class="examplecontent">
+    var x = "10";<br>
+    var y = "20";<br>
+    var z = x + y; <span>// z will be 1020 (a string)</span>
+  </div>
+  <p>If adding string & number, result is string concatenation</p>
+  <div class="examplecontent">
+    var x = "10";<br>
+    var y = 20;<br>
+    var z1 = x + y; <span>// z will be 1020 (a string)</span><br>
+    var z2 = y + x; <span>// z will be 2010 (a string)</span>
+  </div>
+  <p>JavaScript interpreter works from left to right</p>
+  <div class="examplecontent">
+    var x = 10;<br>
+    var y = 20;<br>
+    var z = "30";<br>
+    var result = x + y + z; <span>// result will be 3030 (a string)</span><br>
+    var result = z + x + y; <span>// result will be 301020 (a string)</span>
+  </div>
+</div>
+
+<h3 id="n5">Numeric strings</h3>
+<p>JavaScript will try to convert strings to numbers in all numeric operations</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = "100";<br>
+    var y = "10";<br>
+    var z = x / y; <span>// z will be 10 (a number)</span><br>
+    var z = x * y; <span>// z will be 1000 (a number)</span><br>
+    var z = x - y; <span>// z will be 90 (a number)</span><br>
+    var z = x + y; <span>// z will be 10010 (a string)</span>
+  </div>
+</div>
+
+<h3 id="n6">NaN - Not a Nubmer</h3>
+<p>NaN: a number type which is not a legal number</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = 100 / "Apple";  <span>// x will be NaN (Not a Number)</span>
+  </div>
+  <p>Can use <strong>isNaN()</strong> to find out if a value is a number</p>
+  <div class="examplecontent">
+    var x = 100 / "Apple";<br>
+    isNaN(x); <span>// returns true because x is Not a Number</span>
+  </div>
+  <p>If use <strong>NaN()</strong> in a mathematical operation, the result will also <strong>NaN</strong> or maybe a concatenation</p>
+  <div class="examplecontent">
+    var x = NaN;<br>
+    var y = 5;<br>
+    var z = "5";<br>
+    var result1 = x + y; <span>// result1 will be NaN (a number)</span>
+    var result2 = x + z; <span>// result2 will be NaN5 (a string)</span>
+  </div>
+  <p><strong>typeof NaN()</strong>  return a number</p>
+  <div class="examplecontent">
+    typeof NaN; <span>// returns "number"</span>
+  </div>
+</div>
+
+<h3 id="n7">Infinity</h3>
+<p><strong>Infinity</strong> (or <strong>-Infinity</strong>) will return if calculate a number outside the largest possible number</p>
+<div class="example">
+  <div class="examplecontent">
+    var x =  2 / 0; <span>// x will be Infinity</span><br>
+    var y = -2 / 0; <span>// y will be -Infinity</span>
+  </div>
+  <p><strong>Infinity</strong> (or <strong>-Infinity</strong>) is a number</p>
+  <div class="examplecontent">
+    typeof Infinity; <span>// returns "number"</span><br>
+    typeof -Infinity; <span>// returns "number"</span>
+  </div>
+</div>
+
+<h3 id="n8">Hexadecimal</h3>
+<p>JavaScript interprets numeric constant as hexadecimal if they are preceded by 0x</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = 0xFF; <span>// x will be 255</span>
+  </div>
+  <p>By default, JavaScript displays numbers as <strong>base 10</strong> decimals<br>
+     But you can use <strong>toString()</strong> to output numbers from <strong>base 2</strong> to <strong>base 36</strong>
+  <div class="examplecontent">
+    var myNumber = 32;<br>
+    myNumber.toString(10); <span>// returns 32</span><br>
+    myNumber.toString(32); <span>// returns 10</span><br>
+    myNumber.toString(16); <span>// returns 20</span><br>
+    myNumber.toString(8); <span>// returns 40</span><br>
+    myNumber.toString(2); <span>// returns 100000</span><br>
+  </div>
+</div>
+
+<h3 id="n9">Numbers can be object</h3>
+<p>Do not create Number object. Its slows down execution speed</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = 123; <span>// x is number</span><br>
+    var y = new Number(123); <span>// y is an object</span><br>
+    var z = new Number(123); <span>// z is an object</span><br>
+    (x == y); <span>// returns true because x & y have equal values</span><br>
+    (x === y); <span>// returns false because x & y have different types</span><br>
+    (y == z); <span>// returns false because objects cannot be compared</span>
+  </div>
+</div>
+
+<h2 id="m">JavaScript Number Methods</h2><hr>
+<h3 id="m1">toString()</h3>
+<p>Returns a number as a string</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = 123;<br>
+    x.toString(); <span>// returns 123 from variable x</span><br>
+    (123).toString(); <span>// returns 123 from literal 123</span><br>
+    (100 + 23).toString(); <span>// returns 123 from expression 100 + 23</span><br>
+  </div>
+</div>
+
+<h3 id="m2">toExponential()</h3>
+<p>Returns a string, with a number rounded and written using exponential notation</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = 9.656;<br>
+    x.toExponential(); <span>// returns 9.656e+0</span><br>
+    x.toExponential(2); <span>// returns 9.66e+0</span><br>
+    x.toExponential(4); <span>// returns 9.6560e+0</span><br>
+    x.toExponential(6); <span>// returns 9.656000e+0</span><br>
+  </div>
+</div>
+
+<h3 id="m3">toFixed()</h3>
+<p>Returns a string, with the nubmer written with a specified number of decimals</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = 9.656;<br>
+    x.toFixed(0); <span>// returns 10</span><br>
+    x.toFixed(2); <span>// returns 9.66</span><br>
+    x.toFixed(4); <span>// returns 9.6560</span><br>
+    x.toFixed(6); <span>// returns 9.656000</span><br>
+  </div>
+</div>
+
+<h3 id="m4">toPrecision()</h3>
+<p>Returns a string, with the nubmer written with a specified length</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = 9.656;<br>
+    x.toPrecision(0); <span>// returns 9.656</span><br>
+    x.toPrecision(2); <span>// returns 9.7</span><br>
+    x.toPrecision(4); <span>// returns 9.656</span><br>
+    x.toPrecision(6); <span>// returns 9.65600</span><br>
+  </div>
+</div>
+
+<h3 id="m5">valueOf()</h3>
+<p>Returns a number as a number</p>
+<p>Used internally in JavaSctipt to convert Numver object to primitive values.</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = 123;<br>
+    x.valueOf(); <span>// returns 123 from variable x</span><br>
+    (123).valueOf(); <span>// returns 123 from literal 123</span><br>
+    (100 + 23).valueOf(); <span>// returns 123 from expression 100 + 23</span>
+  </div>
+</div>
+
+<h3 id="m6">Number()</h3>
+<p>Returns a number, converted from its argument</p>
+<div class="example">
+  <div class="examplecontent">
+    Number(true); <span>// returns 1</span><br>
+    Number(false);  <span>// returns 0</span><br>
+    Number("10"); <span>// returns 10</span><br>
+    Number("  10"); <span>// returns 10</span><br>
+    Number("10  "); <span>// returns 10</span><br>
+    Number(" 10  "); <span>// returns 10</span><br>
+    Number("10.33"); <span>// returns 10.33</span><br>
+    Number("10,33"); <span>// returns NaN</span><br>
+    Number("10 33"); <span>// returns NaN</span><br>
+    Number(new Date("2017-09-30")); <span>// returns 1506729600000 (number of milliseconds since 1.1.1970)</span>
+  </div>
+</div>
+
+<h3 id="m7">parseInt()</h3>
+<p>Parses a string and returns a whole number. Spaces are allowed. Only the first number is returned</p>
+<div class="example">
+  <div class="examplecontent">
+    parseInt("10"); <span>// returns 10</span><br>
+    parseInt("10.33"); <span>// returns 10</span><br>
+    parseInt("10 20 30"); <span>// returns 10</span><br>
+    parseInt("10 years"); <span>// returns 10</span><br>
+    parseInt("years 10"); <span>// returns NaN</span>
+  </div>
+</div>
+
+<h3 id="m7">parseFloat()</h3>
+<p>Parses a string and returns a whole number. Spaces are allowed. Only the first number is returned</p>
+<div class="example">
+  <div class="examplecontent">
+    parseFloat("10"); <span>// returns 10</span><br>
+    parseFloat("10.33"); <span>// returns 10.33</span><br>
+    parseFloat("10 20 30"); <span>// returns 10</span><br>
+    parseFloat("10 years"); <span>// returns 10</span><br>
+    parseFloat("years 10"); <span>// returns NaN</span><br>
+  </div>
+</div>
+
+<h3 id="m7">Number Properties</h3>
+<p>Parses a string and returns a whole number. Spaces are allowed. Only the first number is returned</p>
+<table>
+  <tr>
+    <th>Property</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>MAX_VALUE</td>
+    <td>Returns the largest number possible in JavaScript</td>
+  </tr>
+  <tr>
+    <td>MIN_VALUE</td>
+    <td>Returns the smallest number possible in JavaScript</td>
+  </tr>
+  <tr>
+    <td>POSITIVE_INFINITY</td>
+    <td>Represent infinity (returned on overflow)</td>
+  </tr>
+  <tr>
+    <td>NEGATIVE_INFINITY</td>
+    <td>Represent negative infinity (returned on overflow)</td>
+  </tr>
+  <tr>
+    <td>NaN</td>
+    <td>Represent NaN value</td>
+  </tr>
+</table><br>
+<div class="example">
+  <div class="examplecontent">
+    var x = Number.MAX_VALUE; <span>// 1.7976931348623157e+308</span><br>
+    var x = Number.MIN_VALUE; <span>// 5e-324</span><br>
+    var x = Number.POSITIVE_INFINITY; <span>// Infinity</span><br>
+    var x = Number.NEGATIVE_INFINITY; <span>// -Infinity</span><br>
+    var x = Number.NaN; <span>// NaN</span><br>
+  </div>
+</div>
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>AJAX Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: lightgray;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <p>Both JSON and XML can be used to receive data from a web server.</p>
+  <p>The following JSON and XML examples both define an employess object, with an array of 3 employees:</p>
+  <div style="background-color:#eee;padding:20px">
+    <h3>JSON Example</h3>
+    <p style="background-color:#333;padding:5px 10px">
+      <span style="color:white">
+        { <span style="color:green">"employees"</span>:[<br>
+        &nbsp&nbsp{ <span style="color:green">"firstName"<span style="color:white"> : </span>"John"</span>, 
+        <span style="color:green">"lastName"<span style="color:white"> : </span>"Doe"</span>},<br>
+        &nbsp&nbsp{ <span style="color:green">"firstName"<span style="color:white"> : </span>"Anna    "</span>, 
+        <span style="color:green">"lastName"<span style="color:white"> : </span>"Doe"</span>},<br>
+      </span>
+    </p>
+
+    <h3>XML Example</h3>
+    <p style="background-color:#333;padding:5px 10px">
+      <span style="color:pink">
+        &ltemployees&gt<br>
+        &nbsp&nbsp&ltemployee&gt<br>
+        &nbsp&nbsp&nbsp&nbsp&ltfirstname&gt<span style="color:white">John</span>&lt/firstname&gt &ltlastName&gt<span style="color:white">Doe</span>&lt/lastName&gt<br>
+        &nbsp&nbsp&lt/employee&gt<br>
+
+        &nbsp&nbsp&ltemployee&gt<br>
+        &nbsp&nbsp&nbsp&nbsp&ltfirstname&gt<span style="color:white">Anna</span>&lt/firstname&gt &ltlastName&gt<span style="color:white">Smith</span>&lt/lastName&gt<br>
+        &nbsp&nbsp&lt/employee&gt<br>
+
+        &nbsp&nbsp&ltemployee&gt<br>
+        &nbsp&nbsp&nbsp&nbsp&ltfirstname&gt<span style="color:white">Peter</span>&lt/firstname&gt &ltlastName&gt<span style="color:white">Jones</span>&lt/lastName&gt<br>
+        &nbsp&nbsp&lt/employee&gt<br>
+        &lt/employees&gt
+      </span>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <h2>JSON is Like XML because</h2>
+  <ul>
+    <li>Both are "self describing (human readable)</li>
+    <li>Both are hierarchical (values within values)</li>
+    <li>Both can be parsed and used by lots of programming languages</li>
+    <li>Both can be fetched with an XMLHttpRequest</li>
+  </ul>
+</div>
+
+<div class="container">
+  <h2>JSON is Unlike XML because</h2>
+  <ul>
+    <li>JSON doesn't use end tag</li>
+    <li>JSON is shorter</li>
+    <li>JSON is quicker to read and write</li>
+    <li>JSON can use array</li>
+  </ul>
+  <p>The biggest difference is:</p>
+  <p>XML has to be parsed with an XML parser. JSON can be parsed by a standard JavaScript function.</li>
+</div>
+
+<div class="container">
+  <h2>Why JSON is Better Than XML</h2>
+  <p style="background-color:lightyellow; padding:30px">
+    XML is much more difficult to parse than JSON<br>
+    JSON is parsed into a ready-to-use JavaScript
+  </p>
+  <p>For AJAX applications, JSON is faster and easier than XML</p>
+  <p>Using XML</p>
+  <ul>
+    <li>Fetch an XML document</li>
+    <li>Use the XML DOM to loop through the document</li>
+    <li>Extract values and store in variables</li>
+  </ul>
+  <p>Using JSON</p>
+  <ul>
+    <li>Fetch a JSON string</li>
+    <li>JSON.Parse the JSON string</li>
+  </ul>
+</div>
+
+
+<script>
+
+</script>
+</body>
+</html>

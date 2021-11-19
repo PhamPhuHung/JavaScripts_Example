@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript DOM Navigation</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#n1">DOM Nodes</a></li>
+    <li><a href="#n2">Node Relationhships</a></li>
+    <li><a href="#n3">Navigating between nodes</a></li>
+    <li><a href="#n4">DOM Root Nodes</a></li>
+    <li><a href="#n5">Some Node Properties</a></li>
+    <ol>
+      <li><a href="#n51">The <strong>nodeValue</strong> Property</a></li>
+      <li><a href="#n52">The <strong>nodeName</strong> Property</a></li>
+      <li><a href="#n53">The <strong>nodeType</strong> Property</a></li>
+    </ol>
+    <li><a href="#n6">Create new HTML element (Nodes)</a></li>
+    <ol>
+      <li><a href="#n61">The <strong>element.appendChild(child)</strong> method</a></li>
+      <li><a href="#n62">The <strong>element.insertBefore(child1, childInsertBeforechild1)</strong> method</a></li>
+    </ol>
+    <li><a href="#n7">Remove existing HTML elements (Nodes)</a></li>
+    <ol>
+      <li><a href="#n71">The <strong>element.remove()</strong> method</a></li>
+      <li><a href="#n72">The <strong>element.removeChild(child)</strong> method</a></li>
+    </ol>
+    <li><a href="#n8">Replacing HTML Elements <strong>element.replaceChild(new, old)</strong></a></li>
+  </ol>
+</div>
+
+<h2 id="n1">DOM Nodes</h2><hr>
+<p>Everything in an HTML document is a node</p>
+<ul>
+  <li>The entire document is a documnt node</li>
+  <li>Every HTML element is an element node</li>
+  <li>The text inside HTML elements are text nodes</li>
+  <li>Every HTML attribute is an attribute node</li>
+  <li>All comments are comment nodes</li>
+</ul>
+<img src="img/pic_htmltree.gif" alt="HTML tree.gif" width="100%" style="max-width:500px">
+<p>All nodes in the node tree can be <b>accessed</b>, <b>modified</b> & <b>deleted</b>, new nodes can be <b>created</b><p>
+
+<h2 id="n1">Node Relationships</h2><hr>
+<p>The nodes in the node tree have a hierarchcal relationship to each other: root node - parent node - child node - sibling node</p>
+
+<h2 id="n2">Node Relationships</h2><hr>
+<p>The nodes in the node tree have a hierarchcal relationship to each other: root node - parent node - child node - sibling node</p>
+<uL>
+  <li>In a node tree, the top node is called root node</li>
+  <li>Every node has exactly 1 parent (except root node has no parent)</li>
+  <li>A node can have a number of children</li>
+  <li>Siblings are nodes with the same parent</li>
+</ul>
+
+<h2 id="n3">Navigating between Nodes</h2><hr>
+<p>Use can use the following node properties to navigate between nodes with JavaScript</p>
+<ul>
+  <li><strong>parentNode</strong></li>
+  <li><strong>childNodes[nodenumber]</strong></li>
+  <li><strong>firstChild</strong></li>
+  <li><strong>lastChild</strong></li>
+  <li><strong>nextSibling</strong></li>
+  <li><strong>previousSibling</strong></li>
+</ul>
+
+<h2 id="n4">DOM Root Nodes</h2><hr>
+<pThere are two sepcial properties that allow access to the full document:</p>
+<ul>
+  <li><strong>document.body</strong> - The body of the document (everything inside <b>&ltbody&gt...&lt/body&gt</b></li>
+  <li><strong>document.documentElement</strong> - The full document (everything inside <b>&lthtml&gt...&lt/html&gt</b></li>
+</ul>
+
+<h2 id="n5">Some Node Properties</h2><hr>
+<h3 id="n51">The <strong>nodeValue</strong> Property</h3>
+<p>Accessing the <strong>innerHTML</strong> property is the same as accessing</p>
+<p>Specifies the value of a node. Always return in uppercase</p>
+<ul>
+  <li>nodeValue for element nodes is <strong>null</strong></li>
+  <li>nodeValue for text nodes is the text itself</li>
+  <li>nodeValue for attribute nodes is the attribute value</li>
+</ul>
+<div class="example">
+  <div class="examplecontent">
+    &ltdiv id="demo_div"&gt&ltp id="demo_p"&gt&lt/p&gt&lt/div&gt			<br><br>
+    var my_p_Title = document.getElementById("demo_p").innerHTML;			<br><br>
+    var my_p_Title = document.getElementById("demo_div").firstChild.nodeValue;		<br><br>
+    var my_p_Title = document.getElementById("demo_div").childNodes[0].nodeValue;	<br><br>		
+  </div>
+</div>
+
+<h3 id="n52">The <strong>nodeName</strong> Property</h3>
+<p>Specifies the name of a node. Always return in uppercase</p>
+<ul>
+  <li>nodeName is read-only</li>
+  <li>nodeName is an element node is the same as tag name</li>
+  <li>nodeName of an attribute node is the attribute name</li>
+  <li>nodeName of a text node is always #text</li>
+  <li>nodeName of the document node is always #document</li>
+</ul>
+<div class="example">
+  <div class="examplecontent">
+    &ltdiv id="demo_div"&gtMy div							<br>
+    &nbsp&nbsp  &ltp id="demo_p"&gtMy p&lt/p&gt							<br>
+    &lt/div&gt										<br><br>
+
+    var my_div_nodeName = document.getElementById("demo_div").nodeName;			<span>// DIV</span><br>
+    var my_p_nodeName = document.getElementById("demo_p").nodeName;			<span>// P</span><br><br>
+
+    var my_div_nodeName = document.getElementById("demo_div").firstChild.nodeName;	<span>// #text</span><br>
+    var my_p_nodeName = document.getElementById("demo_p").firstChild.nodeName;		<span>// #text</span><br><br>		
+  </div>
+</div>
+
+<h3 id="n53">The <strong>nodeType</strong> Property</h3>
+<p>Read-only. Returns the type of a node</p>
+<table>
+  <tr>
+    <th>Node</th>
+    <th>Type</th>
+    <th>Example</th>
+  </tr>
+  <tr>
+    <td>ELEMENT_NODE</td>
+    <td>1</td>
+    <td><span>&lth1 class="heading"&gtW3SCHOOLS&lt/h1&gt</span></td>
+  </tr>
+  <tr>
+    <td>ATTRIBUTE_NODE</td>
+    <td>2</td>
+    <td><span>class="heading"</span></td>
+  </tr>
+  <tr>
+    <td>TEXT_NODE</td>
+    <td>3</td>
+    <td><span>W3SCHOOLS</span></td>
+  </tr>
+  <tr>
+    <td>COMMENT_NODE</td>
+    <td>8</td>
+    <td><span>&lt!-- This is a comment --&gt</span></td>
+  </tr>
+  <tr>
+    <td>DOCUMENT_NODE</td>
+    <td>9</td>
+    <td>The HTML document itself (the parent of <span>&lthtml&gt</span>)</td>
+  </tr>
+  <tr>
+    <td>DOCUMENT_TYPE_NODE</td>
+    <td>10</td>
+    <td><span>&lt!Doctype html&gt</span>)</td>
+  </tr>
+</table>
+
+<h2 id="n6">Create new HTML element (Nodes)</h2><hr>
+<h3>The <strong>element.appendChild(child)</strong> method</h3>
+<div class="example">
+  <div class="examplecontent">
+    &ltdiv id="div1"&gt									<br>
+    &nbsp&nbsp  &ltp id="p1"&gtThis is a paragraph.&lt/p&gt				<br>
+    &nbsp&nbsp  &ltp id="p2"&gtThis is another paragraph.&lt/p&gt			<br>
+    &lt/div&gt										<br><br>
+
+    var new_element = document.createElement("p");					<br>
+    var new_element_text = document.createTextNode("This is new p");			<br>
+    new_element.appendChild(new_element_text);						<br><br>
+
+    var div = document.getElementById("div1");						<br>
+    div.appendChild(new_element);
+  </div>
+</div>
+
+
+<h3>The <strong>element.insertBefore(child1, childInsertBeforechild1)</strong> method</h3>
+<div class="example">
+  <div class="examplecontent">
+    &ltdiv id="div1"&gt									<br>
+    &nbsp&nbsp  &ltp id="p1"&gtThis is a paragraph.&lt/p&gt				<br>
+    &nbsp&nbsp  &ltp id="p2"&gtThis is another paragraph.&lt/p&gt			<br>
+    &lt/div&gt										<br><br>
+
+    var new_element = document.createElement("p");					<br>
+    var new_element_text = document.createTextNode("This is new p");			<br>
+    new_element.appendChild(new_element_text);						<br><br>
+
+    var div = document.getElementById("div1");						<br>
+    var p1 = document.getElementByid("p1");						<br>
+    div.insertBefore(p1, new_element);
+  </div>
+</div>
+
+<h2 id="n7">Remove existing HTML element (Nodes)</h2><hr>
+<h3>The <strong>element.remove()</strong> method</h3>
+<div class="example">
+  <div class="examplecontent">
+    &ltdiv id="div1"&gt									<br>
+    &nbsp&nbsp  &ltp id="p1"&gtThis is a paragraph.&lt/p&gt				<br>
+    &nbsp&nbsp  &ltp id="p2"&gtThis is another paragraph.&lt/p&gt			<br>
+    &lt/div&gt										<br><br>
+
+    var p1 = document.getElementByid("p1");						<br>
+    p1.remove();
+  </div>
+</div>
+
+<h3>The <strong>element.removeChild(child)</strong> method</h3>
+<div class="example">
+  <div class="examplecontent">
+    &ltdiv id="div1"&gt									<br>
+    &nbsp&nbsp  &ltp id="p1"&gtThis is a paragraph.&lt/p&gt				<br>
+    &nbsp&nbsp  &ltp id="p2"&gtThis is another paragraph.&lt/p&gt			<br>
+    &lt/div&gt										<br><br>
+
+    var div = document.getElementById("div1");						<br>
+    var p1 = document.getElementByid("p1");						<br>
+    div.removeChild(p1);
+  </div>
+</div>
+
+<h2 id="n8">Replacing HTML Elements element.replaceChild(new, old)</h2><hr>
+<div class="example">
+  <div class="examplecontent">
+    &ltdiv id="div1"&gt									<br>
+    &nbsp&nbsp  &ltp id="p1"&gtThis is a paragraph.&lt/p&gt				<br>
+    &nbsp&nbsp  &ltp id="p2"&gtThis is another paragraph.&lt/p&gt			<br>
+    &lt/div&gt										<br><br>
+
+    var new_element = document.createElement("p3");					<br>
+    var new_element_text = document.createTextNode("This is p3");			<br>
+    new_element.appendChild(new_element_text);						<br><br>
+
+    var div = document.getElementById("div1");						<br>
+    var p1 = document.getElementByid("p1");						<br>
+    div.replaceChild(p1, p3);
+  </div>
+</div>
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

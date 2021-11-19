@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Array</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#a">Array</a></li>
+    <ol type="1">
+      <li><a href="#a1">Creating an Array</a></li>
+      <li><a href="#a2">Access the Elements of an Array</a></li>
+      <li><a href="#a3">Change an Array Element</a></li>
+      <li><a href="#a4">Access the Full Array</a></li>
+      <li><a href="#a5">Arrays are Objects</a></li>
+      <li><a href="#a6">How to regconize an Array</a></li>
+    </ol>
+    <li><a href="m">Array Methods</a></li>
+    <ol type="1">
+      <li><a href="#m1">toString()</a></li>
+      <li><a href="#m2">join()</a></li>
+      <li><a href="#m3">pop(), push()</a></li>
+      <li><a href="#m4">shift(), unshift()</a></li>
+      <li><a href="#m5">delete</a></li>
+      <li><a href="#m6">splice()</a></li>
+      <li><a href="#m7">concat()</a></li>
+      <li><a href="#m8">slice()</a></li>
+    </ol>
+    <li><a href="s">Array Sorting</a></li>
+    <ol type="1">
+      <li><a href="#s1">sort()</a></li>
+      <li><a href="#s2">reverse()</a></li>
+      <li><a href="#s3">Numeric Sort</a></li>
+      <li><a href="#s4">Numeric Random Sort</a></li>
+      <li><a href="#s5">Math.max.apply(), Max.min.apply()</a></li>
+    </ol>
+    <li><a href="i">Array Iteration Methods</a></li>
+    <ol type="1">
+      <li><a href="#i1">forEach()</a></li>
+      <li><a href="#i2">map()</a></li>
+      <li><a href="#i3">filter()</a></li>
+      <li><a href="#i4">reduce(), reduceRight()</a></li>
+      <li><a href="#i5">every(), some()</a></li>
+      <li><a href="#i6">indexOf(), lastIndexOf()</a></li>
+      <li><a href="#i7">find(), findIndex()</a></li>
+    </ol>
+   </ol>
+</div>
+
+<h2 id="a">Array</h2><hr>
+<h3 id="a1">Creating an Array</h3>
+<p>No need to use <strong>new Array()</strong></p>
+<div class="example">
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    var cars = new Array("Saab", "Volvo", "BMW");
+  </div>
+</div>
+
+<h3 id="a2">Access the Elements of an Array</h3>
+<div class="example">
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    var name = cars[0]; <span>// Saab</span>
+  </div>
+</div>
+
+<h3 id="a3">Change an Array Element</h3>
+<div class="example">
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    cars[0] = "Opel"; <span>// Opel</span>
+  </div>
+</div>
+
+<h3 id="a4">Access the full Array</h3>
+<div class="example">
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    var a = cars; <span>// Saab,Volvo,BMW (a string)</span>
+  </div>
+</div>
+
+<h3 id="a5">Arrays are Objects</h3>
+<div class="example">
+  <p>Arrays are Objects</p>
+  <div class="examplecontent">
+    var person = ["John", "Doe", 46]; <br>
+    typeof person <span>// object</span>
+  </div>
+  <p>Arrays use <strong>numbers</strong> to access its elements, Object use <strong>names</strong> to access its "member". <strong>Objects are not Arrays</strong></p>
+  <div class="examplecontent">
+    var person = ["John", "Doe", 46]; <br>
+    var a = person[0]; <span>//John</span><br><br>
+    var person = {firstName:"John", lastName:"Doe", age:46};<br>
+    var a = person.firstName; <span>//John</span>
+  </div>
+  <p>Arrays  elements can be objects.<br>
+     You can have different types in the same Array (objects, arrays, functions, ...)</p>
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    var array = [Date.now, myfunction, cars]; <br>
+  </div>
+</div>
+
+<h3 id="a6">How to regconize an Array</h3>
+<div class="example">
+  <p>Solution 1: <strong>Array.isArray(array)</strong></p>
+  <div class="examplecontent">
+    var fruits = ["Banana", "Orange", "Apple", "Mango"]; <br>
+    Array.isArray(fruits); <span>// returns true</span>
+  </div>
+  <p>Solution 2: create your own <strong>isArray(array)</strong></p>
+  <div class="examplecontent">
+    function isArray(x) {<br>
+      return x.constructor.toString().indexOf("Array") > -1;<br>
+    }<br><br>
+    isArray(fruits); <span>// returns true</span>
+  </div>
+  <p>Solution 3: <strong>instanceof Array</strong> operator returns true if an object prototype contains the word "Array"</p>
+  <div class="examplecontent">
+    fruits instanceof Array; <span>// returns true</span>
+  </div>
+</div>
+
+<h2 id="m">Array Methods</h2><hr>
+<h3 id="m1">toString()</h3>
+<p>Convert an array to a string of array values (, seperated)</p>
+<div class="example">
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    var str = cars.toString(); <span>//Saab,Volvo,BWM</span>
+  </div>
+</div>
+
+<h3 id="m2">join(), join(separator)</h3>
+<p>Perform just like <strong>toString()</strong><br>
+   In addition, you can specify the separator:</p>
+<div class="example">
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    var str = cars.join(""); <span>//SaabVolvoBWM</span><br>
+    var str = cars.join(" * "); <span>//Saab * Volvo * BWM</span>
+  </div>
+</div>
+
+<h3 id="m3">pop(), push()</h3>
+<div class="example">
+  <p><strong>pop()</strong> removes the last elements from an array, and return that last element</p>
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    var str = cars.pop(); <span>//BWM</span><br>
+    cars; <span>//["Saab", "Volvo"]</span>
+  </div>
+  <p><strong>push()</strong> adds a new element to the end of an array, and return the new array length</p>
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    var str = cars.push("Opel"); <span>//4</span><br>
+    cars; <span>//["Saab", "Volvo", "BMW", "Opel"]</span>
+  </div>
+</div>
+
+<h3 id="m4">shift(), unshift()</h3>
+<div class="example">
+  <p><strong>shift()</strong> remove the first array, then shift all the other element to the lower index, return the string that was shifted out</p>
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    var str = cars.shift(); <span>//Saab</span><br>
+    cars; <span>//["Volvo", "BMW"]</span>
+  </div>
+  <p><strong>unshift()</strong> add a new element at the begining and unshift all the other element, return new array length</p>
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    var str = cars.unshift("Opel"); <span>//4</span><br>
+    cars; <span>//[ "Opel", "Saab", "Volvo", "BMW"]</span>
+  </div>
+</div>
+
+<h3 id="m5">delete</h3>
+<p>Delete array element, leave <strong>undefined</strong> hole</p>
+<div class="example">
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    delete cars[1];<br>
+    cars; <span>//["Saab", "undefined", "BMW"]</span>
+  </div>
+</div>
+
+<h3 id="m6">splice(position, number to remove, value1, value2, ....)</h3>
+<div class="example">
+  <div class="examplecontent">
+    var cars1 = ["Saab", "Volvo", "BMW"]; <br>
+    cars1.splice(2, 0, "Opel", "Huyndai");<br> <span>//["Saab", "Volvo", "Opel", "Huyndai", "BMW"]</span><br><br>
+    var cars1 = ["Saab", "Volvo", "BMW"]; <br>
+    cars1.splice(1, 2, "Opel", "Huyndai");<br> <span>//["Saab", "Opel", "Huyndai"]</span>
+  </div>
+</div>
+
+<h3 id="m7">concat(array1, array2, ...)</h3>
+<p>Create new array by concatenating existing arrays</p>
+<div class="example">
+  <div class="examplecontent">
+    var myGirls = ["Cecilie", "Lone"]; <br>
+    var myBoys = ["Emil", "Tobias", "Linus"];<br>
+    var myChildren = myGirls.concat(myBoys);<span>//["Cecilie", "Lone", "Emil", "Tobias", "Linus"]</span><br>
+    var myChildren = myChildren.concat("LiLy"); <span>//["Cecilie", "Lone", "Emil", "Tobias", "Linus"," "LiLy"]</span>
+  </div>
+</div>
+
+<h3 id="m8">slice(start), slice(start, end+1)</h3>
+<p>Slice out a part of an array, return that part as a new array, (not affect to the source array)</p>
+<div class="example">
+  <div class="examplecontent">
+    var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"]; <br>
+    var citrus1 = fruits.slice(1); <span>//cirtus1 = "["Orange", "Lemon", "Apple", "Mango"]</span><br>
+    var citrus2 = fruits.slice(3); <span>//cirtus2 = "["Mango"]</span><br>
+    var citrus3 = fruits.slice(1, 3); <span>//cirtus3 = "["Orange", "Lemon", "Apple"]</span>
+  </div>
+</div>
+
+<h2 id="s">Array Sorting</h2><hr>
+<h3 id="s1">sort()</h3>
+<p>Sorts an array aphabetically</p>
+<div class="example">
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    cars.sort(); <span>// cars = ["BMW", "Saab", "Volvo"]</span>
+  </div>
+</div>
+
+<h3 id="s2">reverse()</h3>
+<p>Reverses the elements in an array</p>
+<div class="example">
+  <div class="examplecontent">
+    var cars = ["Saab", "Volvo", "BMW"]; <br>
+    cars.reverse(); <span>// cars = ["BMW", "Volvo", "Saab"]</span>
+  </div>
+</div>
+
+<h3 id="s3">Numeric Sort</h3>
+<p>When the <strong>sort()</strong> functiono compare 2 values, it sends the values to the compare functionm and sorts the values according to the retunred (negative, zero, positive) value (br>
+   If the result is negative <strong>a</strong> is sorted before <strong>b</strong><br>
+   If the result is positive <strong>b</strong> is sorted before <strong>a</strong><br>
+</p>
+<div class="example">
+  <div class="examplecontent">
+    var points = [40, 100, 1, 5, 25, 10]; <br>
+    points.sort(function(a, b){return a - b}); <span>// points = [1, 5, 10, 25, 40, 100]</span>
+    points.sort(function(a, b){return b - a}); <span>// points = [100, 40, 25, 10, 5, 1]</span>
+  </div>
+</div>
+
+<h3 id="s4">Numeric Random Sort</h3>
+<div class="example">
+  <div class="examplecontent">
+    var points = [40, 100, 1, 5, 25, 10]; <br>
+    points.sort(function(a, b){return 0.5 - Math.random()});
+  </div>
+</div>
+
+<h3 id="s5">Max.max.apply(null, array), Max.min.apply(null, array)</h3>
+<p>Reverses the elements in an array</p>
+<div class="example">
+  <p><strong>Math.max(1,2,3)</strong> is equivalent to <strong>Math.max.apply(null, [1,2,3])</strong></p>
+  <div class="examplecontent">
+    var points = [40, 100, 1, 5, 25, 10]; <br>
+    var max = Math.max.apply(null, points); <span>// max = 100</span><br>
+    var min = Math.min.apply(null, points); <span>// max = 1</span>
+  </div>
+</div>
+
+<h2 id="i">Array Iteration Methods</h2><hr>
+<h3 id="i1">forEach()</h3>
+<p><strong>forEach()</strong> calls a function (a callback function) once for each array element</p>
+<p>Note that the function takes 3 arguments: 
+  <ul>
+    <li>The item <strong>value</strong></li>
+    <li>The item <strong>index</strong></li>
+    <li>The <strong>array</strong> itself</li>
+  </ul>
+</p>
+<p>We can remove <strong>index</strong> and <strong>array</strong> in below example</p>
+<div class="example">
+  <div class="examplecontent">
+    var txt = "";<br>
+    var numbers = [45, 4, 9, 16, 25];
+    numbers.forEach(myFunction);<br><br>
+
+    function myFunction(value, index, array) {<br>
+    &nbsp&nbsp  txt = txt + value + "&ltbr&gt";<br>
+    }<br><br>
+
+    <span>/*<br>
+    txt = <br>
+    45<br>
+    4<br>
+    9<br>
+    16<br>
+    25<br>
+   */</span>
+  </div>
+</div>
+
+<h3 id="i2">map()</h3>
+<p><strong>map()</strong> create a new aray by performing a function on each array element.<br>
+   <strong>map()</strong> does not execute the dunction for array elements without values.<br>
+   <strong>map()</strong> does not change the original array.</p>
+<p>Note that the function takes 3 arguments: 
+  <ul>
+    <li>The item <strong>value</strong></li>
+    <li>The item <strong>index</strong></li>
+    <li>The <strong>array</strong> itself</li>
+  </ul>
+</p>
+<p>We can remove <strong>index</strong> and <strong>array</strong> in below example</p>
+<div class="example">
+  <div class="examplecontent">
+    var numbers1 = [45, 4, 9, 16, 25];<br>
+    var numbers2 = numbers1.map(myFunction); <span>// [90, 8, 18, 32, 50]</span><br><br>
+
+    function myFunction(value, index, array) {<br>
+      return value * 2;<br>
+    }
+  </div>
+</div>
+
+<h3 id="i3">filter()</h3>
+<p><strong>filter()</strong> create a new array with array elements that passes a test.</p>
+<p>Note that the function takes 3 arguments: 
+  <ul>
+    <li>The item <strong>value</strong></li>
+    <li>The item <strong>index</strong></li>
+    <li>The <strong>array</strong> itself</li>
+  </ul>
+</p>
+<p>We can remove <strong>index</strong> and <strong>array</strong> in below example</p>
+<div class="example">
+  <div class="examplecontent">
+    var numbers = [45, 4, 9, 16, 25];<br>
+    var over18 = numbers.filter(myFunction); <span>// [45, 25]</span><br><br>
+
+    function myFunction(value, index, array) {<br>
+      return value > 18;<br>
+    }
+  </div>
+</div>
+
+<h3 id="i4">reduce(), reduceRight</h3>
+<p><strong>reduce(),reduceRight()</strong> runs a function on each array element to produce (reduce it to) a single value.<br>
+   <strong>reduce()</strong> works from left-to-right in the array</br>
+   <strong>reduceRight()</strong> works from right-to-left in the array</p>
+<p>Note that the function takes 4 arguments: 
+  <ul>
+    <li>The total (the initialvalue / previousliy returned value)</li>
+    <li>The item <strong>value</strong></li>
+    <li>The item <strong>index</strong></li>
+    <li>The <strong>array</strong> itself</li>
+  </ul>
+</p>
+<p>We can remove <strong>index</strong> and <strong>array</strong> in below example</p>
+<div class="example">
+  <div class="examplecontent">
+    var numbers = [45, 4, 9, 16, 25];<br>
+    var sum1 = numbers.reduce(myFunction); <span>// 99</span><br>
+    var sum2 = numbers.reduce(myFunction); <span>// 199</span><br>
+    var sumRight1 = numbers.reduceRight(myFunction); <span>// 99</span><br>
+    var sumRight2 = numbers.reduceRight(myFunction); <span>// 199</span><br><br>
+
+    function myFunction(total, value, index, array) {<br>
+      return total + value;<br>
+    }
+  </div>
+</div>
+
+<h3 id="i5">every(), some()</h3>
+<p><strong>every()</strong> check if all array value pass a test.<br>
+   <strong>some()</strong> check if some array value ae larger than 18</p>
+<p>Note that the function takes 3 arguments: 
+  <ul>
+    <li>The item <strong>value</strong></li>
+    <li>The item <strong>index</strong></li>
+    <li>The <strong>array</strong> itself</li>
+  </ul>
+</p>
+<p>We can remove <strong>index</strong> and <strong>array</strong> in below example</p>
+<div class="example">
+  <div class="examplecontent">
+    var numbers = [45, 4, 9, 16, 25];<br>
+    var allOver18 = numbers.every(myFunction); <span>// false</span><br>
+    var someOver18 = numbers.some(myFunction); <span>// true</span><br><br>
+
+    function myFunction(value, index, array) {<br>
+      return value > 18;<br>
+    }
+  </div>
+</div>
+
+<h3 id="i6">indexOf(), lastIndexOf()</h3>
+<p><strong>indexOf(item), indexOf(item, start)</strong> search an array for an element value and returns its position (of the 1<sup>st</sup>occurrence<br>
+   <strong>lastIndexOf(item), lastIndexOf(item, start)</strong> search an array for an element value and returns its position (of the last occurrece<br>
+   <strong>start</strong> is optional, negative value mean start from the end</p>
+<div class="example">
+  <div class="examplecontent">
+    var fruits = ["Apple", "Orange", "Apple", "Mango"];<br>
+    var a = fruits.indexOf("Apple"); <span>// 0</span><br>
+    var a = fruits.lastIndexOf("Apple"); <span>// 2</span>
+  </div>
+</div>
+
+
+<h3 id="i7">find(), findIndex()</h3>
+<p><strong>find()</strong> returns the value of the rirst array element that passes a test function<br>
+   <strong>findIndex()</strong> returns the position of the first array element that passes a test funtion<br>
+<p>Note that the function takes 3 arguments: 
+  <ul>
+    <li>The item <strong>value</strong></li>
+    <li>The item <strong>index</strong></li>
+    <li>The <strong>array</strong> itself</li>
+  </ul>
+</p>
+<p>We can remove <strong>index</strong> and <strong>array</strong> in below example</p>
+<div class="example">
+  <div class="examplecontent">
+    var numbers = [4, 9, 16, 25, 29];<br>
+    var first = numbers.find(myFunction); <span>// 25</span><br>
+    var firstIndex = numbers.findIndex(myFunction); <span>// 3</span><br><br>
+
+    function myFunction(value, index, array) {<br>
+      return value > 18;<br>
+    }
+  </div>
+</div>
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Array</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#o">Date Objects</a></li>
+    <ol type="1">
+      <li><a href="#o1">new Date()</a></li>
+      <li><a href="#o2">new Date(year, month, day, hour, minute, second, millisecond)</a></li>
+      <li><a href="#o3">new Date(datestring)</a></li>
+      <li><a href="#o4">new Date(milliseconds)</a></li>
+      <li><a href="#o5">toString()</a></li>
+      <li><a href="#o6">toUTCString()</a></li>
+      <li><a href="#o7">toDateString()</a></li>
+      <li><a href="#o8">toISOString()</a></li>
+    </ol>
+    <li><a href="#f">Date Formats</a></li>
+    <ol type="1">
+      <li><a href="#f1">ISO Dates</a></li>
+      <li><a href="#f2">Long Dates</a></li>
+      <li><a href="#f3">Date.parse(string)</a></li>
+    </ol>
+    <li><a href="#g">Get Date Methods</a></li>
+    <li><a href="#s">Set Date Methods</a></li>
+    <li><a href="#c">Date compare</a></li>
+   </ol>
+</div>
+
+<h2 id="o">Date Objects</h2><hr>
+<h3 id="o1">new Date()</h3>
+<p>Create new date object with the current date and time</p>
+<div class="example">
+  <div class="examplecontent">
+    var d = new Date(); <span>// Mon Mar 15 2021 14:33:18 GMT+0700 (Indochina Time)</span>
+  </div>
+</div>
+
+<h3 id="o2">new Date(year, month, day, hour, minute, second, millisecond)</h3>
+<p>Create new date object with specific date and time
+<div class="example">
+  <div class="examplecontent">
+    var d = new Date(2018, 11, 24, 10, 33, 30, 10); <span>// Mon Dec 24 2018 10:33:30 GMT+0700 (Indochina Time)</span><br>
+    var d = new Date(2018, 11, 24, 10, 33, 30); <span>// Mon Dec 24 2018 10:33:00 GMT+0700 (Indochina Time)</span><br>
+    var d = new Date(2018, 11, 24, 10, 33); <span>// Mon Dec 24 2018 10:33:00 GMT+0700 (Indochina Time)</span><br>
+    var d = new Date(2018, 11, 24, 10); <span>// Mon Dec 24 2018 00:00:00 GMT+0700 (Indochina Time)</span><br>
+    var d = new Date(2018, 11, 24); <span>// Mon Dec 24 2018 10:00:00 GMT+0700 (Indochina Time)</span><br>
+    var d = new Date(2018, 11); <span>// Mon Dec 24 2018 10:33:30 GMT+0700 (Indochina Time)</span><br>
+  </div>
+</div>
+
+<h3 id="o3">new Date(datestring)</h3>
+<p>Create a new date object from datestring</p>
+<p>Datestring format are described in the <a href="#f">next chapter</a></p>
+<div class="example">
+  <div class="examplecontent">
+    var d = new Date("October 13, 2014 11:13:00"); <span>// Mon Oct 13 2014 11:13:00 GMT+0700 (Indochina Time)</span>
+  </div>
+</div>
+
+<h3 id="o4">new Date(milliseconds)</h3>
+<p>Creata a new date object as zero time (1970-01-01) plus milliseconds</p>
+<p>Note: 1 day (24 hours) is 86 400 0000 milliseconds</p>
+<div class="example">
+  <div class="examplecontent">
+
+  </div>
+</div>
+
+<h3 id="o5">toString()</h3>
+<div class="example">
+  <div class="examplecontent">
+    var d = new Date();<br>
+    var str = d.toString(); <span>// Mon Mar 15 2021 15:29:30 GMT+0700 (Indochina Time)</span><br>
+  </div>
+</div>
+
+<h3 id="o6">toUTCString()</h3>
+<div class="example">
+  <div class="examplecontent">
+    var d = new Date();<br>
+    var str = d.toUTCString(); <span>// Mon Mar 15 2021 15:29:30 GMT</span><br>
+  </div>
+</div>
+
+<h3 id="o7">toDateString()</h3>
+<div class="example">
+  <div class="examplecontent">
+    var d = new Date();<br>
+    var str = d.toString(); <span>// Mon Mar 15 2021</span><br>
+  </div>
+</div>
+
+<h3 id="o8">toString()</h3>
+<div class="example">
+  <div class="examplecontent">
+    var d = new Date();<br>
+    var str = d.toISOString(); <span>// 2021-03-15T08:37:34.582Z</span><br>
+  </div>
+</div>
+
+<h2 id="f">Date Format</h2><hr>
+<h3 id="f1">ISO Dates</h3>
+<p>Complete Date: "2021-03-15" (YYYY-MM-DD)<br>
+   Year and month: "2021-03" (YYYY-MM)<br>
+   Year: "2021" (YYYY)
+   Year, month, day, hour, minute, second: "2021-03-15T12:00:00Z" (YYYY-MM-DDTHH:MM:SSZ) (Z if time is UTC time)</p>
+
+<h3 id="f2">Long Dates</h3>
+<p>"MMM DD YYYY" <br>
+   ("Mar 15 2021") <br>
+   ("March 15 2021") <br>
+   ("MARCH 15 2021") <br>
+   ("MArch, 15, 2021")</p>
+
+<h3 id="f3">Date.parse(string)</h3>
+<p>Convert a <strong>Date</strong> to <strong>milliseconds</strong></p>
+<div class="example">
+  <div class="examplecontent">
+    var msec = Date.parse("March 21, 2012"); <span>// 1332262800000</span> <br>
+  </div>
+</div>
+
+<h2 id="g">Get Date Methods</h2><hr>
+<table>
+  <tr>
+    <th>Method</th>
+    <th>Description</th>
+  </tr>
+
+  <tr>
+    <td>getFullYear()</td>
+    <td>Get the <strong>year</strong> as four digit number (yyyy)</td>
+  </tr>
+  <tr>
+    <td>getMonth()</td>
+    <td>Get the <strong>month</strong> as a number (0-11)</td>
+  </tr>
+  <tr>
+    <td>getDate()</td>
+    <td>Get the <strong>day</strong> as a number (1-31)</td>
+  </tr>
+  <tr>
+    <td>getHours()</td>
+    <td>Get the <strong>hour</strong> as a number (0-23)</td>
+  </tr>
+  <tr>
+    <td>getMinutes()</td>
+    <td>Get the <strong>minute</strong> as a number (0-59)</td>
+  </tr>
+  <tr>
+    <td>getSeconds()</td>
+    <td>Get the <strong>second</strong> as a number (0-59)</td>
+  </tr>
+  <tr>
+    <td>getMilliseconds()</td>
+    <td>Get the <strong>millisecond</strong> as a number (0-999)</td>
+  </tr>
+  <tr>
+    <td>getDay()</td>
+    <td>Get the <strong>weekday</strong> as a number (0-6)</td>
+  </tr>
+  <tr>
+    <td>Date.now()</td>
+    <td>Get the <strong>time</strong>. ECMAScript 5. Act the same as <strong>getTime()</strong></td>
+  </tr>
+  <tr>
+    <td>getTime()</td>
+    <td>Get the <strong>time</strong> (milliseconds since 1970-01-01)</td>
+  </tr>
+</table>
+<br>
+<table>
+  <tr>
+    <th>Method</th>
+    <th>Description</th>
+  </tr>
+
+  <tr>
+    <td>getUTCFullYear()</td>
+    <td>Same as <strong>getFullYear()</strong>, but retunrs the UTC year</td>
+  </tr>
+  <tr>
+    <td>getUTCMonth()</td>
+    <td>Same as <strong>getMonth()</strong>, but retunrs the UTC month</td>
+  </tr>
+  <tr>
+    <td>getUTCDate()</td>
+    <td>Same as <strong>getDate()</strong>, but retunrs the UTC date</td>
+  </tr>
+  <tr>
+    <td>getUTCHours()</td>
+    <td>Same as <strong>getHours()</strong>, but retunrs the UTC hour</td>
+  </tr>
+  <tr>
+    <td>getUTCMinutes()</td>
+    <td>Same as <strong>getMinutes()</strong>, but retunrs the UTC minute</td>
+  </tr>
+  <tr>
+    <td>getUTCSeconds()</td>
+    <td>Same as <strong>getSeconds()</strong>, but retunrs the UTC seconds</td>
+  </tr>
+  <tr>
+    <td>getUTCMilliseconds()</td>
+    <td>Same as <strong>getMilliseconds()</strong>, but retunrs the UTC milliseconds</td>
+  </tr>
+  <tr>
+    <td>getUTCDay()</td>
+    <td>Same as <strong>getDay()</strong>, but retunrs the UTC day</td>
+  </tr>
+</table>
+
+<h2 id="s">Set Date Methods</h2><hr>
+<table>
+  <tr>
+    <th>Method</th>
+    <th>Description</th>
+  </tr>
+
+  <tr>
+    <td>setFullYear(year, month, day)</td>
+    <td>Set the <strong>year</strong> (optionally month and day)</td>
+  </tr>
+  <tr>
+    <td>setMonth()</td>
+    <td>Set the <strong>month</strong> (0-11)</td>
+  </tr>
+  <tr>
+    <td>SetDate()</td>
+    <td>Set the <strong>day</strong> (1-31)</td>
+  </tr>
+  <tr>
+    <td>SetHours()</td>
+    <td>Set the <strong>hour</strong> (0-23)</td>
+  </tr>
+  <tr>
+    <td>SetMinutes()</td>
+    <td>Set the <strong>minute</strong> (0-59)</td>
+  </tr>
+  <tr>
+    <td>SetSeconds()</td>
+    <td>Set the <strong>second</strong> (0-59)</td>
+  </tr>
+  <tr>
+    <td>SetMilliseconds()</td>
+    <td>Set the <strong>millisecond</strong> (0-999)</td>
+  </tr>
+  <tr>
+    <td>SetTime()</td>
+    <td>Set the <strong>time</strong> (milliseconds since 1970-01-01)</td>
+  </tr>
+</table>
+
+<h2 id="c">Date Compare</h2><hr>
+<p>Later date is bigger date</p>
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

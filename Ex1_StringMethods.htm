@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en_US">
+<head>
+<title>JavaScripts String Methods</title>
+<style>
+table { width: 100%; }
+th, td { border-bottom: 1px solid #888; text-align: left; padding: 5px 10px; }
+tr:nth-child(even) { background-color: #ddd; }
+span { color: green; font-weight: bold; }
+strong { color: red; }
+</style>
+</head>
+<body>
+<table>
+  <tr>
+    <th>Methods</th>
+    <th>Description</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td>length</td>
+    <td>Return the length of a string</td>
+    <td>var txt = "ABCD";<br>var sln = txt.length;<span>//sln = 4</span></td>
+  </tr>
+
+  <tr>
+    <td>indexOf(string)<br> indexOf(string, start)</td>
+    <td>Return the index of the <strong>first</strong> occurrence of a specified text in a string</td>
+    <td>
+      var str = "Please locate where 'locate' occurs!";<br> var pos = str.indexOf("locate");<span>//7</span><br><br>
+      str = "Please locate where 'locate' occurs!";<br> var pos = str.indexOf("LOCATE");<span>//-1 (not found)</span><br><br>
+      str = "Please locate where 'locate' occurs!";<br> var pos = str.indexOf("locate", 15);<span>//21 (search from 15 to the end of the string)</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td>lastIndexOf(string)<br> lastIndexOf(string, start)</td>
+    <td>Return the index of the <strong>last</strong> occurrence of a specified text in a string (search <strong>backward & return <strong>first</strong> occurrence)</td>
+    <td>
+      var str = "Please locate where 'locate' occurs!";<br> var pos = str.lastIndexOf("locate");<span>//21</span><br><br>
+      str = "Please locate where 'locate' occurs!";<br> var pos = str.lastIndexOf("LOCATE");<span>//-1 (not found)</span><br><br>
+      str = "Please locate where 'locate' occurs!";<br> var pos = str.lastIndexOf("locate", 15);<span>//7 (search from 15 to the begining of the string)</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td>search(string)</td>
+    <td>
+      Search a string for a specified value and returns the position of the match<br>
+      <strong>search()</strong> cannot take 2<sup>nd</sup> parameter<br>
+      <strong>indexOf()</strong> cannot take powerful seach values
+    </td>
+    <td>var str = "Please locate where 'locate' occurs!";<br> var pos = str.search("locate");<span>//7</span></td>
+  </tr>
+
+  <tr>
+    <td>slice(start, end)<br> slice(start)</td>
+    <td>Extract a part of a string and returns the extracted part in a new string</td>
+    <td>
+      var str = "Apples, Banana, Kiwi";<br>var res = str.slice(7, 13); <span>//Banana</span><br><br>
+      var str = "Apples, Banana, Kiwi";<br>var res = str.slice(-12, -6); <span>//Banana (count 12 & 6 from the end)</span><br><br>
+      var str = "Apples, Banana, Kiwi";<br>var res = str.slice(7); <span>//Banana, Kiwi</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td>substring(start, end)<br> substring(start)</td>
+    <td>Similar to <strong>slice</strong><br>Difference: cannot accept negative indexes</td>
+    <td>
+      var str = "Apples, Banana, Kiwi";<br>var res = str.substring(7, 13); <span>//Banana</span><br><br>
+      var str = "Apples, Banana, Kiwi";<br>var res = str.substring(7); <span>//Banana, Kiwi</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td>substr(start, length)<br> substr(start)</td>
+    <td>Similar to <strong>slice</strong><br>Difference: use "length" instead of "end"</td>
+    <td>
+      var str = "Apples, Banana, Kiwi";<br>var res = str.substr(7, 6); <span>//Banana</span><br><br>
+      var str = "Apples, Banana, Kiwi";<br>var res = str.substr(-12, 6); <span> (negative index: count from the end of the string)//Banana</span><br><br>
+      var str = "Apples, Banana, Kiwi";<br>var res = str.substr(7); <span>//Banana, Kiwi</span><br><br>
+      var str = "Apples, Banana, Kiwi";<br>var res = str.substr(-4); <span>//Kiwi (negative index: count from the end of the string)</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td>replace(value1, value2)</td>
+    <td>Replaces a specified value with another value in a string</td>
+    <td>
+      var str = "Please visit Microsoft and Microsoft!"<br>var n = str.replace("Microsoft", "W3School");<span>//Please visit W3School and Microsoft! (replace the first occurence)</span><br><br>
+      var str = "Please visit Microsoft and Microsoft!"<br>var n = str.replace(/MICROSOFT/i, "W3School");<span>//Please visit W3School and Microsoft! (Don't care about case sensitive!)</span><br><br>
+      var str = "Please visit Microsoft and Microsoft!"<br>var n = str.replace(/Microsoft/g, "W3School");<span>//Please visit W3School and W3School! (replace all occurrence)</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td>toUpperCase()</td>
+    <td>Convert a string to upper case</td>
+    <td>
+      var text1 = "Hello World!";<br>var text2 = text1.toUpperCase();<span>//HELLO WORLD!</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td>toLowerCase()</td>
+    <td>Convert to lower case</td>
+    <td>
+      var text1 = "Hello World!";<br>var text2 = text1.toUpperCase();<span>//hello world!</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td>concat(string)<br> concat(string1, string2)<br> concat(string1, string2, ...)</td>
+    <td>Join 2 or more string</td>
+    <td>
+      var text1 = "Hello";<br>var text2 = "World!";<br>var text3 = text1.concat(text2);<span>//HelloWorld!</span><br><br>
+      var text1 = "Hello";<br>var text2 = "World!";<br>var text3 = text1.concat(" ",text2);<span>//Hello World!</span><br><br>
+      var text1 = "Hello";<br>var text2 = "World!";<br>var text3 = text1.concat(" ",text2, " ", text2);<span>//Hello World! World!</span><br>
+    </td>
+  </tr>
+
+  <tr>
+    <td>trim()</td>
+    <td>Remove whitespace from both sides of a string</td>
+    <td>var str = "     "Hello World!     "<br>var re = str.trim();<span>//Hello World</span"</td>
+  </tr>
+
+  <tr>
+    <td>padStart(length, pad)</td>
+    <td>Support padding at the beginning of a string</td>
+    <td>var str="5";<br>var pa = str.padStart(4,0);<span>//0005</td>
+  </tr>
+
+  <tr>
+    <td>padEnd(length, pad)</td>
+    <td>Support padding at the end of a string</td>
+    <td>var str="5";<br>var pa = str.padEnd(4,0);<span>//5000</td>
+  </tr>
+
+  <tr>
+    <td>charAt(position)</td>
+    <td>Return the character at a specified index in a string</td>
+    <td>var str = "HELLO WORLD";<br> var ch = str.charAt(0);<span>//H</span><br>var ch = str[0];<span>//Act the same way</span><br>Note: str[0] = "A";<span>//Give no error, but does not work</span></td>
+  </tr>
+
+  <tr>
+    <td>charCodeAt(position)</td>
+    <td>Return the unicode of he character at a specified index in a string</td>
+    <td>var str = "HELLO WORLD!"<br>var ch = str.charCodeAt(0);<span>//72</span></td>
+  </tr>
+
+  <tr>
+    <td>split(value)<br> split()</td>
+    <td>Convert string to array</td>
+    <td>
+      var str = "a,b,c,d,e,f"<br>var ch = str.split(",");<span>//ch=["a","b","c","d","e","f"] - ch[0]="a", ...</span><br><br>
+      var str = "a,b,c,d,e,f"<br>var ch = str.split();<span>//ch=["a,b,c,d,e,f"] - ch[0]="a,b,c,d,e,f", ...</span><br><br>
+      var str = "a,b,c,d,e,f"<br>var ch = str.split("");<span>//ch=["a",",","b",",","c",",","d",",","e",",","f"] - ch[0]="a", ch[1]=",", ...</span>
+    </td>
+  </tr>
+
+  <tr>
+    <td>match(string)</td>
+    <td>Search a string for a match against a regualr expression, and returns the matches, as an Array Object</td>
+    <td>
+      var str = "The rain in SPAIN stays mainly in the plain";<br>
+      var res = str.match(/ain/g); <span>// res = ["ain", "ain", "ain"]</span>
+    </td>
+  </tr>
+</body>
+</html>

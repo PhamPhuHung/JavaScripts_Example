@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript DOM Document Object</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#d1">The HTML DOM Document Object</a></li>
+    <li><a href="#d2">Finding HTML Elements</a></li>
+    <li><a href="#d3">Changing HTML Elements</a></li>
+    <li><a href="#d4">Adding / Deleting Elements</a></li>
+    <li><a href="#d5">Adding Events Handlers</a></li>
+    <li><a href="#d6">Finding HTML Objects</a></li>
+  </ol>
+</div>
+
+<h2 id="d1">The HTML DOM Document Object</h2><hr>
+<p>The document object represents your web page</p>
+<p>If you want to access any element in an HTML page, you always start with accessing the document object</p>
+<p>Below are some examples of how you can use the document object to access and manippulate HTML</p>
+
+<h2 id="d2">Finding HTML Elements</h2><hr>
+<img src="img/img_DOM_findinghtmlelements.png" alt="Finding HTML Elements.png" width="700px">
+
+<h2 id="d3">Changing HTML Elements</h2><hr>
+<img src="img/img_DOM_changinghtmlelements.png" alt="Changing HTML Elements.png" width="700px">
+
+<h2 id="d4">Adding / Deleting Elements</h2><hr>
+<img src="img/img_DOM_adddeleteelements.png" alt="Adding / Deleting Elements.png" width="700px">
+
+<h2 id="d5">Adding Events Handlers</h2><hr>
+<img src="img/img_DOM_addevent.png" alt="Adding Events Handlers.png" width="700px">
+
+<h2 id="d6">Finding HTML Objects</h2><hr>
+<img src="img/img_DOM_findinghtmlobjects.png" alt="Finding HTML Elements.png" width="800px">
+
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

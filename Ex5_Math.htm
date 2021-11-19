@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Math Object</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#m1">Math Objects</a></li>
+    <li><a href="#m2">Math Properties (Constant)</a></li>
+    <li><a href="#m3">Math Methods</a></li>
+  </ol>
+</div>
+
+<h2 id="m1">Math Objects</h2><hr>
+<p>Unlike other objects, the Math Object has no constructor<br>
+   The Math object is static<br> 
+   All methods and properties can be used without creating a Math object first</p>
+
+<h2 id="m2">Math Properties</h2><hr>
+<div class="example">
+  <div class="examplecontent">
+    Math.E       <span>  // returns Euler's number </span><br>
+    Math.PI      <span>  // returns PI </span><br>
+    Math.SQRT2   <span>  // returns the square root of 2 </span><br>
+    Math.SQRT1_2 <span>  // returns the square root of 1/2 </span><br>
+    Math.LN2     <span> // returns the natural logarithm of 2 </span><br>
+    Math.LN10    <span> // returns the natural logarithm of 10 </span><br>
+    Math.LOG2E   <span> // returns base 2 logarithm of E </span><br>
+    Math.LOG10E  <span> // returns base 10 logarithm of E </span>
+  </div>
+</div>
+
+<h2 id="m3">Math Methods</h2>
+<div>
+<img src="img/img_mathround.png" alt="Math round methods.png" width="900px">
+</div>
+<div>
+<img src="img/img_mathmethods.png" alt="Math methods.png" width="900px">
+</div>
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

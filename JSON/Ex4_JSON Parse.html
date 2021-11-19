@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>AJAX Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: lightgray;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <p>A common use of JSON is to exchange data to/from a web server.</p>
+  <p>When receiving data from a web server, the data is always a string.</p>
+  <p>Parse the data with <code>JSON.parse()</code>, and the data becomes a JavaScript object.</p> 
+</div>
+
+<div class="container">
+  <h2>Example - Parsing JSON</h2>
+  <p>Imagine we received this text froma web server:</p>
+  <p style="background-color:#333;padding:5px 10px; color:green">
+    '{ "name" : "John", "age" : 30, "city" : "New York" }'
+  </p>
+  <p>Use the JavaScript function <code>JSON.parse()</code> to convert text into a JavaScript object:</p>
+  <p style="background-color:#333;padding:5px 10px">
+    <span style="color:pink">var </span>
+    <span style="color:white">obj = JSON.parse(</span>
+    <span style="color:green">'{ "name" : "John", "age" : 30, "city" : "New York" }'</span>
+    <span style="color:white">);</span><br>
+    <span style="color:white">xmlhttp.onreadystatechange = </span>
+    <span style="color:pink">function</span>
+    <span style="color:white">() {</span><br>
+    <span style="color:pink">&nbsp&nbspif<span style="color:white"> (</span>this</span>
+    <span style="color:white">.readyState == 4 && </span>
+    <span style="color:pink">this</span>
+    <span style="color:white">
+  </p>
+  <p style="background-color:lightyellow;padding:30px">Make sure the text is written in JSON format, or else you will get a syntax error</p>
+</div>
+
+<div class="container">
+  <h2>JSON from the Server</h2>
+  <p>You can request JSON from the server by using an AJAX request</p>
+  <p>As long as the response fromt he server is written in JSON format, you can parse the string into a JavaScript object.</p>
+  <div style="background-color:eee;padding:20px">
+    <h3>Example</h3>
+    <p>Use the XMLHttpRequest to get data from the server</p>
+    <p style="background-color:#333; padding:5px 10px">
+      <span style="color:pink">var</span>
+      <span style="color:white"> xmlhttp = </span>
+      <span style="color:pink">new </span>
+      <span style="color:white">XMLHttpRequest();</span><br>
+      <span style="color:white">xmlhttp.onreadystatechange = <span style="color:pink">function</span>(0 {<br>
+      <span style="color:pink">&nbsp&nbspif<span style="color:white">(</span>this</span>
+      <span style="color:white">.readyState == 4 && <span style="color:pink">this</span>.status == 200) {<br>
+      <span style="color:pink">&nbsp&nbsp&nbsp&nbspvar</span>
+      <span style="color:white">myObj = JSON.parse(<span style="color:pink">this</span>.responseText);<br>
+      <span style="color:white">&nbsp&nbsp&nbsp&nbspdocument.getElemetnById(<span style="color:green">"demo"</span>)>innerHTML = myObj.name;<br>&nbsp&nbsp}<br>};<br>
+      <span style="color:white">xmlhttp.open(<span style="color:green">"GET", "json_demo.txt", true</span>);<br>
+      <span style="color:white">xmlhttp.send();
+    </p>
+  </div>
+  <p>Take a look at <a href="json_demo.txt" target="_blank">json_demo.txt</a></p>
+</div>
+
+<div class="container">
+  <h2>Array as JSON</h2>
+  <p>When using the <code>JSON.parse()</code> on a JSON derevied from an array, the method will return a JavaScript array, instead of a JavaScript object.</p>
+  <div style="background-color:eee;padding:20px">
+    <h3>Example</h3>
+    <p>The JSON returned from the server is an array</p>
+    <p style="background-color:#333; padding:5px 10px">
+      <span style="color:pink">var</span>
+      <span style="color:white"> xmlhttp = </span>
+      <span style="color:pink">new </span>
+      <span style="color:white">XMLHttpRequest();</span><br>
+      <span style="color:white">xmlhttp.onreadystatechange = <span style="color:pink">function</span>(0 {<br>
+      <span style="color:pink">&nbsp&nbspif<span style="color:white">(</span>this</span>
+      <span style="color:white">.readyState == 4 && <span style="color:pink">this</span>.status == 200) {<br>
+      <span style="color:pink">&nbsp&nbsp&nbsp&nbspvar</span>
+      <span style="color:white">myArr = JSON.parse(<span style="color:pink">this</span>.responseText);<br>
+      <span style="color:white">&nbsp&nbsp&nbsp&nbspdocument.getElemetnById(<span style="color:green">"demo"</span>)>innerHTML = myArr[0];<br>&nbsp&nbsp}<br>};<br>
+      <span style="color:white">xmlhttp.open(<span style="color:green">"GET", "json_demo_array.txt", true</span>);<br>
+      <span style="color:white">xmlhttp.send();
+    </p>
+  </div>
+  <p>Take a look at <a href="json_demo_array.txt" target="_blank">json_demo_array.txt</a></p>
+</div>
+
+<div class="container">
+  <h2>Exceptions - Parsing Dates</h2>
+  <p>Date objects are not allowed in JSON.</p.
+  <p>If you need to include a date, write it as a strng.</p>
+  <p>You can convert it back into a date object later:</p>
+  <div style="background-color:#eee;padding:5px 15px">
+    <h3>Example</h3>
+    <p>Convert a string into a date:</p>
+    <p style="background-color:#333; padding:5px 10px">
+      <span style="color:pink">var</span>
+      <span style="color:white"> text = </span>
+      <span style="color:green">'{ "name" : "John", "birth" : "1986-12-14", "city" : "New York" }'</span><br>
+      <span style="color:pink">var</span>
+      <span style="color:white">obj = JSON.parse(text);</span><br>
+      <span style="color:white">obj.birth = <span style="color:pink">new </span> Date(obj.birth);</span>
+    </p>
+  </div>
+  <p>Or, you can us  e the second parameter, of the <code>JSON.parse()</code> function, called reviver.</p>
+  <p>The <i>reviver</i> parameter is a function that checks each property, before returning the value</p>
+  <div style="background-color:#eee;padding:5px 15px">
+    <h3>Example</h3>
+    <p>Convert a string into a date, using the <i>reviver</i> function:</p>
+    <p style="background-color:#333; padding:5px 10px">
+      <span style="color:pink">var</span>
+      <span style="color:white"> text = </span>
+      <span style="color:green">'{ "name" : "John", "birth" : "1986-12-14", "city" : "New York" }'</span><span style="color:white">;</span><br>
+      <span style="color:pink">var</span>
+      <span style="color:white">obj = JSON.parse(text, <span style="color:pink">function</span> (key, value){</span><br>
+      <span style="color:pink">&nbsp&nbspif </span>
+      <span style="color:white"> {key == <span style="color:green">"birth"</span>) { </span><br>
+      <span style="color:pink">&nbsp&nbsp&nbsp&nbspreturn new </span>
+      <span style="color:white">Date(value);<br>&nbsp&nbsp}<br>
+      <span style="color:pink">else<span style="color:white"> {</span><br>&nbsp&nbsp&nbsp&nbspreturn</span>
+      <span style="color:white"> value;<br>&nbsp&nbsp}<br>});</span>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Exceptions - Parsing Functions</h2>
+  <p>Functions are not allowed in JSON</p>
+  <p>If you need to include a function, write it as a string.</p>
+  <p>You can convert it back into a function later:</p>
+  <div style="background-color:#eee;padding:5px 15px">
+    <h3>Example</h3>
+    <p>Convert a string into a function:</p>
+    <p style="background-color:#333; padding:5px 10px">
+      <span style="color:pink">var</span>
+      <span style="color:white"> text = </span>
+      <span style="color:green">'{ "name" : "John", "age" : "function () {return 30;}", "city" : "New York" }'</span><br>
+      <span style="color:pink">var</span>
+      <span style="color:white">obj = JSON.parse(text);</span><br>
+      <span style="color:white">obj.age = <span style="color:pink">eval</span>(<span style="color:green">"("</span> + obj.age + <span style="color:green">")"</span>);</span>
+    </p>
+  </div>
+  <p style="background-color:#edd; padding:20px">You should avoild using functions in JSON the functjons will lose their scope, and you would have to use <code>eval</code> to convert them back into functions</p>
+</div>
+<script>
+
+</script>
+</body>
+</html>

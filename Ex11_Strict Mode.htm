@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Strict Mode</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#s1">Declaring Strict Mode</a></li>
+    <li><a href="#s2">Not allowed in Strict Mode</a></li>
+    <li><a href="#s3">Future Proof</a></li>
+  </ol>
+</div>
+
+<h2 id="s1">Declaring Strict Mode</h2><hr>
+<p>Strict mode is declared by adding <strong>"use strict";</strong> to the beginning of a script or a function<p>
+<p>If declared at the beginning of a script, it has global scope (all code in the script will execute in strict mode)</p>
+<p>If declared at the beginning of a function, it has local scope (only code in the function will excecute in strict mode)</p>
+<p>Note: The <strong>"use strict"</strong> is only recognized at the <strong>beginnning</strong> of a script or a function</p>
+<div class="example">
+  <div class="examplecontent">
+    &ltscript&gt<br>
+    "use strict";<br>
+    code...<br>
+    &lt/script&gt
+  </div>
+</div>
+
+<h2 id="s2">Not allowed in Strict Mode</h2><hr>
+<p>Using an variable / object, without declaring it is not allowed.</p>
+<p>Deleting a variable / object / function is not allowed<span> // delete x<span><p>
+<p>Duplicating a parameter name is not allowed<span>// function x(p1, p1)</span></p>
+<p>Octal numeric is not allowed <span>// var x = 010</span></p>
+<p>Octal escape characters is not allowed<span>// var x = "\010"</span></p>
+<p>Writing to a read-only property is not allowed</p>
+<div class="example">
+  <div class="examplecontent">
+    "use strict";<br>
+    var obj = {};<br>
+    Object.defineProperty(obj, "x", {value:0, writable:false});<br><br>
+
+    obj.x = 3.14;           <span> // This will cause an error</span><br>
+  </div>
+</div>
+<p>Writing to a get-only property is not allowed</p>
+<div class="example">
+  <div class="examplecontent">
+    "use strict";<br>
+    var obj = {get x() {return 0} };<br><br>
+
+    obj.x = 3.14;           <span> // This will cause an error</span><br>
+  </div>
+</div>
+<p>Delete an undeletable property is not allowed</p>
+<div class="example">
+  <div class="examplecontent">
+    "use strict";<br>
+    delete Object.prototype;           <span> // This will cause an error</span><br>
+  </div>
+</div>
+<p>The word <strong>eval</strong>, <strong>arguments</strong> cannot be used as a variable</p>
+<div class="example">
+  <div class="examplecontent">
+    "use strict";<br>
+    var eval = 3.4;           <span> // This will cause an error</span><br>
+    var arguments = 3.4;           <span> // This will cause an error</span><br>
+  </div>
+</div>
+<p>The <strong>with</strong> statement is not allowed
+<div class="example">
+  <div class="examplecontent">
+    "use strict";<br>
+    with (Math){x = cos(2)};           <span> // This will cause an error</span><br>
+  </div>
+</div>
+<p><strong>eval()</strong> is not alloed to create variables in the scope from which it was called, for security reasons</p>
+<div class="example">
+  <div class="examplecontent">
+    "use strict";<br>
+    eval ("var x = 2");
+    alert(x)           <span> // This will cause an error</span><br>
+  </div>
+</div>
+
+<p>Inside functions, the "this" keyword is no longer the global object if not specified</p>
+<div class="example">
+  <div class="examplecontent">
+    "use strict";<br>
+    function myFunction() {<br>
+    &nbsp&nbsp alert(this)           <span> // undefined</span><br>
+    }
+  </div>
+</div>
+
+<h2 id="s3">Future Proof</h2><hr>
+<p>For future JavaScript, keywords cannot be use as variable names in strict mode</p>
+<ul>
+  <li>implements</li>
+  <li>interface</li>
+  <li>let</li>
+  <li>package</li>
+  <li>private</li>
+  <li>protected</li>
+  <li>public</li>
+  <li>static</li>
+  <li>yield</li>
+</ul>
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

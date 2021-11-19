@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Classes (Advanced)</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#c1">Classes</a></li>
+    <li><a href="#c2">Class Inheritance</a></li>
+    <li><a href="#c3">Getters and Setters</a></li>
+    <li><a href="#c3">Hoisting</a></li>
+    <li><a href="#c4">Static Methods</a></li>
+  </ol>
+</div>
+
+<h2 id="c1">Classes</h2><hr>
+<p>JavaScript class is <b>not</b> an object</p>
+<p>It is a <b>template</b> for JavaScript objects</p>
+<div class="example">
+  <div class="examplecontent">
+    class Car {<br>
+    &nbsp&nbsp  constructor(name, year) { 					<br>
+    &nbsp&nbsp&nbsp&nbsp  this.name = name;					<br>
+    &nbsp&nbsp&nbsp&nbsp  this.year = year;					<br>
+    &nbsp&nbsp&nbsp&nbsp  age() {						<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  let date = new Date();			<br>
+    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  return date.getFullYear() - this.year;	<br>
+    &nbsp&nbsp&nbsp&nbsp  } 							<br>
+    &nbsp&nbsp  } 								<br><br>
+
+    let car1 = new Car("Ford", 2014);						<br>
+    let car2 = new Car("Audi", 2019);						<br>
+    var age = car1.age();							<span>// 7</span><br>
+    }
+  </div>
+</div>
+
+<h2 id="c2">Class Inheritance</h2><hr>
+<p>To create a class inheritance, use the <strong>extends</strong> keyword</p>
+<p>A class created with a class inheritance inherits all the methods from another class</p>
+<p>It is a <b>template</b> for JavaScript objects</p>
+<div class="example">
+  <div class="examplecontent">
+    class Car {<br>
+    &nbsp&nbsp  constructor(carbrand) { 						<br>
+    &nbsp&nbsp&nbsp&nbsp  this.brand = carbrand;					<br>
+    &nbsp&nbsp  } 									<br>
+    &nbsp&nbsp  showcar() { return "I have a " + this.brand; }				<br>
+    }											<br><br>
+
+    class Model extends Car {								<br>
+    &nbsp&nbsp constructor(carbrand, mod) {						<br>
+    &nbsp&nbsp&nbsp&nbsp  supper(carbrand);						<br>
+    &nbsp&nbsp&nbsp&nbsp  this.model = mod;						<br>
+    &nbsp&nbsp  }									<br>
+    &nbsp&nbsp  showModel() { return this.showCar() + ", it is a " + this.model; }	<br>
+    }											<br><br>
+
+    let myCar = new Model("Ford", "Mustang");						<br>
+    let ste = myCar.showModel();							<span>// I have a Ford, it is a Mustang</span><br>
+    }
+  </div>
+</div>
+
+<h2 id="c3">Getters and Setters</h2><hr>
+<p>Classes also allow you to use getters and setters</p>
+<p>To add getter and setter, use the <strong>get</strong> and <strong>set</strong> keywords</p>
+<div class="example">
+  <div class="examplecontent">
+    class Car {<br>
+    &nbsp&nbsp  constructor(carbrand) {							<br>
+    &nbsp&nbsp&nbsp&nbsp this.brand = carbrand;						<br>
+    &nbsp&nbsp  }									<br>
+    &nbsp&nbsp get cbrand() { return this.brand; }					<br>
+    &nbsp&nbsp set cbrand(x) { this.brand = x; }					<br><br>
+    }
+  </div>
+</div>
+
+<h2 id="c4">Hoisting</h2><hr>
+<p>Class declarations are not hosted</p>
+<p>That measn that you must declare a class before you can use it:</p>
+
+<h2 id="c5">Class Static Methods</h2><hr>
+<p>Static class methods are defined on the class itself</p>
+<p>You cannot call a static method on an object, only on an object class</p>
+<div class="example">
+  <div class="examplecontent">
+    class Car {<br>
+    &nbsp&nbsp  constructor(carbrand) {							<br>
+    &nbsp&nbsp&nbsp&nbsp this.brand = carbrand;						<br>
+    &nbsp&nbsp  }									<br>
+    &nbsp&nbsp  static Hello() { return "Hello!"; }					<br>
+    }											<br><br>
+
+    let myCar = new Car("Ford");							<br>
+    let str1 = Car.Hello();								<span>// Hello!</span><br>
+    let str2 = myCar.Hello();								<span>// raise Error</span>
+  </div><br>
+
+  <p>If you want to use the myCar object inside the <strong>static</strong> method, you can send it as a parameter</p>
+  <div class="examplecontent">
+    class Car {<br>
+    &nbsp&nbsp  constructor(carbrand) {							<br>
+    &nbsp&nbsp&nbsp&nbsp this.brand = carbrand;						<br>
+    &nbsp&nbsp  }									<br>
+    &nbsp&nbsp  static Hello(x) { return "Hello! " + x.brand; }					<br>
+    }											<br><br>
+
+    let myCar = new Car("Ford");							<br>
+    let str = Car.Hello(myCar);								<span>// Hello! Ford</span>
+  </div>
+</div>
+
+
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

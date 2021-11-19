@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>AJAX Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: lightgray;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <h2>Object Syntax</h2>
+  <p>Imagine we have this object in JavaScript:</p>
+  <p style="background-color:#333;padding:5px 10px">
+    <span style="color:white">myObj = { <span style="color:lightgreen">"name"</span> : <span style="color:lightgreen">"John"</span>, 
+                                <span style="color:lightgreen">"age"</span> : <span style="color:lightblue">30</span>, 
+                                <span style="color:lightgreen">"car"</span> : <span style="color:pink">null</span> }</span>
+  </p>
+  <p>JSON objects are surrounded by curly braces { }</p>
+  <p>JSON objects are written in key/value pairs</p>
+  <p>Keys must be strings, and values must be valid JSON data type (string, number, object, array, boolean or null);</p>
+  <p>Keys and value are separated by a colon</p>
+  <p>Each key/value pair is separated by a comma</p> 
+</div>
+
+<div class="container">
+  <h2>Accessing Object Values</h2>
+  <p style="background-color:#333; padding:5px 10px">
+    <span style="color:white">x = myObj.name;</span>
+    <span style="color:gray"> // John</span><br><br>
+
+
+    <span style="color:white">x = myObj[<span style="color:green">"name"</span>];</span>
+    <span style="color:gray"> // John</span>
+  </p>
+</div>
+
+<div class="container">
+  <h2>Looping an Object</h2>
+  <p>You can loop through object properties by using the for-in loop:</p>
+  <p style="background-color:#333; padding:5px 10px;">
+    <span style="color:pink">for </span>
+    <span style="color:white">(x <span style="color:pink">in </span>myObj) {<br>
+      &nbsp&nbspdocument.getElementById(<span style="color:green">"demo"</span>).innerHTML += x;<br>}</span><br><br>
+    <span style="color:gray">// name age car
+  </p>
+  <p>In a for-in loop, use the bracket notation to access the property <i>values:</i></p>
+  <p style="background-color:#333; padding:5px 10px;">
+    <span style="color:pink">for </span>
+    <span style="color:white">(x <span style="color:pink">in </span>myObj) {<br>
+      &nbsp&nbspdocument.getElementById(<span style="color:green">"demo"</span>).innerHTML += myObj[x];<br>}</span><br><br>
+    <span style="color:gray">// John 30 null
+  </p>
+</div>
+
+<div class="container">
+  <h2>Nested JSON Objects</h2>
+  <p>Values in a JSON object can be antoher JSON object</p>
+  <div style="background-color:#ddd; padding:20px">
+    <h3>Nested Object</h3>
+    <p style="background-color:#333;padding:5px 10px">
+      <span style="color:white">myObj = {</span><br>
+      <span style="color:lightgreen">
+        &nbsp&nbsp"name"<span style="color:white"> : </span>"John"<span style="color:white">,</span><br>
+        &nbsp&nbsp"age"<span style="color:white"> : </span><span style="color:lightblue">20</span><span style="color:white">,</span><br>
+        &nbsp&nbsp"cars"<span style="color:white"> : {</span><br>
+        &nbsp&nbsp&nbsp&nbsp"car1" <span style="color:white"> : </span>"Ford"<span style="color:white">,</span><br>
+        &nbsp&nbsp&nbsp&nbsp"car2" <span style="color:white"> : </span>"BMW"<span style="color:white">,</span><br>
+        &nbsp&nbsp&nbsp&nbsp"car3" <span style="color:white"> : </span>"Fiat"<span style="color:white">,</span><br>
+      </span>
+      <span style="color:white">&nbsp&nbsp}<br>}</span>
+    </p>
+    <h3>Access nested object</h3>
+    <p style="background-color:#333;padding:5px 10px; color:white">
+      x = myObj.cars.car2;<br>
+      x = myObj.cars[<span style="color:lightgreen">"car2"</span>];<br>
+      x = myObj[<span style="color:lightgreen">"cars"][<span style="color:lightgreen">"car2"</span>];<br>
+    </p>
+    <h3>Modify nested object</h3>
+    <p style="background-color:#333;padding:5px 10px; color:white">
+      myObj.cars.car2 = <span style="color:lightgreen">"Mercedes"</span>;<br>
+      myObj.cars[<span style="color:lightgreen">"car2"</span>] = <span style="color:lightgreen">"Mercedes"</span>;<br>
+      myObj[<span style="color:lightgreen">"cars"</span>][<span style="color:lightgreen">"car2"</span>] = <span style="color:lightgreen">"Mercedes"</span>;<br>
+    </p>
+    <h3>Delete Object Property</h3>
+    <p>Use the <code>delete</code> keyword to delete properties from a JSON object:</p>
+    <p style="background-color:#333;padding:5px 10px; color:white">
+      <span style="color:pink">delete</span> myObj.cars.car2;<br>
+      <span style="color:pink">delete</span> myObj.cars[<span style="color:lightgreen">"car2"</span>];<br>
+      <span style="color:pink">delete</span> myObj[<span style="color:lightgreen">"cars"</span>][<span style="color:lightgreen">"car2"</span>];<br>
+    </p>
+  </div>
+</div>
+<script>
+
+</script>
+</body>
+</html>

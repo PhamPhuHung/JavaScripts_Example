@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript For Loop</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#l1">Different kinds of Loops</a></li>
+    <li><a href="#l2">The For Loop</a></li>
+    <li><a href="#l3">The For/In Loop</a></li>
+    <li><a href="#l4">The For/Of Loop</a></li>
+    <li><a href="#l5">The While Loop</a></li>
+    <li><a href="#l6">The Do While Loop</a></li>
+  </ol>
+</div>
+
+<h2 id="l1">Different kinds of Loops</h2><hr>
+<p>JavaScript supports different kinds of loops</p>
+<ul>
+  <li><strong>for</strong> - loops through a block of code a number of times</li>
+  <li><strong>for/in</strong> - loops through the properties of an object</li>
+  <li><strong>for/of</strong> - loop through the values of an iterable object</li>
+  <li><strong>while</strong> - loops through a block of code while a specified condition is true (check condition before every loop)</li>
+  <li><strong>do/while</strong> - loops through a blbock of code white a specified condition is true (check condition after every loop)</li>
+</ul>
+
+<h2 id="l2">The For Loop</h2><hr>
+<div class="example">
+  <div class="examplecontent">
+    var text = "";<br>
+    for (var i = 0; i < 5; i++) {<br>
+    &nbsp&nbsp  text += "The number is " + i + "&ltbr&gt"  ;<br>
+    }<br><br>
+
+    <span>/*<br>
+    The number is 0<br>
+    The number is 1<br>
+    The number is 2<br>
+    The number is 3<br>
+    The number is 4<br>
+    */<span>
+  </div>
+</div>
+
+<h2 id="l3">The For/In Loop</h2><hr>
+<p>The JavaScript <strong>for/in</strong> statement loops through the properties of an object</p>
+<p>Note: If the order is important, do not use <strong>for/in</strong> over an Array, use <strong>for</strong> instead</p>
+<div class="example">
+  <div class="examplecontent">
+    var person = {fname:"John", lname="Doe", age: 25};<br>
+    var text = ""; <br>
+    for (var x in person) {<br>
+    &nbsp&nbsp  text += person[x] + " ";<br>
+    }<br><br>
+
+    <span>/*<br>
+    John Doe 25
+    */<span>
+  </div>
+  <br>
+  <div class="examplecontent">
+    var number = [45, 4, 9, 16, 25];<br>
+    var text = ""; <br>
+    for (var x in number) {<br>
+    &nbsp&nbsp  text += number[x] + " ";<br>
+    }<br><br>
+
+    <span>/*<br>
+    45 4 9 16 25
+    */<span>
+  </div>
+</div>
+
+<h2 id="l4">The For/Of Loop</h2><hr>
+<p>The JavaScript <strong>for/of</strong> statement loops through the value of an iterable object (Arrays, Strings, Maps, NodeLists, ...)</p>
+
+<div class="example">
+  <p>Looping over an Array
+  <div class="examplecontent">
+    let cars = ["BMW", "Volvo", "Mini"];<br>
+    let text = ""; <br>
+    for (let x of cars) {<br>
+    &nbsp&nbsp  text += x + "&ltbr&gt";<br>
+    }<br><br>
+
+    <span>/*<br>
+    BMW<br>
+    Volvo<br>
+    Mini<br>
+    */<span>
+  </div>
+  <br>
+  <p>Looping over a String
+  <div class="examplecontent">
+    let language = "JavaScript";<br>
+    var text = ""; <br>
+    for (let x of language) {<br>
+    &nbsp&nbsp  text += x + " ";<br>
+    }<br><br>
+
+    <span>/*<br>
+    J a v a S c r i p t<br>
+    */<span>
+  </div>
+</div>
+
+<h2 id="l5">The While Loop</h2><hr>
+<p>The JavaScript <strong>while</strong> statement loops through a block of code as long as a specified condition is true</p>
+<div class="example">
+  <div class="examplecontent">
+    var i = 0;<br>
+    while (i < 10) {<br>
+    &nbsp&nbsp  text += i + " ";<br>
+    &nbsp&nbsp  i++;<br>
+    }<br><br>
+
+    <span>/*<br>
+    0 1 2 3 4 5 6 7 8 9<br>
+    */<span>
+  </div>
+</div>
+
+<h2 id="l6">The Do/While Loop</h2><hr>
+<p>The JavaScript <strong>do/while</strong> statement  will execute the code block once, before checking if the conditioni is true, then it will repeat the loop as long as the condition is true</p>
+<div class="example">
+  <div class="examplecontent">
+    var i = 0;<br>
+    do {<br>
+    &nbsp&nbsp  text += i + " ";<br>
+    &nbsp&nbsp  i++;<br>
+    }<br>
+    while(i < 10)<br><br>
+
+    <span>/*<br>
+    0 1 2 3 4 5 6 7 8 9<br>
+    */<span>
+  </div>
+</div>
+
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

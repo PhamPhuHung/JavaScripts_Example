@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <title>AJAX Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+  <style>
+  .table-striped tbody tr:nth-child(odd) {
+    background-color: lightgray;
+  }
+  </style>
+
+</head>
+<body>
+<div class="container">
+  <h2>The onreadystatechange Property</h2>
+  <p>The <code>readyState</code> property holds the status of the XMLHttpRequest</p>
+  <p>The <code>onreadystatechagne</code> property defines a function to be executed when the <code>readyState</code> changes</p>
+  <p>The <code>status</code> property and the <code>statusText</code> property holds the status of the XMLHttpRequest object</p>
+  <table class="table table-hover table-bordered table-responsive">
+    <thead><tr>
+      <th>Property</th>
+      <th>Description</th>
+    </tr></thead>
+
+    <tbody>
+      <tr>
+        <td>onreadystatechange</td>
+        <td>Defines a function to be called when the readyState property changes</td>
+      </tr>
+
+      <tr>
+        <td>readyState</td>
+        <td>Holds the status of the XMLHttp Request.<br>
+            0: request not initialized<br>
+            1: server connection established<br>
+            2: request received<br>
+            3: processing request<br>
+            4: request finished and responsed is ready<br>
+        </td>
+      </tr>
+
+      <tr>
+        <td>status</td>
+        <td>Returns the status-number of a request<br>
+            200: "OK"<br>
+            403: "Forbidden"<br>
+            404: "Not Found"<br>
+            For a complete list, go to the <a href="https://www.w3schools.com/tags/ref_httpmessages.asp" target="_blank">Http Messages Reference</a>
+        </td>
+      </tr>
+
+      <tr>
+        <td>statusText</td>
+        <td>Returns the status-text (e.g. "OK" or "Not Found")</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>The <code>onreadystatechagne</code> function is called every time the <code>readyState</code> changes</p>
+  <p>When <code>readyState</code> is 4 and <code>status</code> is 200, the response is ready:</p>
+  <p style="background-color:#333; padding:5px 10px">
+    <span style="color:pink">var /span>
+    <span style="color:white">xhttp = </span>
+    <span style="color:pink">new </span>
+    <span style="color:white">XMLHttpRequest();</span><br><br>
+
+    <span style="color:white">xhttm.onreadystatechange = <span>
+    <span style="color:pink"> function</span>
+    <span style="color:white">() {</span><br>
+    <span style="color:pink">&nbsp&nbspif</span>
+    <span style="color:white">(</span>
+    <span style="color:pink">this<span>
+    <span style="color:white">.readyState == 4 && </span>
+    <span style="color:pink">this</span>
+    <span style="color:white">.status == 200) {<br>
+      &nbsp&nbsp&nbsp&nbspdocument.getElementById(<span style="color:green">"demo"</span>).innerHTML = </span>
+    <span style="color:pink">this</span>
+    <span style="color:white">.responseText;<br>&nbsp&nbsp}<br>};<br>
+      xhttp.open(<span style="color:green">"GET", "ajax_info.txt", true</span>);<br>
+      xhttp.send();<br></span>
+  </p>
+  <p style="background-color:lightyellow;padding:20px">The <code>onreadystatechange</code> event is triggered four times (1-4), one time for each change in the <code>readyState</code></p>
+</div>
+
+<div class="container">
+  <h2>Using a Callback Function</h2>
+  <p>A callback function is a function passed as a parameter to another function.</p>
+  <p style="background-color:#333; padding:5px 10px">
+    <span style="color:white">loadDoc(<span style="color:green">"url-1"</span>, myFunction1);</span><br><br>
+
+    <span style="color:white">loadDoc(<span style="color:green">"url-2"</span>, myFunction2);</span><br><br>
+
+    <span style="color:pink">function </span>
+    <span style="color:white">loadDoc(url, cFunction) {</span><br>
+    <span style="color:pink">&nbsp&nbspvar </span>
+    <span style="color:white">xhttp;<br>&nbsp&nbspxhttp = </span>
+    <span style="color:pink">new </span>
+    <span style="color:white"> XMLHttpRequest();<br>
+      xhttp.onreadystatechange = <span style="color:pink">function</span>() {<br></span>
+    <span style="color:pink">&nbsp&nbsp&nbsp&nbspif<span style="color:white">(</span>this<span>
+    <span style="color:white">.readystate = 4 && <span style="color:pink">this</span>.status = 200) {<br>
+      &nbsp&nbsp&nbsp&nbsp&nbsp&nbspcFunction(<span style="color:pink">this</span>);<br>
+      &nbsp&nbsp&nbsp&nbsp}<br>
+      &nbsp&nbsp};<br>
+      &nbsp&nbspxhttp.open(<span style="color:green">"GET"</span>, url, true);<br>
+      &nbsp&nbspxhttp.send();<br>
+      }<br><br></span>
+
+    <span style="color:pink">function <span style="color:white">myFunction1(xhttp) {
+      <span style="color:gray">&nbsp&nbsp// action goes here </span></span>
+      <span style="color:white">}</span><br><br>
+
+    <span style="color:pink">function <span style="color:white">myFunction2(xhttp) {
+      <span style="color:gray">&nbsp&nbsp// action goes here </span></span>
+      <span style="color:white">}</span><br><br>
+  </p>
+</div>
+
+<div class="container">
+  <h2>Server Response Properties</h2>
+  <table class="table table-response table-striped table-bordered">
+    <thead><tr>
+      <th>Property</th>
+      <th>Description</th>
+    </tr></thead>
+
+    <tbody>
+      <tr>
+        <td>responseText</td>
+        <td>Get the response data as a string</td>
+      </tr>
+      <tr>
+        <td>responseXML</td>
+        <td>Get the response data as XML data</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container">
+  <h2>Server Response Methods</h2>
+  <table class="table table-response table-striped table-bordered">
+    <thead><tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr></thead>
+
+    <tbody>
+      <tr>
+        <td>getResponseHeader</td>
+        <td>Returns specific header information from the server resource</td>
+      </tr>
+      <tr>
+        <td>getAllResponseHeader</td>
+        <td>Returns all the header information from the server resource</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container">
+  <h2>The responseText Property</h2>
+  <p>The <code>responseText</code> property returns the server response as a JavaScript string, and you can use it accordingly:</p>
+  <
+</div>
+<script>
+
+</script>
+</body>
+</html>

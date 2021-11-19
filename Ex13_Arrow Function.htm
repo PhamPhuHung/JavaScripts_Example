@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Arrow Function</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#a1">Arrow function</a></li>
+    <li><a href="#a2">What about <bold>this</bold>?</a></li>
+  </ol>
+</div>
+
+<h2 id="a1">Arrow function</h2><hr>
+<p>Arrow function allow us to write shorter function syntax</p>
+<p>Original Function</p>
+<div class="example">
+  <div class="examplecontent">
+    hello = function() {<br>
+    &nbsp&nbsp return "Hello World!";<br>
+    }
+  </div>
+</div>
+<p>With Arrow Function</p>
+<div class="example">
+  <div class="examplecontent">
+    hello = () => {<br>
+    &nbsp&nbsp return "Hello World!";<br>
+    }
+  </div>
+</div>
+<p>If the function has only one statement, and the statement returns a value, you can make it shorter</p>
+<div class="example">
+  <div class="examplecontent">
+    hello = () => "Hello World!";
+  </div>
+</div>
+<p>Arrow function with parameters</p>
+<div class="example">
+  <div class="examplecontent">
+    hello = (val) => "Hello World!" + val;
+  </div>
+</div>
+<p>If the function has only one parameter, you can make it remove parentheses</p>
+<div class="example">
+  <div class="examplecontent">
+    hello = val => "Hello World!" + val;
+  </div>
+</div>
+
+<h2 id="a1">What about <strong>this</strong>?</h2><hr>
+<p>In regular functions, <strong>this</strong> represented the object that called the function which could be the window, the doument, a button or whatever</p>
+<div class="example">
+  <div class="examplecontent">
+    <span>// Regular Function: </span><br>
+    hello = function() {<br>
+    &nbsp&nbsp  document.getElementById("demo").innerHTML += this;<br>
+    }<br><br>
+
+    <span>// The window object calls the function:</span><br>
+    window.addEventListener("load", hello); <span>// [object Window]</span><br><br>
+
+    <span>// A button object calls the function:</span><br>
+    document.getElementById("btn").addEventListener("click", hello); <span>// [object HTMLButtonElement]</span>
+  </div>
+</div>
+<p>With arrow functions, <strong>this</strong> <i>always</i> represented the object that defined the arrow function</p>
+<div class="example">
+  <div class="examplecontent">
+    <span>// Regular Function:</span><br>
+    hello = () => {<br>
+    &nbsp&nbsp  document.getElementById("demo").innerHTML += this; <span>// [object Window]</span><br><br>
+    }<br><br>
+
+    <span>// The window object calls the function:</span><br>
+    window.addEventListener("load", hello);<br><br>
+
+    <span>// A button object calls the function:</span><br>
+    document.getElementById("btn").addEventListener("click", hello); <span>// [object Window]</span>
+  </div>
+</div>
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

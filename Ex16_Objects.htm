@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Objects</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#o1">Object Definitions</a></li>
+    <li><a href="#o2">Object Properties</a></li>
+    <li><a href="#o3">Object Methods</a></li>
+    <li><a href="#o4">Object Display</a></li>
+    <li><a href="#o5">Object Accessors (get & set)</a></li>
+    <li><a href="#o6">Object Constructors</a></li>
+    <li><a href="#o7">Object Prototype</a></li>
+    <li><a href="#o8">ES5 Object Methods</a></li>
+  </ol>
+</div>
+
+<h2 id="o1">Object Definitions</h2><hr>
+<h3>Define Objects</h3>
+<div class="example">
+  <div class="examplecontent">
+    var person = {                                                      <br>
+      fname: "John",                                                    <br> 
+      lname: "Doe",                                                     <br>
+      age: 50,                                                          <br>
+      eyeColor: "blue",                                                 <br>
+      fullName: function() { return this.fname + " " + this.lname; }    <br>
+    };
+  </div>
+</div>
+
+<h3>Objects are mutable</h3>
+<p>Objects are addressed by reference, not by value</p>
+<div class="example">
+  <div class="examplecontent">
+    var x = person; <span>// This will not create a copy of person, x & person are the same object (x & object will change at the same time)</span><br>
+    };
+  </div>
+</div>
+<h2 id="o2">Object Properties</h2><hr>
+<h3>Accessing Object properties</h3>
+<div class="example">
+  <div class="examplecontent">
+    objectName.property;  <span>// person.age</span><br>
+    objectName["property"]; <span>// person["age"]</span><br>
+    objectName[expression]; <span>// x = "age"; person[x]</span><br>
+  </div>
+</div>
+<h3>Adding / Deleting Object properties</h3>
+<div class="example">
+  <div class="examplecontent">
+    var person = {fname:"John", lname:"Doe", age:50, eyeColor: "blue"};<br>
+    persion.nationality = "English"; <span>Adding property "nationality"</span><br>
+    delete person.age; <span>// delete both the property "age" & its value "
+  </div>
+</div>
+<h3>Property Attributes</h3>
+<p>Property attributes: value, enumerable, configurable, writable</p>
+
+<h2 id="o3">Object Methods</h2><hr>
+<h3>Accessing Object Methods</h3>
+<div class="example">
+  <div class="examplecontent">
+    objectName.methodName(); <span>// name = persion.fullName();</span><br>
+  </div>
+</div>
+<h3>Adding / Deleting a method</h3>
+<div class="example">
+  <div class="examplecontent">
+    person.name = function() { return this.fname + " " + this.lname;}<br>
+    delete person.name;
+  </div>
+</div>
+
+<h2 id="o4">Object Display</h2><hr>
+<h3>Diplaying Object Properties</h3>
+<div class="example">
+  <div class="examplecontent">
+    var x = person.name + ", " + person.age;
+  </div>
+</div>
+<h3>Diplaying Object in a loop</h3>
+<div class="example">
+  <div class="examplecontent">
+    for (x in person) { txt += person[x] + " ";}
+  </div>
+</div>
+<h3>Using <strong>Object.values()</strong></h3>
+<p>Convert Object to array</p>
+<div class="example">
+  <div class="examplecontent">
+    var person = {name: "John", age: 50, city: "New York"};
+    var txt = Object.values(person); <span>// txt = ["John",50,"New York"];
+  </div>
+</div>
+<h3>Using <strong>JSON.stringify()</strong></h3>
+<p>Convert Object to string</p>
+<div class="example">
+  <div class="examplecontent">
+    var person = {name: "John", age: 50, city: "New York"};
+    var txt = JSON.stringify(person); <span>// txt = '{"name":"John","age":50,"city":"New York"}';
+  </div>
+  <p>Stringify() can convert dates to strings</p>
+  <div class="examplecontent">
+    var person = {name: "John", today:new Date()};
+    var txt = JSON.stringify(person); <span>// txt = '{"name":"John","today":"2021-03-19T04:23:32.678Z"}';
+  </div>
+  <p>Stringify() can convert arrays to strings</p>
+  <div class="examplecontent">
+    var arr = ["John", "Peter", "Sally", "Jane"];
+    var txt = JSON.stringify(arr); <span>// txt = '["John","Peter","Sally","Jane"]';
+  </div>
+</div>
+
+<h2 id="o5">Object Accessors</h2><hr>
+<h3>JavaScript Getter (<strong>get</strong></h3>
+<div class="example">
+  <div class="examplecontent">
+    var person = {<br>
+    &nbsp&nbsp fname: "John",                         <br>
+    &nbsp&nbsp lname: "Doe",                          <br>
+    &nbsp&nbsp language: "en",                        <br>
+    &nbsp&nbsp get lang() { return this.language; }   <br>
+    }<br><br>
+
+    var x = person.lang;                              <span>//x = "en"</span>
+  </div>
+</div>
+
+<h3>JavaScript Setter (<strong>set</strong></h3>
+<div class="example">
+  <div class="examplecontent">
+    var person = {<br>
+    &nbsp&nbsp fname: "John",                         <br>
+    &nbsp&nbsp lname: "Doe",                          <br>
+    &nbsp&nbsp language: "en",                        <br>
+    &nbsp&nbsp set lang() { this.language = lang }    <br>
+    }<br><br>
+    
+    person.lang = "vi";                               <br>
+    var x = person.language;                          <span>//x = "vi"</span>
+  </div>
+</div>
+
+<h3>Object.defineProperty()</h3>
+<p>Can also use to add getters and setters</p>
+<div class="example">
+  <div class="examplecontent">
+    // Define object                                                   <br>
+    var obj = {counter : 0};                                           <br><br>
+
+    // Define setters                                                  <br>
+    Object.defineProperty(obj, "reset", {                              <br>
+    &nbsp&nbsp  get : function () {this.counter = 0;}                  <br>
+    });                                                                <br>
+    Object.defineProperty(obj, "increment", {                          <br>
+    &nbsp&nbsp  get : function () {this.counter++;}                    <br>
+    });                                                                <br>
+    Object.defineProperty(obj, "decrement", {                          <br>
+    &nbsp&nbsp  get : function () {this.counter--;}                    <br>
+    });                                                                <br>
+    Object.defineProperty(obj, "add", {                                <br>
+    &nbsp&nbsp  set : function (value) {this.counter += value;}        <br>
+    });                                                                <br>
+    Object.defineProperty(obj, "subtract", {                           <br>
+    &nbsp&nbsp  set : function (value) {this.counter -= value;}        <br>
+    });                                                                <br><br>
+
+    // Play with the counter:
+    obj.reset;                                                         <span>// counter = 0<span><br>
+    obj.add = 5;                                                       <span>// counter = 5<span><br>
+    obj.subtract = 1;                                                  <span>// counter = 4<span><br>
+    obj.increment;                                                     <span>// counter = 5<span><br>
+    obj.decrement;                                                     <span>// counter = 4<span><br>
+  </div>
+</div>
+
+<h2 id="o6">Object Constructors</h2><hr>
+<p>Sometimes we need to create many objects of the same "type"<p>
+<p>The way to create an "object types" (blueprints) (classes) is to use an object constructor function</p>
+<div class="example">
+  <div class="examplecontent">
+    function Person(first, last, age, eye) {<br>
+    &nbsp&nbsp this.firstname = first;                                    <br>
+    &nbsp&nbsp this.lastname = last;                                      <br>
+    &nbsp&nbsp this.age = age;                                            <br>
+    &nbsp&nbsp this.eyecolor = eye;                                       <br>
+    &nbsp&nbsp this.nationnality = "England";                             <span> set default value</span><br>
+    &nbsp&nbsp this.fullname = function() { return first + " " + last;};  <span> set default value</span><br>
+    }<br><br>
+
+    var myFather = new Person("John", "Doe", 50, "blue", "England");      <span>//x = "en"</span><br>
+    var myMother = new Person("Sally", "Rally", 48, "green", "US");       <span>//x = "en"</span>
+  </div>
+</div>
+<p>We can add new properties / methods to myFather, myMother. But CANNOT use the same way to add to Person (use <strong>prototype</strong> instead (next tutorial))</p>
+
+<h2 id="o7">Object Prototype</h2><hr>
+<p>Use <strong>prototype</strong> to add new properties / methods to object constructor<p>
+<div class="example">
+  <div class="examplecontent">
+    function Person(first, last, age, eye) {<br>
+    &nbsp&nbsp this.firstname = first;                                    <br>
+    &nbsp&nbsp this.lastname = last;                                      <br>
+    &nbsp&nbsp this.age = age;                                            <br>
+    &nbsp&nbsp this.eyecolor = eye;                                       <br>
+    &nbsp&nbsp this.nationnality = "England";                             <span> set default value</span><br>
+    &nbsp&nbsp this.fullname = function() { return first + " " + last;};  <span> set default value</span><br>
+    }<br><br>
+
+    <span>// add new property</span><br>
+    Person.prototype.gender = "male";                                     <br>
+    <span>// add new method</span><br>
+    Person.prototype.birthyear = function() {                             <br>
+    &nbsp&nbsp  var d = new Date();                                       <br>
+    &nbsp&nbsp  return d.getFullYear() - this.age;                        <br>
+    }
+  </div>
+</div>
+
+<h2 id="o8">ES5 Object Methods</h2><hr>
+<table>
+  <tr>
+    <th>Methods</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>Object.defineProperty(object, property, descriptor)</td>
+    <td>Adding / changing an object property</td>
+  </td>
+  <tr>
+    <td>Object.defineProperties(object, descriptors)</td>
+    <td>Adding / changing many object properties</td>
+  </td>
+  <tr>
+    <td>Object.getOwnPropertyDescriptor(object, property)</td>
+    <td>Accessing property</td>
+  </td>
+  <tr>
+    <td>Object.getOwnPropertyNames(object)</td>
+    <td>Return all properties as an array</td>
+  </td>
+  <tr>
+    <td>Object.keys(object)</td>
+    <td>Returns enumerable properties as an array</td>
+  </td>
+  <tr>
+    <td>Object.gettPrototypeOf(object)</td>
+    <td>Accessing the prototype</td>
+  </td>
+  <tr>
+    <td>Object.preventExtensions(object)</td>
+    <td>Prevents adding properteis to an object</td>
+  </td>
+  <tr>
+    <td>Object.isExtensible(object)/td>
+    <td>Returns true if properties can added to an object</td>
+  </td>
+  <tr>
+    <td>Object.seal(object)</td>
+    <td>Prevents changes of object properties (not values)</td>
+  </td>
+  <tr>
+    <td>Object.isSealed(object)</td>
+    <td>Returns true if object is sealed</td>
+  </td>
+  <tr>
+    <td>Object.freeze(object)</td>
+    <td>Prevents any changes to an object</td>
+  </td>
+  <tr>
+    <td>Object.isFrozen(object)</td>
+    <td>Returns true if object is frozen</td>
+  </td>
+</table>
+<h3>Object.defineProperty()</h3>
+<div class="example">
+  <div class="examplecontent">
+    var person = { fname:"John", lname:"Doe",language:"EN"};          <br><br>
+
+    <span>// Change value of property</span><br>
+    Object.defineProperty(person, "language", {value: "NO"});         <br><br>
+
+    <span>// Make language read-only</span><br>
+    Object.defineProperty(person, "language", {writable:false});      <br><br>
+   
+    <span>// Make language not enumerable</span><br>
+    Object.defineProperty(person, "language", {enumerable:false});    <br><br>
+
+    <span>// Make language not reconfigurable</span><br>
+    Object.defineProperty(person, "language", {configurable:false});  <br><br>
+    
+    <span>// Define a getter</span><br>
+    Object.defineProperty(person, "fullname", {                       <br>
+    &nbsp&nbsp get: function() {return this.fname + " " + this.lname; }<br>
+    }                                                                  
+  </div>
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

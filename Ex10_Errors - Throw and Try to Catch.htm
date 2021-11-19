@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Errors - Throw and Try to Catch</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#e1">Try - catch - throw - finally</a></li>
+    <ol type="1">
+      <li><a href="#i">Introduction</a></li>
+      <li><a href="#tc">Try-catch</a></li>
+      <li><a href="#t">Throw</a></li>
+      <li><a href="#f">Finally</a></li>
+    </ol>
+    <li><a href="#e2">The Error Object</a></li>
+    <ol type="1">
+      <li><a href="#p">Error Object Propeties</a></li>
+      <li><a href="#n">Error Name Values</a></li>
+    </ol>
+  </ol>
+</div>
+
+<h2 id="e1">Try - catch - throw - finally</h2><hr>
+<h3 id="i">Introduction</h3>
+<ul>
+  <li>The <strong>try</strong> statement lets you test a block of code for errors</li>
+  <li>The <strong>catch</strong> statement lets you handle the error</li>
+  <li>The <strong>throw</strong> statement lets you create custom errors.</li>
+  <li>The <strong>finally</strong> statement lets you execute code, after try and catch, regardless of the result.</li>
+</ul>
+
+<h3 id="tc">Try-catch</h3>
+<p>In this example, we misspelled "alert" as "adddlert" to deliberately produce an error:</p>
+<div class="example">
+  <div class="examplecontent">
+    try {<br>
+    &nbsp&nbsp  adddlert("Welcome guest!");<br>
+    }<br>
+    catch(err) {<br>
+    &nbsp&nbsp  document.getElementById("demo").innerHTML = err.message;<span>// adddlert is not defined</span><br>
+    }<br>
+  </div>
+</div>
+
+<h3 id="t">Throw</h3>
+<p>You can <strong>throw</strong> an exception, which can be <strong>String</strong>, <strong>Number</strong>, <strong>Boolean</strong>, <strong>Object</strong></p>
+<div class="example">
+  <div class="examplecontent">
+    try {<br>
+    &nbsp&nbsp  if(x == "") throw "empty";<br>
+    &nbsp&nbsp  if(isNaN(x)) throw "not a number";<br>
+    &nbsp&nbsp  x = Number(x);<br>
+    &nbsp&nbsp  if(x < 5) throw "too low";<br>
+    &nbsp&nbsp  if(x > 10) throw "too high";<br>
+    }<br>
+    catch(err) {<br>
+     &nbsp&nbsp message.innerHTML = "Input is " + err;<br>
+    }
+  </div>
+</div>
+
+<h3 id="f">Finally</h3>
+<p>No matter what the result is, the block of code in <strong>finally</strong> is always execute after <strong>try-catch</strong></p>
+
+<h2 id="e2">The Error Object</h2><hr>
+<h3 id="p">Error Object Properties</h3>
+<img src="img/img_errorproperty.png" alt="Error Properties.png" width="900px">
+
+<h3 id="n">Error Name Values</h3>
+<img src="img/img_errornamevalue.png" alt="Error Name Values.png" width="900px">
+
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

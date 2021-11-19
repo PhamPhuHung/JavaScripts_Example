@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Strict Mode</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#t1">What is <bold>this</bold></a></li>
+    <li><a href="#t2"><bold>this</bold> in a method</a></li>
+    <li><a href="#t3"><bold>this</bold> alone</a></li>
+    <li><a href="#t4"><bold>this</bold> in a function (default)</a></li>
+    <li><a href="#t5"><bold>this</bold> in a function (strict mode)</a></li>
+    <li><a href="#t6"><bold>this</bold> in Event Handlers</a></li>
+    <li><a href="#t7">Explicit Function Binding (<bold>call()</bold> and <bold>apply</bold>)</a></li>
+  </ol>
+</div>
+
+<h2 id="t1">What is <bold>this</bold></h2><hr>
+<ul>
+  <li>In a method, <strong>this</strong> refers to the <bold>owner object</bold></li>
+  <li>Alone, <strong>this</strong> refers to the <bold>global object</bold></li>
+  <li>In a function, <strong>this</strong> refers to the <bold>global object</bold></li>
+  <li>In a function, in strict mode, <strong>this</strong> is <strong>undefined</strong></li>
+  <li>In a event, <strong>this</strong> refers the <bold>element</bold> that received the event</li>
+  <li>Methods like <strong>call()</strong>, <strong>apply()</strong> can refer <strong>this</strong> to <bold>any object</bold></li>
+</ul>
+
+<h2 id="t2"><bold>this</bold> in a method</a></h2><hr>
+<p>In a method, <strong>this</strong> refers to the <bold>owner object</bold></p>
+<p>In the example, <bold>person</bold> is the <bold>owner</bold> of the <bold>fullName</bold> method, so <strong>this</strong> refer to <bold>person</p>
+<div class="example">
+  <div class="examplecontent">
+    var person = {<br>
+    &nbsp&nbsp fname: "John",                                            <br>
+    &nbsp&nbsp lname: "Doe",                                             <br>
+    &nbsp&nbsp id: 5566,                                                 <br>
+    &nbsp&nbsp fullname: function() {                                    <br>
+    &nbsp&nbsp&nbsp&nbsp return this.fname + " " + this.lastName;        <br>
+  </div>
+</div>
+
+<h2 id="t3"><bold>this</bold> alone</a></h2><hr>
+<p>Alone, <strong>this</strong> refers to the <bold>global object</bold></p>
+<div class="example">
+  <div class="examplecontent">
+    var person = this; <span>// [object window]</span><br>
+  </div>
+</div>
+
+<h2 id="t4"><bold>this</bold> in a function (default)</a></h2><hr>
+<p>In a function, <strong>this</strong> refers to the <bold>global object</bold></p>
+<div class="example">
+  <div class="examplecontent">
+    function myFunction() {<br>
+    &nbsp&nbsp return this; <span>// [object window]</span><br>
+    }
+  </div>
+</div>
+
+<h2 id="t5"><bold>this</bold> in a function (strict mode)</a></h2><hr>
+<p>In a function, in strict mode, <strong>this</strong> is <strong>undefined</strong></p>
+<div class="example">
+  <div class="examplecontent">
+    "use strict";<br>
+    function myFunction() {<br>
+    &nbsp&nbsp return this; <span>// undefined</span><br>
+    }
+  </div>
+</div>
+
+<h2 id="t6"><bold>this</bold> in event handlers</a></h2><hr>
+<p>In a event, <strong>this</strong> refers the <bold>element</bold> that received the event</p>
+<div class="example">
+  <div class="examplecontent">
+    &ltbutton onclick="this.style.display='none'"&gt <span>// this refer to button</span><br>
+    &nbsp&nbsp Click to Remove Me!<br>
+    &lt/button&gt
+    }
+  </div>
+</div>
+
+<h2 id="t7">Explicit Function Binding (<bold>call()</bold> and <bold>apply</bold>)</h2><hr>
+<p><bold>call()</bold> and <bold>apply</bold>, can both be used</p>
+<div class="example">
+  <div class="examplecontent">
+    var person1 = {<br>
+    &nbsp&nbsp  fullName: function() {<br>
+    &nbsp&nbsp&nbsp&nbsp    return this.firstName + " " + this.lastName;<br>
+    &nbsp&nbsp  }<br>
+    }<br>
+    var person2 = {<br>
+    &nbsp&nbsp  firstName:"John",<br>
+    &nbsp&nbsp  lastName: "Doe",<br>
+    }<br>
+    person1.fullName.call(person2); <span> // Will return "John Doe"</span><br>
+  </div>
+</div>
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

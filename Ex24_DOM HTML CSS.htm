@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript DOM - Changing HTMLc</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#c1">Changing the HTML Output Stream - <strong>document.write</strong></a></li>
+    <li><a href="#c2">Changing HTML Content - <strong>innerHTML</strong></a></li>
+    <li><a href="#c3">Changing the Value of an Attribute - <strong>attribute</strong></a></li>
+    <li><a href="#c4">Changing HTML Style - <strong>style.property</strong></a></li>
+  </ol>
+</div>
+
+<h2 id="c1">Changing the HTML Output Stream - <strong>document.write</strong></h2><hr>
+<p>Write directly to the HTML output stream</p>
+<div class="example">
+  <div class="examplecontent">
+    document.getElementById("p1").innerHTML = "New texd!";
+  </div>
+</div>
+
+<h2 id="c2">Changing HTML Content - <strong>innerHTML</strong></strong></h2><hr>
+<div class="example">
+  <div class="examplecontent">
+    document.write(Date());
+  </div>
+</div>
+
+<h2 id="c3">Changing the Value of an Attribute - <strong>attribute</strong></h2><hr>
+<div class="example">
+  <div class="examplecontent">
+    document.getElementById("myImage").src = "landscape.jpg";
+  </div>
+</div>
+
+<h2 id="c3">Changing HTML Style - <strong>style.property</strong></strong></h2><hr>
+<div class="example">
+  <div class="examplecontent">
+    document.getElementById("p1").style.color = "red";
+  </div>
+</div>
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

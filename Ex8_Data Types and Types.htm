@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript Data Types and Types</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#t1">Data Types and Types</a></li>
+    <li><a href="#t2">The typeof Operator</a></li>
+    <li><a href="#t3">The constructor Property</a></li>
+  </ol>
+</div>
+
+<h2 id="t1">Data Types and Types</h2><hr>
+<p>In JavaScript, there are 5 different data tupes that can contain values</p>
+<ul>
+  <li><strong>string</strong></li>
+  <li><strong>number</strong></li>
+  <li><strong>boolean</strong></li>
+  <li><strong>object</strong></li>
+  <li><strong>function</strong></li>
+</ul>
+
+<p>There are 6 types of objects</p>
+<ul>
+  <li><strong>Object</strong></li>
+  <li><strong>Date</strong></li>
+  <li><strong>Array</strong></li>
+  <li><strong>String</strong></li>
+  <li><strong>Number</strong></li>
+  <li><strong>Boolean</strong></li>
+</ul>
+
+<p>And 2 data types that cannot contain values</p>
+<ul>
+  <li><strong>null</strong></li>
+  <li><strong>undefined</strong></li>
+</ul>
+
+<h2 id="t2">The typeof Operator</h2><hr>
+<p><strong>typeof</strong> is an operator, do not have any data type</p>
+<p><strong>typeof</strong> retunes a string</p>
+<div class="example">
+  <div class="examplecontent">
+    typeof "John"                 <span>// Returns "string"</span><br>
+    typeof 3.14                   <span>// Returns "number"</span><br>
+    typeof NaN                    <span>// Returns "number"</span><br>
+    typeof false                  <span>// Returns "boolean"</span><br>
+    typeof [1,2,3,4]              <span>// Returns "object"</span><br>
+    typeof {name:'John', age:34}  <span>// Returns "object"</span><br>
+    typeof new Date()             <span>// Returns "object"</span><br>
+    typeof function () {}         <span>// Returns "function"</span><br>
+    typeof myCar                  <span>// Returns "undefined"</span><br>
+    typeof null                   <span>// Returns "object"</span>
+  </div>
+</div>
+
+<h2 id="t3">The constructor Property</h2><hr>
+<p><strong>typeof</strong> is an operator, do not have any data type</p>
+<p><strong>typeof</strong> retunes a string</p>
+<div class="example">
+  <div class="examplecontent">
+    "John".constructor                  <span>// Returns function String()  {[native code]}</span><br>
+    (3.14).constructor                  <span>// Returns function Number()  {[native code]}</span><br>
+    false.constructor                   <span>// Returns function Boolean()  {[native code]}</span><br>
+    [1, 2, 3, 4].constructor            <span>// Returns function Array()  {[native code]}</span><br>
+    {name:'John',age:34}.constructor    <span>// Returns function Object()  {[native code]}</span><br>
+    new Date().constructor              <span>// Returns function Date()  {[native code]}</span><br>
+    function() {}.constructor           <span>// Returns function Function()  {[native code]}</span><br>
+  </div>
+</div><br>
+<p>You can check the constructor property to find out if an object is an <strong>Array</strong> (contains the word "Array")</p>
+<div class="example">
+  <div class="examplecontent">
+    function isArray(myArray) {<br>
+    &nbsp&nbsp return myArray.constructor.toString().indexOf("Array") > -1;<br>
+    }
+  </div>
+</div>
+<p>Or even simpler, you can check if the object is an Array function</p>
+<div class="example">
+  <div class="examplecontent">
+    function isArray(myArray) {<br>
+    &nbsp&nbsp return myArray.constructor = Array;<br>
+    }
+  </div>
+</div>
+<p><strong>Note</strong>You can use the same methods to find the types of other object (Date, Boolean, ....)</p>
+
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+</script>
+</body>
+</html>

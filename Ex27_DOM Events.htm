@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>JavaScript DOM Events</title>
+<style>
+.contentlink {
+  background-color: #ddd;
+  padding: 10px 5px;
+  
+}
+.contentlink .header {
+  text-align: center;
+}
+.contentlink .header::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.contentlink .header .text {
+  text-align: center;
+  font-weight: bold;
+  display: inline;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button {
+  background-color: inherit;
+  border: none;
+  color: blue;
+  margin-left: auto;
+  margin-right: auto;
+}
+.contentlink .header button:hover {
+  text-decoration: underline;
+}
+.contentlink a {
+  text-decoration: none;
+  color: blue;
+}
+.contentlink a:hover {
+  text-decoration: underline;
+}
+#contentlist {
+  display: block;
+}
+
+.example {
+  background-color: #ddd;
+  padding: 10px 5px;
+}
+.examplecontent {
+  background-color: white;
+  padding: 5px 3px;
+  border-left: 3px solid green;
+}
+span { color: green; }
+strong { color: red; }
+table { padding: 5px; width: 100%; border: 1px solid lightgray; border-collapse: collapse; }
+th, td { padding: 5px; border-bottom: 1px solid lightgray; text-align: left; }
+tr:nth-child(even) { background-color: #ddd; }
+.moveback {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+</style>
+</head>
+<body>
+<div class="moveback">
+<a href="#head">
+<img src="img/img_moveup.png" width="100px" height="100px">
+</a>
+</div>
+
+<div class="contentlink" id="head">
+  <div class="header">
+    <div class="text"><p>Contents</p></div>
+    <button id="contentbutton" type="button" onclick="hideShowContent()">[hide]</q>
+  </div>
+
+  <ol type="I" id="contentlist">
+    <li><a href="#c1">Asign Events using Event Attribute</a></li>
+    <li><a href="#c2">Asing Events using HTML DOM</a></li>
+    <li><a href="#c3">The <strong>onload</strong> & <strong>onunload</strong> events</a></li>
+    <li><a href="#c4">The <strong>onchange</strong> event</a></li>
+    <li><a href="#c5">The <strong>onmouseover</strong> & <strong>onmouseout</strong> events</a></li>
+    <li><a href="#c6">The <strong>onmousedown</strong>, <strong>onmouseup</strong> & <strong>onclick</strong> 
+    <li><a href="#c7">The <strong>onfocus</strong> & <strong>onchange</strong> event</a></li>
+  </ol>
+</div>
+
+<h2 id="c1">Asign Events using Event Attribute</h2><hr>
+<div class="example">
+  <div class="examplecontent">
+    &ltbutton onclick="changeText()"&gtTry it&lt/button&gt
+  </div><br>
+  <button onclick="changeText()">Try it</button>
+  <p id="e1">Old text</p>
+  </div>
+</div>
+
+<h2 id="c2">Asign Events using HTML DOM</h2><hr>mple">
+<div class="example">
+  <div class="examplecontent">
+    document.getElementById("bt2").onclick = displayDate;
+  </div><br>
+  <button id="bt2">Try it</button>
+  <p id="e2">Date: </p>
+  </div>
+</div>
+
+<h2 id="c3">The <strong>onload</strong> & <strong>onunload</strong> events</h2><hr>
+<p>Trigger when the user enters / leaves the page</p>
+<p>The <strong>onload</strong> can be used to check the visitor's browser type and browser version, and load the proper version of the web page based on the information</p>
+<p>Can be used to deal with cookies</p> 
+<div class="example">
+  <div class="examplecontent">
+    &ltbody onload="checkCookies()"&gt
+  </div>
+</div>
+
+<h2 id="c4">The <strong>onchange</strong> event</h2><hr>
+<p>Trigger when the user enters / leaves the page</p>
+<p>The <strong>onload</strong> can be used to check the visitor's browser type and browser version, and load the proper version of the web page based on the information</p>
+<p>Can be used to deal with cookies</p> 
+<div class="example">
+  <div class="examplecontent">
+    e4.value = e4.value.toUpperCase();					<br>
+    function touppercase() { var e4 = document.getElementById("e4"); }	<br><br>
+
+    &ltinput type="text" id="e4" onchange="touppercase()"&gt
+  </div>
+  <p>Write something in lowercase into this textbox and then lose focus to see the result</p>
+  <input type="text" id="e4" onchange="touppercase()">
+</div>
+
+<h2 id="c5">The <strong>onmouseover</strong> & <strong>onmouseout</strong> events</h2><hr>
+<div class="example">
+  <div class="examplecontent">
+    &ltdiv onmouseover="mOver(this)" onmouseout="mOut(this)"&gtMouse Over Me&lt/div&gt
+  </div>
+  <div onmouseover="mOver(this)" onmouseout="mOut(this)" style="background-color:orange;padding:20px;margin:10px;width:150px">Mouse Over Me</div>
+</div>
+
+<h2 id="c6">The <strong>onmousedown</strong>, <strong>onmouseup</strong> & <strong>onclick</strong> events</h2><hr>
+<div class="example">
+  <div class="examplecontent">
+    &ltdiv onmousedown="mDown(this)" onmouseup="mUp(this)"&gtMouse Up, Thank You&lt/div&gt
+  </div>
+  <div onmousedown="mDown(this)" onmouseup="mUp(this)" style="background-color:orange;padding:20px;margin:10px;width:150px">Mouse Up, Thank You</div>
+</div>
+
+<h2 id="c7">The <strong>onfocus</strong> & <strong>onchange</strong> events</h2><hr>
+<div class="example">
+  <div class="examplecontent">
+    &ltinput type="text" onfocus="mFocus(this)"&gt			<br>
+    &ltinput type="text" onfocus="mFocus(this)"&gt
+  </div>
+  
+  <input type="text" onfocus="mFocus(this)">
+  <input type="text" onfocus="mFocus(this)">
+</div>
+
+<script>
+function hideShowContent() {
+  var content = document.getElementById("contentlist");
+  var button = document.getElementById("contentbutton");
+  if (content.style.display == "block") {
+    content.style.display = "none";
+    button.innerHTML = "[show]";
+  }
+  else {
+    content.style.display = "block";
+    button.innerHTML = "[hide]";
+  }
+}
+
+var e1 = document.getElementById("e1");
+function changeText() { e1.innerHTML = e1.innerHTML == "Old text"? "New text" : "Old text"; } 
+
+var e2 = document.getElementById("e2");
+document.getElementById("bt2").onclick = displayDate;
+function displayDate() { e2.innerHTML = "Date: " + Date(); } 
+
+var e4 = document.getElementById("e4");
+function touppercase() { e4.value = e4.value.toUpperCase(); }	
+
+function mOver(obj) { obj.innerHTML = "Thank you"; }
+function mOut(obj) { obj.innerHTML = "Mouse Over Me"; }
+
+function mDown(obj) { obj.innerHTML = "Mouse Down, Please Release Me"; }
+function mUp(obj) { obj.innerHTML = "Mouse Up, Thank You"; }
+
+function mFocus(obj) { obj.style.backgroundColor =  "yellow"; }
+</script>
+</body>
+</html>
